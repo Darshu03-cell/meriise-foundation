@@ -1,5 +1,11 @@
 # Task: Bridge Course popup — 5-Day Innovation Bootcamp 2026
 
+> STATUS 2026-08-25: Both popups now HIDDEN — the whole `#promo-overlay` block (Bootcamp
+> `am-card` + Guruprasad `bg2-card`) is wrapped in an HTML comment in `index.html` per convention.
+> To re-enable, remove the `<!--` after the "DISABLED" comment (~line 3813) and the matching
+> `-->` before `<style>` (~line 3852).
+
+
 ## Goal
 Show an on-load promo popup on `index.html` for the **5-Day Innovation Bootcamp 2026**
 (Bridge Course for Students), with a "Register Now" button linking to the Google Form.
