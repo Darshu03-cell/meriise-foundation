@@ -468,6 +468,39 @@
     </div>
 
     <script>
+      /* ==========================================================================
+         HOW TO ADD A NEW EVENT   (read this — it's easy, just follow the steps)
+         ==========================================================================
+
+         STEP 1 — Put your photo(s) in the folder:  assets/events26/
+                  (Remember the EXACT file name, e.g. "My Event.jpg")
+
+         STEP 2 — Copy the TEMPLATE block below (everything between the { and },).
+
+         STEP 3 — Paste it as the FIRST event, right under "events: [" for 2026
+                  (a few lines down). Newest event goes at the TOP.
+
+         STEP 4 — Change the 4 lines: title, date, description, images.
+                  For images, type the exact file name(s) from assets/events26/.
+                  One photo:   images: ['assets/events26/My Event.jpg']
+                  Many photos: images: ['assets/events26/a.jpg', 'assets/events26/b.jpg']
+
+         STEP 5 — Save the file. Done! The event shows up automatically.
+
+         RULES (important, or the page breaks):
+           • Keep the single quotes '  ' around every piece of text.
+           • Keep the comma , after the }  (except it's optional on the last one).
+           • If your text has an apostrophe (like It's), write it as It\'s.
+
+         ------------------------- TEMPLATE (copy me) -------------------------
+            {
+              title: 'Event name here',
+              date: '1st January 2026',
+              description: 'One or two sentences about what happened.',
+              images: ['assets/events26/your-photo.jpg']
+            },
+         ----------------------------------------------------------------------
+      */
       const eventData = {
         2026: {
           title: '2026 Highlights',
