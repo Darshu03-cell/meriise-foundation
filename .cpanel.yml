@@ -3,3 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/example/public_html/merise
     - /bin/cp * $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/assets
+    - /bin/cp -r assets/* $DEPLOYPATH/assets/
