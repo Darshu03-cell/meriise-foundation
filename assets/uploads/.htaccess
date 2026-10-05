@@ -1,0 +1,12 @@
+# This folder only ever holds uploaded images.
+# Defense-in-depth: never execute any script here, and no directory listing.
+Options -Indexes -ExecCGI
+
+# Strip script handlers so these are served as plain files, never executed.
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps .pl .py .cgi
+AddType text/plain .php .phtml .php3 .php4 .php5 .php7 .phps .pl .py .cgi
+
+# Flat-out deny requests for any script-like file that somehow lands here.
+<FilesMatch "\.(php|phtml|php[3-7]|phps|pl|py|cgi|asp|aspx|sh)$">
+    Require all denied
+</FilesMatch>

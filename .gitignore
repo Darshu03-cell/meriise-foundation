@@ -1,0 +1,8 @@
+# --- Event admin runtime files (live on the server, not in git) ---
+# Admin password hash (never commit this)
+.htevtadmin
+
+# Photos uploaded through the admin panel live on the server only
+assets/uploads/*
+!assets/uploads/.htaccess
+!assets/uploads/index.html

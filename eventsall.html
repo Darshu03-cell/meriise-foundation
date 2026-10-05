@@ -354,6 +354,11 @@
         font-weight: 600;
         line-height: 1.32;
         color: var(--text);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       .event-card__body p {
@@ -361,6 +366,23 @@
         color: var(--muted);
         font-size: 0.94rem;
         line-height: 1.62;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .event-card__more {
+        margin-top: auto;
+        padding-top: 0.3rem;
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .event-card:hover .event-card__more {
+        text-decoration: underline;
       }
 
       .gallery {
@@ -1818,6 +1840,7 @@
                 <span class="date">${event.date}</span>
                 <h3>${event.title}</h3>
                 <p>${event.description}</p>
+                <span class="event-card__more">View details &rarr;</span>
               </div>
             </article>
           `).join('')}
@@ -1838,9 +1861,40 @@
         }
       });
 
-      renderGrid();
-      renderDetails(2026);
-      document.querySelector('.year-card').classList.add('active');
+      function initEvents() {
+        renderGrid();
+        // Open the most recent year that has events (usually the current/latest year).
+        const firstYear = years[0];
+        renderDetails(firstYear);
+        const firstCard = document.querySelector('.year-card');
+        if (firstCard) firstCard.classList.add('active');
+      }
+
+      // Merge in events added through the secret admin page (event-admin.php),
+      // if any. Falls back silently to the built-in events if the file is absent.
+      fetch('events_dynamic.json', { cache: 'no-store' })
+        .then((response) => (response.ok ? response.json() : []))
+        .then((list) => {
+          if (!Array.isArray(list)) return;
+          list.forEach((item) => {
+            const year = parseInt(item.year, 10);
+            if (!year || !item.title || !Array.isArray(item.images) || !item.images.length) return;
+            if (!eventData[year]) {
+              eventData[year] = { title: year + ' Highlights', summary: 'Events from ' + year + '.', events: [] };
+              years.length = 0;
+              Object.keys(eventData).sort((a, b) => Number(b) - Number(a)).forEach((y) => years.push(y));
+            }
+            // newest admin events go to the top of their year
+            eventData[year].events.unshift({
+              title: item.title,
+              date: item.date || '',
+              description: item.description || '',
+              images: item.images
+            });
+          });
+        })
+        .catch(() => {})
+        .finally(initEvents);
     </script>
   </body>
 </html>
