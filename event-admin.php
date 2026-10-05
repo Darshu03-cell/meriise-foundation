@@ -75,6 +75,11 @@ function go($msg = '', $err = '') {
     header('Location: event-admin.php' . ($q ? ('?' . http_build_query($q)) : ''));
     exit;
 }
+/* Turn an ISO date (YYYY-MM-DD) into a friendly label like "25th September 2026". */
+function format_display($iso) {
+    $d = DateTime::createFromFormat('Y-m-d', $iso);
+    return $d ? $d->format('jS F Y') : $iso;
+}
 
 $password_set = file_exists(PW_FILE) && trim((string)@file_get_contents(PW_FILE)) !== '';
 
@@ -116,15 +121,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     /* Add a new event */
     if ($action === 'add') {
-        $title = trim((string)($_POST['title'] ?? ''));
-        $date  = trim((string)($_POST['date'] ?? ''));
-        $year  = preg_replace('/\D/', '', (string)($_POST['year'] ?? ''));
-        $desc  = trim((string)($_POST['description'] ?? ''));
+        $title    = trim((string)($_POST['title'] ?? ''));
+        $sortdate = trim((string)($_POST['sortdate'] ?? ''));
+        $display  = trim((string)($_POST['date'] ?? ''));
+        $desc     = trim((string)($_POST['description'] ?? ''));
 
-        if ($title === '' || $date === '' || $year === '')
-            go('', 'Please fill in Title, Date and Year.');
-        if (strlen($year) !== 4)
-            go('', 'Year should be 4 digits, e.g. 2026.');
+        if ($title === '') go('', 'Please enter a title.');
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $sortdate))
+            go('', 'Please pick the event date from the calendar.');
+        if ($display === '') $display = format_display($sortdate); // auto label if left blank
+        $year = (int)substr($sortdate, 0, 4);
 
         $saved = [];
         if (!empty($_FILES['photos']) && is_array($_FILES['photos']['name'])) {
@@ -156,9 +162,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $events = load_events();
         $events[] = [
             'id'          => bin2hex(random_bytes(8)),
-            'year'        => (int)$year,
+            'year'        => $year,
+            'sortdate'    => $sortdate,
             'title'       => $title,
-            'date'        => $date,
+            'date'        => $display,
             'description' => $desc,
             'images'      => $saved,
             'created'     => date('c'),
@@ -174,8 +181,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $found = false;
         foreach ($events as &$e) {
             if (($e['id'] ?? '') === $id) {
-                $e['title']       = trim((string)($_POST['title'] ?? $e['title']));
-                $e['date']        = trim((string)($_POST['date'] ?? $e['date']));
+                $e['title'] = trim((string)($_POST['title'] ?? $e['title']));
+                $sd = trim((string)($_POST['sortdate'] ?? ''));
+                if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $sd)) {
+                    $e['sortdate'] = $sd;
+                    $e['year'] = (int)substr($sd, 0, 4);
+                }
+                $disp = trim((string)($_POST['date'] ?? ''));
+                if ($disp === '' && !empty($e['sortdate'])) $disp = format_display($e['sortdate']);
+                if ($disp !== '') $e['date'] = $disp;
                 $e['description'] = trim((string)($_POST['description'] ?? ($e['description'] ?? '')));
                 $found = true;
                 break;
@@ -216,7 +230,6 @@ $err = $_GET['err'] ?? '';
 $events = logged_in() ? load_events() : [];
 // newest first for the manage list
 usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
-$thisYear = (int)date('Y');
 ?>
 <!doctype html>
 <html lang="en">
@@ -334,12 +347,12 @@ $thisYear = (int)date('Y');
 
       <div class="row">
         <div>
-          <label>Date (as you want it shown)</label>
-          <input type="text" name="date" required placeholder="e.g. 15th October 2026">
+          <label>Event date <span class="muted">(pick from calendar — this orders the events)</span></label>
+          <input type="date" name="sortdate" required value="<?= date('Y-m-d') ?>">
         </div>
         <div>
-          <label>Year</label>
-          <input type="number" name="year" required value="<?= $thisYear ?>" min="2000" max="2100">
+          <label>Date label <span class="muted">(optional — how it reads on the card; blank = auto)</span></label>
+          <input type="text" name="date" placeholder="e.g. 22nd to 24th October 2026">
         </div>
       </div>
 
@@ -371,7 +384,9 @@ $thisYear = (int)date('Y');
               <input type="hidden" name="id" value="<?= h($e['id']) ?>">
               <label>Title</label>
               <input type="text" name="title" value="<?= h($e['title']) ?>">
-              <label>Date</label>
+              <label>Event date (for ordering)</label>
+              <input type="date" name="sortdate" value="<?= h($e['sortdate'] ?? '') ?>">
+              <label>Date label (shown on card)</label>
               <input type="text" name="date" value="<?= h($e['date']) ?>">
               <label>Details</label>
               <textarea name="description"><?= h($e['description'] ?? '') ?></textarea>

@@ -1767,6 +1767,54 @@
       const PLACEHOLDER = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc2NDAnIGhlaWdodD0nNDAwJyB2aWV3Qm94PScwIDAgNjQwIDQwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMGQxYTJiJy8+PHN0b3Agb2Zmc2V0PScwLjYnIHN0b3AtY29sb3I9JyMwYjE0MjQnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMwYTIyMzMnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nNjQwJyBoZWlnaHQ9JzQwMCcgZmlsbD0ndXJsKCNnKScvPjxjaXJjbGUgY3g9JzUyMCcgY3k9JzcwJyByPScxMjAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzAxYWRmYycgc3Ryb2tlLW9wYWNpdHk9JzAuMTInIHN0cm9rZS13aWR0aD0nMicvPjxjaXJjbGUgY3g9JzUyMCcgY3k9JzcwJyByPScxNzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzAxYWRmYycgc3Ryb2tlLW9wYWNpdHk9JzAuMDcnIHN0cm9rZS13aWR0aD0nMicvPjx0ZXh0IHg9JzUwJScgeT0nNDclJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nUG9wcGlucywgQXJpYWwsIHNhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nNDAnIGZvbnQtd2VpZ2h0PSc3MDAnIGZpbGw9JyNlYWY0ZmYnIGxldHRlci1zcGFjaW5nPSczJz5NRSYjMTgzO1JJSVNFPC90ZXh0Pjx0ZXh0IHg9JzUwJScgeT0nNjAlJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nSW50ZXIsIEFyaWFsLCBzYW5zLXNlcmlmJyBmb250LXNpemU9JzE4JyBmaWxsPScjOGZhNmJmJyBsZXR0ZXItc3BhY2luZz0nMSc+UGhvdG8gY29taW5nIHNvb248L3RleHQ+PC9zdmc+';
       window.imgFallback = function (img) { img.onerror = null; img.src = PLACEHOLDER; };
 
+      // Turn a free-text date ("3rd September 2026", "27th & 28th July 2026",
+      // "February 2024", "02-02-2024", "2023") into a sortable number YYYYMMDD.
+      const MONTHS = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+      function parseEventDate(str) {
+        const s = (str || '').toString().toLowerCase();
+        const ym = s.match(/(19|20)\d{2}/);
+        const year = ym ? parseInt(ym[0], 10) : 0;
+        let month = 0, day = 0;
+        const num = s.match(/\b(\d{1,2})[-/](\d{1,2})[-/](\d{2,4})\b/); // dd-mm-yyyy
+        if (num) {
+          day = parseInt(num[1], 10);
+          month = parseInt(num[2], 10);
+        } else {
+          for (const key in MONTHS) { if (s.indexOf(key) !== -1) { month = MONTHS[key]; break; } }
+          const dm = s.match(/\b(\d{1,2})(?:st|nd|rd|th)?\b/); // first day number
+          if (dm) day = parseInt(dm[1], 10);
+        }
+        if (day > 31) day = 0;
+        if (month > 12) month = 0;
+        return year * 10000 + month * 100 + day;
+      }
+
+      // 'YYYY-MM-DD' (from the admin calendar) -> sortable number, or 0 if absent.
+      function isoKey(s) {
+        const m = (s || '').toString().match(/^(\d{4})-(\d{2})-(\d{2})/);
+        return m ? (+m[1]) * 10000 + (+m[2]) * 100 + (+m[3]) : 0;
+      }
+
+      // Best sort key for an event: prefer the admin calendar date, then the typed
+      // date text; if the text has no year, fall back to the event's year / its bucket.
+      function dateKey(ev, bucketYear) {
+        const iso = isoKey(ev.sortdate);
+        if (iso) return iso;
+        const parsed = parseEventDate(ev.date);
+        let yr = Math.floor(parsed / 10000);
+        const md = parsed % 10000;
+        if (!yr) yr = parseInt(ev.year, 10) || bucketYear || 0;
+        return yr * 10000 + md;
+      }
+
+      // Sort every year's events newest-first by date (stable for equal/vague dates).
+      function sortAllYears() {
+        Object.keys(eventData).forEach((y) => {
+          const by = parseInt(y, 10);
+          eventData[y].events.sort((a, b) => dateKey(b, by) - dateKey(a, by));
+        });
+      }
+
       function updateThemeToggle() {
         const isLight = document.body.classList.contains('light-theme');
         themeToggle.textContent = isLight ? 'Dark mode' : 'Light mode';
@@ -1862,6 +1910,7 @@
       });
 
       function initEvents() {
+        sortAllYears();
         renderGrid();
         // Open the most recent year that has events (usually the current/latest year).
         const firstYear = years[0];
