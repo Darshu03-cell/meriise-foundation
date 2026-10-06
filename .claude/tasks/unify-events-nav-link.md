@@ -46,3 +46,26 @@ Single scripted in-place replacement over top-level `*.html` (PowerShell, no -Re
 - `.history/` backups.
 - "Successful Events" (`events.html`) links.
 - No build/deploy (cPanel handles on push).
+
+## DONE (2026-10-06)
+Applied. Every "Events" nav link now points to `https://www.meriise.org/eventsall.html`.
+
+Result:
+- 36 files changed, 57 insertions / 57 deletions (content-only).
+- 0 relative `href="eventsall.html"` left in live pages; 57 absolute URLs now present.
+- `href="events.html"` ("Successful Events") links unchanged (61, as before).
+- `.history/` untouched.
+
+Implementation note (gotcha for future edits): the first attempt used `sed -i` over
+`*.html`, which rewrote EVERY scanned file and converted CRLF -> LF, making ~68 files
+show as modified (line-ending churn) even though only 36 had a real change. Reverted with
+`git checkout -- .`, then re-applied with a byte-safe, CRLF-preserving slurp replace that
+only touches files actually containing the link:
+
+```
+grep -rlZ --include='*.html' --exclude-dir=.history 'href="eventsall.html"' . \
+  | xargs -0 perl -i -0777 -pe 's{\Qhref="eventsall.html"\E}{href="https://www.meriise.org/eventsall.html"}g'
+```
+
+Prefer `perl -0777` (or an editor) over `sed -i` on this repo's CRLF files to avoid
+line-ending churn. Not committed — left in working tree for review.
