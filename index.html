@@ -3907,14 +3907,35 @@
         </script>
 
         <!-- ============================================================= -->
-        <!-- TBI-MCE Cohort 2 Incubation Popup (Call for Applications)     -->
-        <!-- Poster image: popup_assets/tbi-cohort2.jpg                    -->
-        <!-- Poster PDF:   popup_assets/tbi-cohort2.pdf                    -->
-        <!-- Apply link + deadline set below (update when finalised)       -->
+        <!-- On-load popup DECK: shows multiple announcement cards          -->
+        <!-- side-by-side (desktop) / stacked (mobile). Each card has its   -->
+        <!-- own × (closeDeckCard); backdrop click / Esc close the deck.    -->
+        <!--   Card 1: Call for Quotation – Food & Refreshment Pragyatha'26 -->
+        <!--   Card 2: TBI-MCE Cohort 2 Incubation (Call for Applications)  -->
+        <!-- Disable a card by deleting its block; disable the whole deck   -->
+        <!-- by adding class="tbi-c2-popup hidden" on the container below.  -->
         <!-- ============================================================= -->
-        <div id="tbi-c2-popup" class="tbi-c2-popup" role="dialog" aria-modal="true" aria-labelledby="tbi-c2-title">
+        <div id="tbi-c2-popup" class="tbi-c2-popup" role="dialog" aria-modal="true" aria-label="Announcements">
+
+            <!-- Card 1: Call for Quotation – Food & Refreshment for Pragyatha'26 -->
+            <!-- Poster image: popup_assets/pragyatha-quotation.jpg (page 1 of the PDF) -->
+            <!-- Full PDF:     popup_assets/pragyatha-quotation.pdf                     -->
             <div class="tbi-c2-popup__card">
-                <button class="tbi-c2-popup__close" type="button" aria-label="Close popup" onclick="closeTbiC2Popup()">&times;</button>
+                <button class="tbi-c2-popup__close" type="button" aria-label="Close popup" onclick="closeDeckCard(this)">&times;</button>
+                <span class="tbi-c2-popup__badge">📢 Call for Quotation</span>
+                <h2 class="tbi-c2-popup__title">Food &amp; Refreshment<br>Pragyatha'26</h2>
+                <a href="popup_assets/pragyatha-quotation.pdf" target="_blank" rel="noopener" class="tbi-c2-popup__poster" aria-label="Open the full Call for Quotation (PDF)">
+                    <img src="popup_assets/pragyatha-quotation.jpg" alt="Call for Quotation – Food &amp; Refreshment menu for Pragyatha'26" loading="lazy">
+                </a>
+                <p class="tbi-c2-popup__deadline">🗓️ <strong>Submit quotation before: 17 October 2026</strong></p>
+                <div class="tbi-c2-popup__buttons">
+                    <a href="popup_assets/pragyatha-quotation.pdf" target="_blank" rel="noopener" class="tbi-c2-popup__cta tbi-c2-popup__cta--primary">View Full Quotation (PDF)</a>
+                </div>
+            </div>
+
+            <!-- Card 2: TBI-MCE Cohort 2 Incubation Program -->
+            <div class="tbi-c2-popup__card">
+                <button class="tbi-c2-popup__close" type="button" aria-label="Close popup" onclick="closeDeckCard(this)">&times;</button>
                 <span class="tbi-c2-popup__badge">🚀 Applications Open</span>
                 <h2 id="tbi-c2-title" class="tbi-c2-popup__title">Call for Applications<br>TBI-MCE Cohort 2 · Incubation Program</h2>
                 <a href="popup_assets/tbi-cohort2.pdf" target="_blank" rel="noopener" class="tbi-c2-popup__poster" aria-label="Open Cohort 2 poster (PDF)">
@@ -3938,6 +3959,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                overflow-y: auto;
                 z-index: 10000;
                 padding: 20px;
             }
@@ -4072,8 +4096,21 @@
         </style>
 
         <script>
+            // Close the whole deck (backdrop click / Esc / legacy callers).
             function closeTbiC2Popup() {
                 document.getElementById('tbi-c2-popup').classList.add('hidden');
+            }
+            // Close just the card whose × was clicked; hide the deck once empty.
+            function closeDeckCard(btn) {
+                var card = btn.closest('.tbi-c2-popup__card');
+                if (card) card.style.display = 'none';
+                var deck = document.getElementById('tbi-c2-popup');
+                if (!deck) return;
+                var stillVisible = Array.prototype.some.call(
+                    deck.querySelectorAll('.tbi-c2-popup__card'),
+                    function (c) { return c.style.display !== 'none'; }
+                );
+                if (!stillVisible) closeTbiC2Popup();
             }
             (function () {
                 var tbiC2 = document.getElementById('tbi-c2-popup');
