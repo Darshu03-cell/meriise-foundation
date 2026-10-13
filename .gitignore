@@ -6,3 +6,19 @@
 assets/uploads/*
 !assets/uploads/.htaccess
 !assets/uploads/index.html
+
+# Contact-form submissions live on the server only (not tracked)
+contact_messages.json
+
+# --- Sub-sites deployed INTO public_html subfolders by SEPARATE Hostinger Git
+#     repos (events, pragyatha24/25, testing2, dev, tbimanage, taskscheduler,
+#     quiz). The main repo must NOT manage or delete these on deploy, or an
+#     auto-deploy could wipe the sub-sites. Keep them ignored here. ---
+events/
+pragyatha24/
+pragyatha25/
+testing2/
+dev/
+tbimanage/
+taskscheduler/
+quiz/
