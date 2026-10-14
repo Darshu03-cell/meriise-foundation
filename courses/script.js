@@ -146,14 +146,21 @@ if (contactForm) {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
         submitBtn.disabled = true;
 
-        // Submit form via AJAX
-        fetch('send_email.php', {
+        // FormSubmit.co config — delivers the message to ceomeriise@mcehassan.ac.in
+        formData.append('_subject', 'New Contact Form Submission - ME-RIISE Courses');
+        formData.append('_template', 'table');
+        formData.append('_captcha', 'false');
+        formData.append('_replyto', email);
+
+        // Submit form via AJAX to FormSubmit (no PHP / mail() needed)
+        fetch('https://formsubmit.co/ajax/ceomeriise@mcehassan.ac.in', {
             method: 'POST',
+            headers: { 'Accept': 'application/json' },
             body: formData
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data.success === true || data.success === 'true') {
                 showAlert('✓ Message sent successfully! We will contact you soon.', 'success');
                 contactForm.reset();
             } else {

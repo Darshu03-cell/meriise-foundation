@@ -57,7 +57,13 @@
 <body>
     <div class="container">
         <h2>Contact Us</h2>
-        <form method="POST" action="submit_form.php" onsubmit="return handleSubmit(event)">
+        <form method="POST" action="https://formsubmit.co/ajax/ceomeriise@mcehassan.ac.in" onsubmit="return handleSubmit(event)">
+            <!-- FormSubmit.co configuration -->
+            <input type="hidden" name="_subject" value="New Contact Us message - ME-RIISE Foundation">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none">
+
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
             
