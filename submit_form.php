@@ -60,12 +60,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_body .= "Submitted on: " . date('Y-m-d H:i:s') . "\n";
         $email_body .= "IP Address: " . $_SERVER['REMOTE_ADDR'];
 
-        $headers = "From: noreply@mcehassan.ac.in\r\n";
+        // Send FROM an @meriise.org address (the hosting domain) so Hostinger's
+        // SPF authorizes it; Reply-To stays the enquirer so the CEO can reply directly.
+        $headers = "From: ME-RIISE Foundation <noreply@meriise.org>\r\n";
         $headers .= "Reply-To: " . $email . "\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-        // Attempt to send email
-        @mail($recipient_email, $subject, $email_body, $headers);
+        // Attempt to send email ("-f" sets the SPF envelope sender)
+        @mail($recipient_email, $subject, $email_body, $headers, "-f noreply@meriise.org");
 
         // Send confirmation email to user
         $user_subject = "We received your message - ME-RIISE Foundation";
@@ -77,10 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_body .= "Email: ceomeriise@mcehassan.ac.in\n";
         $user_body .= "Phone: +91 9448179074";
 
-        $user_headers = "From: noreply@mcehassan.ac.in\r\n";
+        $user_headers = "From: ME-RIISE Foundation <noreply@meriise.org>\r\n";
+        $user_headers .= "MIME-Version: 1.0\r\n";
         $user_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-        @mail($email, $user_subject, $user_body, $user_headers);
+        @mail($email, $user_subject, $user_body, $user_headers, "-f noreply@meriise.org");
 
         // Return success response
         echo json_encode(['success' => true, 'message' => 'Message sent successfully!']);

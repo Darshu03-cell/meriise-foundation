@@ -55,8 +55,11 @@ $admin_body .= "---\n";
 $admin_body .= "This is an automated message from your website contact form.";
 
 // Prepare headers for admin email
-$admin_headers = "From: noreply@mcehassan.ac.in\r\n";
+// Send FROM an @meriise.org address (the hosting domain) so Hostinger's SPF
+// authorizes it; Reply-To stays the enquirer so the CEO can reply directly.
+$admin_headers = "From: ME-RIISE Foundation <noreply@meriise.org>\r\n";
 $admin_headers .= "Reply-To: " . $email . "\r\n";
+$admin_headers .= "MIME-Version: 1.0\r\n";
 $admin_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $admin_headers .= "X-Mailer: ME-RIISE Foundation Contact Form\r\n";
 
@@ -86,13 +89,15 @@ $user_body .= "Best regards,\n";
 $user_body .= "ME-RIISE Foundation Team";
 
 // Prepare headers for user email
-$user_headers = "From: ceomeriise@mcehassan.ac.in\r\n";
+$user_headers = "From: ME-RIISE Foundation <noreply@meriise.org>\r\n";
+$user_headers .= "MIME-Version: 1.0\r\n";
 $user_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $user_headers .= "X-Mailer: ME-RIISE Foundation Contact Form\r\n";
 
 // Send emails
-$admin_sent = @mail($recipient_email, $admin_subject, $admin_body, $admin_headers);
-$user_sent = @mail($email, $user_subject, $user_body, $user_headers);
+// "-f" sets the SPF envelope sender so mail passes on Hostinger
+$admin_sent = @mail($recipient_email, $admin_subject, $admin_body, $admin_headers, "-f noreply@meriise.org");
+$user_sent = @mail($email, $user_subject, $user_body, $user_headers, "-f noreply@meriise.org");
 
 // Save submission to file as backup
 $submissions_dir = __DIR__ . '/submissions';
