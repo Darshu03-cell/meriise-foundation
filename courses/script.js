@@ -15,26 +15,17 @@ AOS.init({
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Navbar shadow on scroll
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-        } else {
-            navbar.style.boxShadow = 'none';
-        }
-    });
-
-    // Close navbar on link click
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navlinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navlinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                toggle: true
-            });
+    // Navbar shadow on scroll (standard site navbar uses the .snav-bar wrapper)
+    const navbar = document.querySelector('.snav-bar');
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.boxShadow = '0 2px 14px rgba(0, 0, 0, 0.10)';
+            }
         });
-    });
+    }
 });
 
 // ============================================

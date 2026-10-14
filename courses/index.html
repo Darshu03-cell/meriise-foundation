@@ -20,31 +20,232 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Standard ME-RIISE site navbar (same as every other page) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/NavbarCode/assets/css/styles.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Keep the shared navbar sticky + opaque above the hero (mirrors index.html) -->
+    <style>
+        .snav-bar {
+            background: #ffffff !important;
+            z-index: 1000;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.10);
+            position: sticky;
+            top: 0;
+        }
+        .snav-bar header.header,
+        .snav-bar .nav__data,
+        .snav-bar .nav__menu,
+        .snav-bar .nav__list {
+            background: #ffffff !important;
+        }
+        /* This page doesn't load Tailwind, so constrain the logo (the .h-16
+           utility is a no-op here) — otherwise the 1500px image overflows. */
+        .snav-bar .nav__logo img {
+            height: 48px;
+            width: auto;
+            max-width: 160px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#home">
-                <i class="fas fa-graduation-cap me-2" style="color: #2fb6f5;"></i>ME-RIISE Foundation
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#msme">MSME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Bar (standard ME-RIISE site navbar, identical to other pages) -->
+    <div class="snav-bar">
+        <header class="header">
+            <nav class="nav containerofNavbar">
+                <div class="nav__data">
+                    <a href="../index.html" class="nav__logo">
+                        <img src="../assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" class="h-16">
+                    </a>
+
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-menu-line nav__burger"></i>
+                        <i class="ri-close-line nav__close"></i>
+                    </div>
+                </div>
+
+                <!--=============== NAV MENU ===============-->
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li><a href="../index.html" class="nav__link">Home</a></li>
+                        <li><a href="index.html" class="nav__link">Courses</a></li>
+
+                        <li class="dropdown__item">
+                            <div class="nav__link">
+                                About ME-RIISE <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                            </div>
+
+                            <ul class="dropdown__menu">
+                                <li>
+                                    <a href="../aboutmeriise.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> ME-RIISE FOUNDATION
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../infrastructure.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> Infrastructure
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../ourAchivements.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> Achievements
+                                    </a>
+                                </li>
+
+                                <li class="dropdown__subitem">
+                                    <div class="dropdown__link">
+                                        <i class="ri-bar-chart-line"></i> Documents <i
+                                            class="ri-add-line dropdown__add"></i>
+                                    </div>
+
+                                    <ul class="dropdown__submenu">
+                                        <li>
+                                            <a href="../Nisp.html" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i> MCE NISP POLICY
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../collab.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Collaborations
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../Certificates.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Certificates
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown__subitem">
+                                    <div class="dropdown__link">
+                                        <i class="ri-bar-chart-line"></i> Members of ME-RIISE <i
+                                            class="ri-add-line dropdown__add"></i>
+                                    </div>
+
+                                    <ul class="dropdown__submenu">
+                                        <li>
+                                            <a href="../index.html#boardofdirectors" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i>Board of Directors
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../faculty.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Faculty
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../team.html" class="dropdown__sublink">
+                                                <i class="ri-refund-2-line"></i> Team ME-RIISE
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!--=============== DROPDOWN 1 ===============-->
+                        <li class="dropdown__item">
+                            <div class="nav__link">
+                                Wings of ME-RIISE <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                            </div>
+
+                            <ul class="dropdown__menu">
+                                <li>
+                                    <a href="../startups.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i>Start Ups
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../iic.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> MoE - IIC
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../nain.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> NAIN
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../uba.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> UBA
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../rgep.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> RGEP
+                                    </a>
+                                </li>
+
+                                <li class="dropdown__subitem">
+                                    <div class="dropdown__link">
+                                        <i class="ri-bar-chart-line"></i> Pragyatha <i
+                                            class="ri-add-line dropdown__add"></i>
+                                    </div>
+
+                                    <ul class="dropdown__submenu">
+                                        <li>
+                                            <a href="https://pragyatha25.meriise.org/" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i>Pragyatha25
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://pragyatha24.meriise.org/" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i>Pragyatha24
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../pragyatha23.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i>Pragyatha23
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../pragyatha22.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Pragyatha22
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../Pragyatha21.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Pragyatha21
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="../pragyatha19.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Pragyatha19
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><a href="https://www.meriise.org/eventsall.html" class="nav__link">Events</a></li>
+
+                        <li class="dropdown__item">
+                            <div class="nav__link">
+                                TBI-MCE <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                            </div>
+
+                            <ul class="dropdown__menu">
+                                <li>
+                                    <a href="../tbi.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> About TBI
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><a href="../newsletter.html" class="nav__link">Newsletter</a></li>
+
+                        <li><a href="../index.html#footer" class="nav__link">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
 
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
@@ -663,5 +864,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
+    <!-- Standard ME-RIISE navbar behavior (mobile toggle + click-to-open dropdowns) -->
+    <script src="../assets/NavbarCode/assets/js/main.js"></script>
 </body>
 </html>
