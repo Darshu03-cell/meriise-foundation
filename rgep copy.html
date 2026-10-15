@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>RGEP - Rajiv Gandhi Entrepreneurship Program - ME-RIISE</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"
+        integrity="sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/newcss.css">
+    <link rel="stylesheet" href="assets/NavbarCode/assets/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        a:link {
+            text-decoration: none;
+        }
+
+        header {
+            box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.4);
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+        }
+
+        body {
+            font-family: "Poppins", serif;
+            font-weight: 300;
+            font-style: normal;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            /* background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); */
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin: 2rem;
+            /* box-shadow: 0 10px 30px rgba(0,0,0,0.1); */
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            /* text-shadow: 2px 2px 4px rgba(0,0,0,0.3); */
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .feature-card .card-content {
+            padding: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+            background-color: rgb(2, 114, 142);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem;
+            border-radius: 15px;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #667eea;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        @media only screen and (min-width: 200px) and (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="snav-bar">
+        <header class="header">
+            <nav class="nav containerofNavbar">
+                <div class="nav__data">
+                    <a href="#" class="nav__logo">
+                        <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="" class="h-16">
+                    </a>
+
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-menu-line nav__burger"></i>
+                        <i class="ri-close-line nav__close"></i>
+                    </div>
+                </div>
+
+                <!--=============== NAV MENU ===============-->
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li><a href="index.html" class="nav__link">Home</a></li>
+
+                        <li class="dropdown__item">
+                            <div class="nav__link">
+                                About ME-RIISE <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                            </div>
+
+                            <ul class="dropdown__menu">
+                                <li>
+                                    <a href="aboutmeriise.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> ME-RIISE FOUNDATION
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a href="infrastructure.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> Infrastructure
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a href="ourAchivements.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> Achievements
+                                    </a>
+                                </li>
+
+
+                                <li class="dropdown__subitem">
+                                    <div class="dropdown__link">
+                                        <i class="ri-bar-chart-line"></i> Documents <i
+                                            class="ri-add-line dropdown__add"></i>
+                                    </div>
+
+                                    <ul class="dropdown__submenu">
+                                        <li>
+                                            <a href="Nisp.html" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i> MCE NISP POLICY
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="collab.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Collaborations
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="Certificates.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Certificates
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+
+
+                                <li class="dropdown__subitem">
+                                    <div class="dropdown__link">
+                                        <i class="ri-bar-chart-line"></i> Members of ME-RIISE <i
+                                            class="ri-add-line dropdown__add"></i>
+                                    </div>
+
+                                    <ul class="dropdown__submenu">
+                                        <li>
+                                            <a href="index.html#boardofdirectors" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i>Board of Directors
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="faculty.html" class="dropdown__sublink">
+                                                <i class="ri-cash-line"></i> Faculty
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="team.html" class="dropdown__sublink">
+                                                <i class="ri-refund-2-line"></i> Team ME-RIISE
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <!--=============== DROPDOWN SUBMENU ===============-->
+
+                            </ul>
+                        </li>
+
+                        <!--=============== DROPDOWN 1 ===============-->
+                        <li class="dropdown__item">
+                            <div class="nav__link">
+                                Wings of ME-RIISE <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                            </div>
+
+                            <ul class="dropdown__menu">
+                                <li>
+                                    <a href="startups.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i>Start Ups
+                                    </a>
+                                </li>
+
+
+
+                                <li>
+                                    <a href="iic.html" class="dropdown__link">
+                                        <i class="ri-pie-chart-line"></i> MoE - IIC
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="nain.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> NAIN
+                                    </a>
+                                </li>
+
+
+
+                                <li>
+                                    <a href="uba.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> UBA
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="rgep.html" class="dropdown__link">
+                                        <i class="ri-arrow-up-down-line"></i> RGEP
+                                    </a>
+                                </li>
+
+
+                                <!-- <li class="dropdown__subitem">
+                                        <div class="dropdown__link">
+                                            <i class="ri-bar-chart-line"></i> Documents <i
+                                                class="ri-add-line dropdown__add"></i>
+                                        </div>
+          
+                                        <ul class="dropdown__submenu">
+                                            <li>
+                                                <a href="#" class="dropdown__sublink">
+                                                    <i class="ri-file-list-line"></i> MCE NISP POLICY
+                                                </a>
+                                            </li>
+          
+                                            <li>
+                                                <a href="#" class="dropdown__sublink">
+                                                    <i class="ri-cash-line"></i> Collaborations
+                                                </a>
+                                            </li>
+          
+                                            <li>
+                                                <a href="#" class="dropdown__sublink">
+                                                    <i class="ri-refund-2-line"></i> Refunds
+                                            </a>
+                                        </li>
+                                        </ul>
+                                    </li> -->
+
+                                <!--=============== DROPDOWN SUBMENU ===============-->
+                                <li class="dropdown__subitem">
+                                    <div class="dropdown__link">
+                                        <i class="ri-bar-chart-line"></i> Pragyatha <i
+                                            class="ri-add-line dropdown__add"></i>
+                                    </div>
+
+                                    <ul class="dropdown__submenu">
+                                        <li>
+                                            <a href="https://pragyatha25.meriise.org/" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i>Pragyatha25
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://pragyatha24.meriise.org/" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i> Pragyatha24
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="pragyatha23.html" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i> Pragyatha23
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="pragyatha22.html" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i> Pragyatha22
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="pragyatha19.html" class="dropdown__sublink">
+                                                <i class="ri-file-list-line"></i> Pragyatha21
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><a href="https://www.meriise.org/eventsall.html" class="nav__link">Events</a></li>
+                       
+                          <li class="dropdown__item">
+                                <div class="nav__link">
+                                    TBI-MCE <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                                </div>
+
+                                <ul class="dropdown__menu">
+                                    <li>
+                                        <a href="tbi.html" class="dropdown__link">
+                                            <i class="ri-pie-chart-line"></i> About TBI
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.meriise.org/tbi.html" class="dropdown__link">
+                                            <i class="ri-pie-chart-line"></i> TBI Web
+                                        </a>
+                                    </li>
+
+
+                                    <!-- <li>
+                                        <a href="openPosition.html" class="dropdown__link">
+                                            <i class="ri-pie-chart-line"></i> Open positions
+                                        </a>
+                                    </li> -->
+
+                                    <!-- <li>
+                                        <a href="callforincubation.html" class="dropdown__link">
+                                            <i class="ri-pie-chart-line"></i> Call for incubation application
+                                        </a>
+                                    </li> -->
+
+
+
+                                    <!--=============== DROPDOWN SUBMENU ===============-->
+
+                                </ul>
+                            </li>
+
+                         <li><a href="https://www.meriise.org/contactus.html" class="nav__link">Contact Us</a></li>
+
+                        <!--=============== DROPDOWN 2 ===============-->
+
+
+                        <!-- <li><a href="#" class="nav__link">Contact Us</a></li> -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Rajiv Gandhi Entrepreneurship Program (RGEP)</h1>
+        <p class="hero-description">
+            RGEP is an early-stage funding program that nurtures ideas and innovations to promote innovative endeavors,
+            startups initiated
+            by students or entrepreneurs.
+        </p>
+    </section>
+
+    <!-- Features Section -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 m-10 lg:m-32">
+        <div class="feature-card">
+            <img src="assets/placeholder.jpg" alt="Solar Energy">
+            <div class="card-content">
+                <h3>Solar Power Solutions</h3>
+                <p>Implementing cutting-edge solar technologies to provide reliable energy sources for rural households
+                    and businesses.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/placeholder.jpg" alt="Wind Energy">
+            <div class="card-content">
+                <h3>Wind Energy Initiatives</h3>
+                <p>Harnessing wind power to create sustainable energy systems that reduce dependence on fossil fuels.
+                </p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/placeholder.jpg" alt="Community Training">
+            <div class="card-content">
+                <h3>Community Education</h3>
+                <p>Empowering locals with knowledge and skills to maintain and operate green energy systems
+                    independently.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/placeholder.jpg" alt="Economic Impact">
+            <div class="card-content">
+                <h3>Economic Development</h3>
+                <p>Creating job opportunities and boosting local economies through green energy entrepreneurship.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/placeholder.jpg" alt="Environmental Benefits">
+            <div class="card-content">
+                <h3>Environmental Sustainability</h3>
+                <p>Reducing carbon footprint and promoting eco-friendly practices for a greener future.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/placeholder.jpg" alt="Innovation">
+            <div class="card-content">
+                <h3>Innovative Technologies</h3>
+                <p>Exploring and implementing the latest green energy technologies tailored for rural settings.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <h2 class="text-white">Join RGEP</h2>
+        <p class="text-white">Be part of the change. Support sustainable energy initiatives in rural communities.</p>
+        <a href="#footer" class="cta-button">Get Involved</a>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container1">
+            <ul class="icons">
+                <li>
+                    <a href="#" class="icon fa-twitter" style="color: rgb(51, 183, 235);text-decoration: none;"><span
+                            class="label">Twitter</span></a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/mce.startup.club" class="icon fa-facebook"
+                        style="color: rgb(43, 43, 247);text-decoration: none;"><span class="label">Facebook</span></a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/me_riise/" class="icon fa-instagram"
+                        style="color: rgb(250, 43, 112);;text-decoration:none"><span class="label">Instagram</span></a>
+                </li>
+                <li>
+                    <a href="mailto:meriisehsn@gmail.com" class="icon fa-envelope"
+                        style="color: rgb(228, 54, 11);text-decoration:none"><span class="label">Email</span></a>
+                </li>
+
+                <li>
+                    <a href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=true&heroEntityKey=urn%3Ali%3Aorganization%3A72704849&keywords=me-riise%20foundation&origin=RICH_QUERY_SUGGESTION&position=0&searchId=a2da3c5d-f488-492f-9f3b-da0bce4973ef&sid=w7m&spellCorrectionEnabled=false   "
+                        class="icon fa-linkedin" style="color: rgb(255, 255, 255);text-decoration:none"><span
+                            class="label">Linkedin</span></a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="copyright">&copy; ME-RIISE FOUNDATION. All rights reserved.</div>
+        <div class="lg:grid grid-cols-3 cursor-pointer">
+            <div>
+                <p class="text-white text-left text-2xl font-bold m-10">Contact Us Through</p>
+                <p class="text-white text-left m-10"><a href="meriise.org">Dr Geetha Kiran A | CEO</a></p>
+                <!-- <p class="text-white text-left m-10">Dr Geetha Kiran A</p> -->
+                <p class="text-white text-left m-10"><a href="https://www.meriise.org/contactus.html">Email Us on :
+                        ceomeriise@mcehassan.ac.in</a></p>
+                <p class="text-white text-left m-10"><a href="https://www.instagram.com/me_riise/">Follow Us on
+                        Instagram</a></p>
+            </div>
+            <div>
+                <p class="text-white text-left text-2xl m-10 font-bold">Quick Links</p>
+                <p class="text-white text-left m-10"><a href="infrastructure.html">Our Infrastructure</a></p>
+                <p class="text-white text-left m-10"><a href="uba.html">UBA Visit</a></p>
+                <p class="text-white text-left m-10"><a href="startups.html">Start Ups</a></p>
+            </div>
+
+
+            <div>
+                <p class="text-white text-left text-2xl m-10 font-bold">Location:</p>
+
+                <p class="text-white text-left m-10">About ME-RIISE Foundation</p>
+                <!-- <p class="text-white text-left m-10">Address</p> -->
+                <p class="text-white text-left m-10"><span class="font-bold">Address : <br></span>24F3+69J, Rangoli
+                    Halla,
+                    Malnad College of Engineering , Hassan, Karnataka 573201</p>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script src="assets/NavbarCode/assets/js/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

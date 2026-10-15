@@ -36,27 +36,103 @@
         }
 
         .hero-section {
-            /* background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); */
-            color: white;
-            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #02728e 0%, #0a4d68 55%, #021b2e 100%);
+            color: #ffffff;
+            padding: 5rem 2rem;
             text-align: center;
-            border-radius: 15px;
+            border-radius: 20px;
             margin: 2rem;
-            /* box-shadow: 0 10px 30px rgba(0,0,0,0.1); */
+            box-shadow: 0 18px 45px rgba(2, 27, 46, 0.35);
+        }
+
+        /* Soft decorative glows */
+        .hero-section::before,
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-section::before {
+            top: -45%;
+            right: -8%;
+            width: 460px;
+            height: 460px;
+            background: radial-gradient(circle, rgba(5, 191, 219, 0.35) 0%, rgba(5, 191, 219, 0) 70%);
+        }
+
+        .hero-section::after {
+            bottom: -50%;
+            left: -6%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(255, 203, 71, 0.18) 0%, rgba(255, 203, 71, 0) 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.45rem 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #ffd98a;
+            background: rgba(255, 203, 71, 0.12);
+            border: 1px solid rgba(255, 203, 71, 0.45);
+            border-radius: 999px;
+            backdrop-filter: blur(4px);
         }
 
         .hero-title {
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            /* text-shadow: 2px 2px 4px rgba(0,0,0,0.3); */
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            color: #ffffff;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-title-accent {
+            color: #ffcb47;
+        }
+
+        .hero-divider {
+            display: block;
+            width: 90px;
+            height: 4px;
+            margin: 0 auto 1.5rem;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #ffcb47, #05bfdb);
         }
 
         .hero-description {
             font-size: 1.2rem;
-            max-width: 800px;
+            max-width: 780px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .rgep-banner {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .rgep-banner img {
+            display: block;
+            width: 100%;
+            height: auto;
         }
 
         .feature-card {
@@ -123,6 +199,16 @@
         }
 
         @media only screen and (min-width: 200px) and (max-width: 480px) {
+            .hero-section {
+                padding: 3rem 1.25rem;
+                margin: 1rem;
+            }
+
+            .hero-badge {
+                font-size: 0.72rem;
+                margin-bottom: 1rem;
+            }
+
             .hero-title {
                 font-size: 2rem;
             }
@@ -371,17 +457,17 @@
                                     </li>
 
 
-                                    <li>
+                                    <!-- <li>
                                         <a href="openPosition.html" class="dropdown__link">
                                             <i class="ri-pie-chart-line"></i> Open positions
                                         </a>
-                                    </li>
+                                    </li> -->
 
-                                    <li>
+                                    <!-- <li>
                                         <a href="callforincubation.html" class="dropdown__link">
                                             <i class="ri-pie-chart-line"></i> Call for incubation application
                                         </a>
-                                    </li>
+                                    </li> -->
 
 
 
@@ -404,61 +490,22 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <h1 class="hero-title">Rajiv Gandhi Entrepreneurship Program (RGEP)</h1>
-        <p class="hero-description">
-            RGEP is an early-stage funding program that nurtures ideas and innovations to promote innovative endeavors,
-            startups initiated
-            by students or entrepreneurs.
-        </p>
+        <div class="hero-content">
+            <span class="hero-badge">🚀 Early-Stage Funding Program</span>
+            <h1 class="hero-title">Rajiv Gandhi Entrepreneurship Program
+                <span class="hero-title-accent">(RGEP)</span></h1>
+            <span class="hero-divider"></span>
+            <p class="hero-description">
+                RGEP is an early-stage funding program that nurtures ideas and innovations to promote innovative
+                endeavors, startups initiated by students or entrepreneurs.
+            </p>
+        </div>
     </section>
 
-    <!-- Features Section -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 m-10 lg:m-32">
-        <div class="feature-card">
-            <img src="assets/placeholder.jpg" alt="Solar Energy">
-            <div class="card-content">
-                <h3>Solar Power Solutions</h3>
-                <p>Implementing cutting-edge solar technologies to provide reliable energy sources for rural households
-                    and businesses.</p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="assets/placeholder.jpg" alt="Wind Energy">
-            <div class="card-content">
-                <h3>Wind Energy Initiatives</h3>
-                <p>Harnessing wind power to create sustainable energy systems that reduce dependence on fossil fuels.
-                </p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="assets/placeholder.jpg" alt="Community Training">
-            <div class="card-content">
-                <h3>Community Education</h3>
-                <p>Empowering locals with knowledge and skills to maintain and operate green energy systems
-                    independently.</p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="assets/placeholder.jpg" alt="Economic Impact">
-            <div class="card-content">
-                <h3>Economic Development</h3>
-                <p>Creating job opportunities and boosting local economies through green energy entrepreneurship.</p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="assets/placeholder.jpg" alt="Environmental Benefits">
-            <div class="card-content">
-                <h3>Environmental Sustainability</h3>
-                <p>Reducing carbon footprint and promoting eco-friendly practices for a greener future.</p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="assets/placeholder.jpg" alt="Innovation">
-            <div class="card-content">
-                <h3>Innovative Technologies</h3>
-                <p>Exploring and implementing the latest green energy technologies tailored for rural settings.</p>
-            </div>
-        </div>
+    <!-- RGEP Banner -->
+    <div class="rgep-banner m-6 lg:mx-32 lg:my-16">
+        <img src="assets/rgep-banner.jpeg"
+            alt="Rajiv Gandhi Entrepreneurship Programme - Beneficiaries, funds mobilized and the 9 innovator startups mentored (MAPX, AUEQI, PitchXP, Startup Tumakuru, Edible Cups, Kalyana Matrimony App, K-Path, STOY, A.D.I.K.E)">
     </div>
 
     <!-- Call to Action -->
