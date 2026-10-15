@@ -243,6 +243,43 @@
       }
       .btn-access-events i { font-size: 1.2rem; }
 
+      /* SOP document card */
+      .sop-doc {
+        max-width: 1000px;
+        margin: 28px auto 0;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 22px 26px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        box-shadow: 0 12px 34px rgba(148,163,184,0.14);
+        flex-wrap: wrap;
+        transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease;
+      }
+      .sop-doc:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(239,68,68,0.14); border-color: rgba(239,68,68,0.3); }
+      .sop-icon {
+        flex: 0 0 auto;
+        width: 60px; height: 60px;
+        display: grid; place-items: center;
+        border-radius: 16px;
+        font-size: 2rem;
+        color: #fff;
+        background: linear-gradient(135deg, #ef4444, #f97316);
+      }
+      .sop-info { flex: 1 1 260px; text-align: left; }
+      .sop-info h4 { margin: 0 0 4px; font-size: 1.15rem; color: var(--text); }
+      .sop-info p { margin: 0 0 6px; color: #475569; font-size: 0.98rem; }
+      .sop-meta { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
+      .sop-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+      .sop-btn { display: inline-flex; align-items: center; gap: 8px; }
+      @media (max-width: 640px) {
+        .sop-doc { gap: 16px; }
+        .sop-actions { width: 100%; }
+        .sop-btn { flex: 1 1 auto; justify-content: center; }
+      }
+
       .logo-strip {
         display: flex;
         flex-wrap: wrap;
@@ -267,6 +304,69 @@
         .logo-strip { gap: 26px; padding: 22px 14px; }
         .logo-strip img { height: 56px; }
       }
+
+      /* ===================== Cohorts (click to expand) ===================== */
+      .cohorts-section { background: linear-gradient(135deg, #f8fafc, #eff6ff, #ecfeff); }
+      .cohort-list { max-width: 880px; margin: 0 auto; display: grid; gap: 18px; }
+      .cohort {
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(148,163,184,0.12);
+        overflow: hidden;
+      }
+      .cohort-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 22px 26px;
+        cursor: pointer;
+        list-style: none;
+        background: linear-gradient(135deg, #eff6ff, #ecfeff);
+        transition: background .3s;
+      }
+      .cohort-head::-webkit-details-marker { display: none; }
+      .cohort-head:hover { background: linear-gradient(135deg, #e0edff, #d7f7fb); }
+      .cohort-title { display: inline-flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 800; color: var(--text); }
+      .cohort-title i { color: var(--primary); font-size: 1.35rem; }
+      .cohort-meta { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+      .cohort-count { background: #dbeafe; color: #2563eb; border-radius: 999px; padding: 5px 12px; font-size: 0.85rem; }
+      .cohort-chevron { font-size: 1.5rem; transition: transform .3s; }
+      .cohort[open] .cohort-chevron { transform: rotate(180deg); }
+      .cohort-body { padding: 10px 22px 24px; }
+
+      .startup-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: none; }
+      .startup-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 20px;
+        border: 1px solid #eef2f7;
+        border-radius: 14px;
+        background: #fff;
+        transition: transform .3s, box-shadow .3s, border-color .3s;
+      }
+      .startup-item:hover { transform: translateX(4px); border-color: rgba(37,99,235,0.3); box-shadow: 0 10px 26px rgba(37,99,235,0.1); }
+      .startup-rank {
+        flex: 0 0 auto;
+        width: 38px; height: 38px;
+        display: grid; place-items: center;
+        border-radius: 50%;
+        font-weight: 800;
+        color: #fff;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+      }
+      .startup-info { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+      .startup-info h4 { margin: 0; font-size: 1.05rem; color: var(--text); }
+      .sector-tag { border-radius: 999px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; }
+      .sector-smart { background: #e0e7ff; color: #4338ca; }
+      .sector-agri { background: #dcfce7; color: #15803d; }
+      @media (max-width: 640px) {
+        .cohort-head { padding: 18px; flex-wrap: wrap; }
+        .cohort-title { font-size: 1.02rem; }
+      }
+
       .card {
         background: rgba(255,255,255,0.9);
         border-radius: 22px;
@@ -1036,19 +1136,33 @@
             </article>
           </div>
 
+          <!-- TBI-MCE SOP document -->
+          <div class="sop-doc reveal">
+            <div class="sop-icon"><i class="ri-file-pdf-2-line"></i></div>
+            <div class="sop-info">
+              <h4>TBI-MCE Standard Operating Procedure (SOP)</h4>
+              <p>Official guidelines and procedures for the TBI-MCE incubation programme.</p>
+              <span class="sop-meta"><i class="ri-file-text-line"></i> PDF · 508 KB</span>
+            </div>
+            <div class="sop-actions">
+              <a href="assets/TBI-MCE_SOP.pdf" class="btn btn-primary sop-btn" target="_blank" rel="noopener"><i class="ri-eye-line"></i> View</a>
+              <a href="assets/TBI-MCE_SOP.pdf" class="btn btn-light sop-btn" download><i class="ri-download-2-line"></i> Download</a>
+            </div>
+          </div>
+
           <div class="about-events reveal">
             <a href="https://www.meriise.org/eventsall.html" class="btn btn-primary btn-access-events" target="_blank" rel="noopener">
               <i class="ri-calendar-event-line"></i> Access our Events
             </a>
           </div>
-
+<!-- 
           <!-- Partner / supporter logos -->
-          <div class="logo-strip reveal">
+          <!-- <div class="logo-strip reveal">
             <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" />
             <img src="assets/malnad_college_of_engineering_logo (1).jpg" alt="Malnad College of Engineering, Hassan" />
             <img src="assets/collaborations/KTECH.png" alt="K-TECH, Government of Karnataka" />
             <img src="assets/collaborations/startupkarnataka.png" alt="Startup Karnataka" />
-          </div>
+          </div> --> -->
 
           <!-- <div class="about-grid stagger">
             <div>
@@ -1079,9 +1193,53 @@
             <div class="step"><div class="ring bg-purple">3</div><div class="label">Validation</div></div>
             <div class="step"><div class="ring bg-pink">4</div><div class="label">Incubation</div></div>
             <div class="step"><div class="ring bg-orange">5</div><div class="label">Scaling</div></div>
+          </div> -->
+        </div>
+      </section>
+
+      <section id="cohorts" class="section cohorts-section">
+        <div class="container">
+          <div class="section-title reveal">
+            <div class="chip">Selected Startups</div>
+            <h2 class="headline">Our <span class="gradient">Cohorts</span></h2>
+            <p class="subtext">Click a cohort to view the selected startup teams and their sectors.</p>
+          </div>
+
+          <div class="cohort-list reveal">
+            <details class="cohort">
+              <summary class="cohort-head">
+                <span class="cohort-title"><i class="ri-team-line"></i> Cohort 1 — Selected Startup Teams</span>
+                <span class="cohort-meta"><span class="cohort-count">3 Startups</span><i class="ri-arrow-down-s-line cohort-chevron"></i></span>
+              </summary>
+              <div class="cohort-body">
+                <ol class="startup-list">
+                  <li class="startup-item">
+                    <span class="startup-rank">1</span>
+                    <div class="startup-info">
+                      <h4>Arevion</h4>
+                      <span class="sector-tag sector-smart">Agriculture</span>
+                    </div>
+                  </li>
+                  <li class="startup-item">
+                    <span class="startup-rank">2</span>
+                    <div class="startup-info">
+                      <h4>TriRaksha Robotics</h4>
+                      <span class="sector-tag sector-smart">Smart System</span>
+                    </div>
+                  </li>
+                  <li class="startup-item">
+                    <span class="startup-rank">3</span>
+                    <div class="startup-info">
+                      <h4>Next-Generation Autonomous Covert VTOL UAV for Advanced Surveillance</h4>
+                      <span class="sector-tag sector-agri">Smart System</span>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </details>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <!-- <section id="programs" class="section" style="background:linear-gradient(135deg,#f8fafc,#eff6ff,#ecfeff)">
         <div class="container">
