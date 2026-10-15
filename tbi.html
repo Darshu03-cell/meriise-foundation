@@ -4,6 +4,9 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TBI - MCE | Technology Business Incubator</title>
+    <!-- Fonts & icons for the standard ME-RIISE site navbar -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <style>
       :root {
         --primary: #2563eb;
@@ -69,6 +72,7 @@
         background: rgba(255,255,255,0.78);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        display: none; /* top navigation header hidden */
       }
       .nav-inner {
         display: flex;
@@ -147,6 +151,19 @@
       .hero-orb.one { width: 300px; height: 300px; top: 130px; left: 50px; background: #93c5fd; }
       .hero-orb.two { width: 300px; height: 300px; right: 70px; bottom: 120px; background: #67e8f9; }
       .hero-orb.three { width: 420px; height: 420px; left: 50%; top: 50%; transform: translate(-50%, -50%); background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(6,182,212,0.12)); }
+      .hero-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 44px;
+        margin-bottom: 30px;
+      }
+      .hero-logos img { height: 92px; width: auto; object-fit: contain; }
+      @media (max-width: 640px) {
+        .hero-logos { gap: 22px; }
+        .hero-logos img { height: 54px; }
+      }
       .hero-badge {
         display: inline-block;
         padding: 10px 18px;
@@ -194,6 +211,61 @@
         grid-template-columns: 1fr 1fr;
         gap: 32px;
         align-items: center;
+      }
+
+      /* About TBI-MCE intro copy + partner logo strip */
+      .gov-logo { text-align: center; margin: 0 auto 30px; }
+      .gov-logo img { height: 120px; width: auto; display: inline-block; }
+      @media (max-width: 640px) { .gov-logo img { height: 84px; } }
+
+      /* Content boxes for the About copy */
+      .about-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        max-width: 1000px;
+        margin: 0 auto 32px;
+      }
+      .about-card { text-align: left; }
+      .about-card .icon-wrap i { font-size: 1.65rem; line-height: 1; }
+      .about-card h3 { margin: 0 0 10px; font-size: 1.2rem; color: var(--text); }
+      .about-card p { margin: 0; color: #475569; font-size: 1.02rem; }
+      .about-card strong { color: var(--text); font-weight: 700; }
+      @media (max-width: 760px) {
+        .about-cards { grid-template-columns: 1fr; }
+      }
+
+      .about-events { text-align: center; margin: 6px auto 0; }
+      .btn-access-events {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-access-events i { font-size: 1.2rem; }
+
+      .logo-strip {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 44px;
+        margin: 0 auto 8px;
+        padding: 30px 26px;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(148,163,184,0.18);
+        border-radius: 22px;
+        box-shadow: 0 15px 40px rgba(148,163,184,0.14);
+      }
+      .logo-strip img {
+        height: 86px;
+        width: auto;
+        object-fit: contain;
+        transition: transform .35s ease;
+      }
+      .logo-strip img:hover { transform: scale(1.06); }
+      @media (max-width: 640px) {
+        .logo-strip { gap: 26px; padding: 22px 14px; }
+        .logo-strip img { height: 56px; }
       }
       .card {
         background: rgba(255,255,255,0.9);
@@ -337,26 +409,127 @@
       .impact-card .value { font-size: 2.7rem; font-weight: 800; color: #67e8f9; }
       .impact-card .label { color: #cbd5e1; }
 
-      .cta {
-        background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
-        color: white;
+      /* ===================== Call-to-action ===================== */
+      .cta-section { background: #fff; }
+      .cta-panel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 32px;
+        padding: clamp(44px, 6vw, 84px) clamp(22px, 5vw, 72px);
         text-align: center;
+        color: #fff;
+        background:
+          radial-gradient(1100px 380px at 50% -25%, rgba(37,99,235,0.38), transparent 60%),
+          linear-gradient(135deg, #0b1220, #121f38 55%, #0b1220);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 30px 80px rgba(15,23,42,0.35);
       }
-      .cta .btn-primary { margin-right: 12px; }
-      .cta .btn-light { color: white; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); }
+      .cta-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+      .cta-glow.one { width: 340px; height: 340px; top: -130px; left: -90px; background: #2563eb; }
+      .cta-glow.two { width: 320px; height: 320px; bottom: -150px; right: -80px; background: #06b6d4; }
+      .cta-content { position: relative; z-index: 1; }
+      .cta-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        margin-bottom: 22px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: #a5f3fc;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .cta-title {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 800;
+        line-height: 1.12;
+        margin: 0 0 16px;
+      }
+      .cta-title .gradient {
+        background: linear-gradient(90deg, #60a5fa, #22d3ee);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .cta-text {
+        max-width: 640px;
+        margin: 0 auto 34px;
+        color: #cbd5e1;
+        font-size: 1.1rem;
+      }
+      .cta-actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+      }
+      .btn-ghost {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.28);
+        color: #fff;
+      }
+      .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.55); }
+      .btn-events {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(34,211,238,0.12);
+        border: 1px solid rgba(34,211,238,0.45);
+        color: #a5f3fc;
+      }
+      .btn-events i { font-size: 1.15rem; }
+      .btn-events:hover {
+        background: rgba(34,211,238,0.2);
+        border-color: rgba(34,211,238,0.8);
+        color: #fff;
+      }
       .cta-pills {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 45px;
+        gap: 16px;
+        max-width: 760px;
+        margin: 0 auto;
       }
       .cta-pill {
-        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 28px 18px;
         border-radius: 18px;
         background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.1);
       }
-      .cta-pill strong { display: block; font-size: 2rem; color: #67e8f9; }
+      .cta-pill-ic {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        margin-bottom: 10px;
+        border-radius: 14px;
+        font-size: 1.45rem;
+        color: #22d3ee;
+        background: rgba(34,211,238,0.12);
+      }
+      .cta-pill strong {
+        font-size: 1.9rem;
+        font-weight: 800;
+        line-height: 1.1;
+        background: linear-gradient(90deg, #60a5fa, #22d3ee);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .cta-pill-label { color: #cbd5e1; font-size: 0.95rem; }
 
       .contact-card {
         padding: 28px;
@@ -589,12 +762,202 @@
         }
         .reveal { opacity: 1 !important; transform: none !important; }
       }
+
+      /* ===================== Standard ME-RIISE site navbar =====================
+         Scoped under .header so it never leaks global resets into this page. */
+      .header {
+        --header-height: 3.3rem;
+        --black-color: hsl(220, 24%, 12%);
+        --black-color-light: hsl(220, 24%, 15%);
+        --black-color-lighten: hsl(220, 20%, 18%);
+        --white-color: #fff;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background-color: #fff;
+        color: #000;
+        z-index: 1000;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.14);
+        font-family: 'Poppins', sans-serif;
+      }
+      .header ul { list-style: none; margin: 0; padding: 0; }
+      .header a { text-decoration: none; }
+      .containerofNavbar {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding-inline: 1.5rem;
+      }
+      .nav { height: var(--header-height); }
+      .nav__logo, .nav__burger, .nav__close { color: #000; }
+      .nav__data { height: 100%; display: flex; justify-content: space-between; align-items: center; }
+      .nav__logo { display: inline-flex; align-items: center; column-gap: .25rem; }
+      .nav__logo img { height: 52px; width: auto; }
+      .nav__toggle { position: relative; width: 32px; height: 32px; }
+      .nav__burger, .nav__close {
+        position: absolute; width: max-content; height: max-content;
+        inset: 0; margin: auto; font-size: 1.5rem; cursor: pointer;
+        transition: opacity .1s, transform .4s;
+      }
+      .nav__close { opacity: 0; }
+      .nav__link {
+        color: #000; padding: 1.25rem; white-space: nowrap; cursor: pointer;
+        display: flex; justify-content: space-between; align-items: center;
+        transition: background-color .3s, transform .3s;
+      }
+      .show-menu { opacity: 1; pointer-events: initial; }
+      .show-icon .nav__burger { opacity: 0; transform: rotate(90deg); }
+      .show-icon .nav__close { opacity: 1; transform: rotate(90deg); }
+      .dropdown__item { cursor: pointer; }
+      .dropdown__arrow { font-size: 1.25rem; transition: transform .4s; }
+      .dropdown__link, .dropdown__sublink {
+        margin: 0 10px 0 0; padding: 16px 16px 8px 1px;
+        color: var(--white-color); background-color: var(--black-color-light);
+        display: flex; align-items: center; column-gap: 1.5rem;
+        transition: background-color .3s;
+      }
+      .dropdown__link i, .dropdown__sublink i { padding-left: 10px; font-size: 1.25rem; }
+      .dropdown__link:hover, .dropdown__sublink:hover { background-color: var(--black-color); color: #fff; }
+      .dropdown__menu, .dropdown__submenu { max-height: 0; overflow: hidden; transition: max-height .4s ease-out; }
+      .dropdown__item.dropdown-open > .dropdown__menu,
+      .dropdown__subitem.dropdown-open > .dropdown__submenu { max-height: 1000px; transition: max-height .4s ease-in; }
+      .dropdown__item.dropdown-open .dropdown__arrow { transform: rotate(180deg); }
+      .dropdown__add { margin-left: auto; }
+      .dropdown__sublink { background-color: var(--black-color-lighten); }
+
+      /* Base menu layout (overridden per breakpoint below) */
+      .nav__menu { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+      .nav__list { display: flex; gap: 1rem; }
+
+      /* Navigation for mobile / tablet */
+      @media screen and (max-width: 1118px) {
+        .nav__menu {
+          position: absolute; left: 0; top: 3.6rem; width: 100%;
+          height: calc(100vh - 3.5rem); overflow: auto; pointer-events: none;
+          opacity: 0; background-color: #fff; transition: top .4s, opacity .3s;
+        }
+        .nav__menu::-webkit-scrollbar { width: 0; }
+        .nav__list { background-color: #fff; color: #000; padding-top: 1rem; }
+      }
+      @media screen and (max-width: 768px) {
+        .nav__menu { flex-direction: column; align-items: center; }
+        .nav__list { padding: 1rem; flex-direction: column; width: 100%; }
+        .nav__link { width: 100%; text-align: center; }
+      }
+
+      /* Desktop */
+      @media screen and (min-width: 1118px) {
+        .nav {
+          height: calc(var(--header-height) + 1rem);
+          display: flex; align-items: center; justify-content: center; margin-inline: auto;
+        }
+        .nav__toggle { display: none; }
+        .nav__data { display: none; }
+        .nav__menu { flex: 1; justify-content: center; }
+        .nav__list {
+          height: 100%; display: flex; align-items: center; flex-wrap: nowrap; justify-content: center;
+          column-gap: clamp(0.75rem, 1.4vw, 1.25rem); gap: clamp(0.75rem, 1.4vw, 1.25rem);
+        }
+        .nav__link { height: 100%; padding: 0.5rem 0.75rem; justify-content: initial; column-gap: .25rem; }
+        .nav__link:hover { background-color: transparent; }
+        .dropdown__item, .dropdown__subitem { position: relative; }
+        .dropdown__menu, .dropdown__submenu {
+          max-height: initial; overflow: initial; position: absolute; left: 0; top: 5rem;
+          opacity: 0; pointer-events: none; transition: opacity .3s, top .3s;
+        }
+        .dropdown__link, .dropdown__sublink { padding-inline: 1rem 3.5rem; }
+        .dropdown__subitem .dropdown__link { padding-inline: 1rem; }
+        .dropdown__submenu { position: absolute; left: 100%; top: .5rem; }
+        .dropdown__item.dropdown-open > .dropdown__menu { opacity: 1; top: 4.5rem; pointer-events: initial; transition: top .3s; }
+        .dropdown__subitem.dropdown-open > .dropdown__submenu { opacity: 1; top: 0; pointer-events: initial; transition: top .3s; }
+      }
     </style>
     <noscript>
       <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
     </noscript>
   </head>
   <body>
+    <!-- ===================== Standard ME-RIISE site navbar ===================== -->
+    <header class="header">
+      <nav class="nav containerofNavbar">
+        <div class="nav__data">
+          <a href="index.html" class="nav__logo">
+            <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation">
+          </a>
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line nav__burger"></i>
+            <i class="ri-close-line nav__close"></i>
+          </div>
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="courses/index.html" class="nav__link">Courses</a></li>
+
+            <li class="dropdown__item">
+              <div class="nav__link">About ME-RIISE <i class="ri-arrow-down-s-line dropdown__arrow"></i></div>
+              <ul class="dropdown__menu">
+                <li><a href="aboutmeriise.html" class="dropdown__link"><i class="ri-pie-chart-line"></i> ME-RIISE FOUNDATION</a></li>
+                <li><a href="infrastructure.html" class="dropdown__link"><i class="ri-pie-chart-line"></i> Infrastructure</a></li>
+                <li><a href="ourAchivements.html" class="dropdown__link"><i class="ri-arrow-up-down-line"></i> Achievements</a></li>
+                <li class="dropdown__subitem">
+                  <div class="dropdown__link"><i class="ri-bar-chart-line"></i> Documents <i class="ri-add-line dropdown__add"></i></div>
+                  <ul class="dropdown__submenu">
+                    <li><a href="Nisp.html" class="dropdown__sublink"><i class="ri-file-list-line"></i> MCE NISP POLICY</a></li>
+                    <li><a href="collab.html" class="dropdown__sublink"><i class="ri-cash-line"></i> Collaborations</a></li>
+                    <li><a href="Certificates.html" class="dropdown__sublink"><i class="ri-cash-line"></i> Certificates</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown__subitem">
+                  <div class="dropdown__link"><i class="ri-bar-chart-line"></i> Members of ME-RIISE <i class="ri-add-line dropdown__add"></i></div>
+                  <ul class="dropdown__submenu">
+                    <li><a href="index.html#boardofdirectors" class="dropdown__sublink"><i class="ri-file-list-line"></i>Board of Directors</a></li>
+                    <li><a href="faculty.html" class="dropdown__sublink"><i class="ri-cash-line"></i> Faculty</a></li>
+                    <li><a href="team.html" class="dropdown__sublink"><i class="ri-refund-2-line"></i> Team ME-RIISE</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li class="dropdown__item">
+              <div class="nav__link">Wings of ME-RIISE <i class="ri-arrow-down-s-line dropdown__arrow"></i></div>
+              <ul class="dropdown__menu">
+                <li><a href="startups.html" class="dropdown__link"><i class="ri-pie-chart-line"></i>Start Ups</a></li>
+                <li><a href="iic.html" class="dropdown__link"><i class="ri-pie-chart-line"></i> MoE - IIC</a></li>
+                <li><a href="nain.html" class="dropdown__link"><i class="ri-arrow-up-down-line"></i> NAIN</a></li>
+                <li><a href="uba.html" class="dropdown__link"><i class="ri-arrow-up-down-line"></i> UBA</a></li>
+                <li><a href="rgep.html" class="dropdown__link"><i class="ri-arrow-up-down-line"></i> RGEP</a></li>
+                <li class="dropdown__subitem">
+                  <div class="dropdown__link"><i class="ri-bar-chart-line"></i> Pragyatha <i class="ri-add-line dropdown__add"></i></div>
+                  <ul class="dropdown__submenu">
+                    <li><a href="https://pragyatha25.meriise.org/" class="dropdown__sublink"><i class="ri-file-list-line"></i>Pragyatha25</a></li>
+                    <li><a href="https://pragyatha24.meriise.org/" class="dropdown__sublink"><i class="ri-file-list-line"></i>Pragyatha24</a></li>
+                    <li><a href="pragyatha23.html" class="dropdown__sublink"><i class="ri-cash-line"></i>Pragyatha23</a></li>
+                    <li><a href="pragyatha22.html" class="dropdown__sublink"><i class="ri-cash-line"></i> Pragyatha22</a></li>
+                    <li><a href="Pragyatha21.html" class="dropdown__sublink"><i class="ri-cash-line"></i> Pragyatha21</a></li>
+                    <li><a href="pragyatha19.html" class="dropdown__sublink"><i class="ri-cash-line"></i> Pragyatha19</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li><a href="https://www.meriise.org/eventsall.html" class="nav__link">Events</a></li>
+
+            <li class="dropdown__item">
+              <div class="nav__link">TBI-MCE <i class="ri-arrow-down-s-line dropdown__arrow"></i></div>
+              <ul class="dropdown__menu">
+                <li><a href="tbi.html" class="dropdown__link"><i class="ri-pie-chart-line"></i> About TBI</a></li>
+              </ul>
+            </li>
+
+            <li><a href="newsletter.html" class="nav__link">Newsletter</a></li>
+            <li><a href="https://www.meriise.org/contactus.html" class="nav__link">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
     <header class="navbar" id="navbar">
       <div class="scroll-progress" id="scrollProgress"></div>
       <div class="container nav-inner">
@@ -628,33 +991,66 @@
         <div class="hero-orb two"></div>
         <div class="hero-orb three"></div>
         <div class="container hero-wrap">
-          <div class="hero-badge reveal" style="--i:0">Welcome to Technology Business Incubator - Malnad College of Engineering, Hassan.</div>
-          <h1 class="headline reveal" style="--i:1">Empowering Innovation & <span class="gradient">Building Startups</span></h1>
-          <p class="subtext reveal" style="--i:2">Supporting early-stage startups with mentorship, funding, infrastructure, and industry connections.</p>
-
-          <div class="hero-actions reveal" style="--i:3">
-            <button class="btn btn-primary">Apply for Incubation</button>
-            <button class="btn btn-light">Explore Programs</button>
+          <div class="hero-logos reveal" style="--i:0">
+            <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" />
+            <img src="assets/govt.png" alt="Department of Electronics IT, Bt, S&amp;T, Government of Karnataka" />
+            <img src="assets/malnad_college_of_engineering_logo (1).jpg" alt="Malnad College of Engineering, Hassan" />
           </div>
-
-          <div class="stats-grid stagger">
-            <div class="stat-card"><div class="number">5+</div><div class="label">Startups</div></div>
-            <div class="stat-card"><div class="number">30+</div><div class="label">Mentors</div></div>
-            <div class="stat-card"><div class="number">85%</div><div class="label">Success Rate</div></div>
-            <div class="stat-card"><div class="number">100+</div><div class="label">Programs</div></div>
-          </div>
+          <div class="hero-badge reveal" style="--i:1">Welcome to Technology Business Incubator - Malnad College of Engineering, Hassan.</div>
+          <h1 class="headline reveal" style="--i:2">Department of <span class="gradient">Electronics IT, Bt, S&T, Government of Karnataka</span></h1>
         </div>
       </section>
 
       <section id="about" class="section">
         <div class="container">
           <div class="section-title reveal">
-            <div class="chip">About TBI - MCE</div>
-            <h2 class="headline">Transforming Ideas Into <span class="gradient">Successful Ventures</span></h2>
-            <p class="subtext">TBI - MCE is a premier technology business incubator managed by ME-RIISE Foundation, supported by KITS Government of Karnataka and Department of Electronics, IT, BT, S & T.</p>
+            <!-- <div class="chip">About TBI-MCE</div> -->
+            <h2 class="headline">About <span class="gradient">TBI-MCE</span></h2>
           </div>
 
-          <div class="about-grid stagger">
+          <!-- Department of Electronics, IT, BT, S&T, Government of Karnataka -->
+          <div class="gov-logo reveal">
+            <img src="assets/govt.png" alt="Department of Electronics IT, Bt, S&amp;T, Government of Karnataka" />
+          </div>
+
+          <div class="about-cards stagger">
+            <article class="card about-card">
+              <div class="icon-wrap bg-blue"><i class="ri-building-2-line"></i></div>
+              <h3>About the Incubator</h3>
+              <p>Technology Business Incubator – Malnad College of Engineering (<strong>TBI-MCE</strong>), Hassan, managed by <strong>ME-RIISE FOUNDATION</strong>, is an initiative supported by the Department of Electronics IT, Bt, S&amp;T, Government of Karnataka through the Karnataka Innovation and Technology Society (KITS) to foster innovation, entrepreneurship, and technology-driven startups.</p>
+            </article>
+            <article class="card about-card">
+              <div class="icon-wrap bg-cyan"><i class="ri-money-rupee-circle-line"></i></div>
+              <h3>₹10 Crore Grant · 2025–2030</h3>
+              <p>TBI-MCE has been sanctioned a grant of <strong>₹10 Crore</strong> for a period of five years from 2025-2030. The incubator provides state-of-the-art infrastructure, prototyping facilities, technical and business mentoring, seed funding, industry connections, and investor networking opportunities.</p>
+            </article>
+            <article class="card about-card">
+              <div class="icon-wrap bg-purple"><i class="ri-rocket-2-line"></i></div>
+              <h3>Seed Funding up to ₹9 Lakh</h3>
+              <p>With a dedicated incubation space, TBI-MCE aims to nurture innovative ideas into commercially viable ventures, supporting student innovators, faculty entrepreneurs, researchers, and startups. Eligible startups can receive <strong>seed funding support of up to ₹9 Lakh</strong> per startup, subject to the programme guidelines and selection criteria.</p>
+            </article>
+            <article class="card about-card">
+              <div class="icon-wrap bg-green"><i class="ri-hand-heart-line"></i></div>
+              <h3>Our Commitment</h3>
+              <p>ME-RIISE FOUNDATION through TBI-MCE is committed to strengthen the regional startup ecosystem by promoting innovation, accelerating technology commercialization, and enabling sustainable entrepreneurship.</p>
+            </article>
+          </div>
+
+          <div class="about-events reveal">
+            <a href="https://www.meriise.org/eventsall.html" class="btn btn-primary btn-access-events" target="_blank" rel="noopener">
+              <i class="ri-calendar-event-line"></i> Access our Events
+            </a>
+          </div>
+
+          <!-- Partner / supporter logos -->
+          <div class="logo-strip reveal">
+            <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" />
+            <img src="assets/malnad_college_of_engineering_logo (1).jpg" alt="Malnad College of Engineering, Hassan" />
+            <img src="assets/collaborations/KTECH.png" alt="K-TECH, Government of Karnataka" />
+            <img src="assets/collaborations/startupkarnataka.png" alt="Startup Karnataka" />
+          </div>
+
+          <!-- <div class="about-grid stagger">
             <div>
               <div class="card" style="margin-bottom:20px">
                 <div class="icon-wrap bg-blue">🎯</div>
@@ -685,17 +1081,17 @@
             <div class="step"><div class="ring bg-orange">5</div><div class="label">Scaling</div></div>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <section id="programs" class="section" style="background:linear-gradient(135deg,#f8fafc,#eff6ff,#ecfeff)">
+      <!-- <section id="programs" class="section" style="background:linear-gradient(135deg,#f8fafc,#eff6ff,#ecfeff)">
         <div class="container">
           <div class="section-title reveal">
             <div class="chip">Our Programs</div>
             <h2 class="headline">Comprehensive <span class="gradient">Startup Support</span></h2>
             <p class="subtext">Everything you need to build, launch, and scale your technology startup.</p>
-          </div>
+          </div> -->
 
-          <div class="program-grid stagger">
+          <!-- <div class="program-grid stagger">
             <article class="program-card">
               <div class="icon-wrap bg-cyan">💡</div>
               <h3>Pre-Incubation</h3>
@@ -728,9 +1124,9 @@
             </article>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <section id="impact" class="section impact">
+      <!-- <section id="impact" class="section impact">
         <div class="container">
           <div class="section-title reveal">
             <div class="chip">Our Impact</div>
@@ -743,9 +1139,9 @@
             <div class="impact-card"><div class="value">₹10 Cr</div><div class="label">Funds Raised</div></div>
             <div class="impact-card"><div class="value">30+</div><div class="label">Expert Mentors</div></div>
             <div class="impact-card"><div class="value">0+</div><div class="label">Patents & Projects</div></div>
-          </div>
+          </div> -->
 
-          <div class="impact-cards stagger" style="margin-top:22px">
+          <!-- <div class="impact-cards stagger" style="margin-top:22px">
             <div class="impact-card"><div class="value">85%</div><div class="label">Success Rate</div></div>
             <div class="impact-card"><div class="value">200+</div><div class="label">Jobs Created</div></div>
             <div class="impact-card"><div class="value">15+</div><div class="label">Industries</div></div>
@@ -760,9 +1156,9 @@
             <div class="chip">Our Portfolio</div>
             <h2 class="headline">Startups We've <span class="gradient">Empowered</span></h2>
             <p class="subtext">Innovative companies building the future of technology.</p>
-          </div>
+          </div> -->
 
-          <div class="portfolio-grid stagger">
+          <!-- <div class="portfolio-grid stagger">
             <article class="portfolio-card">
               <div class="icon-wrap bg-blue">AI</div>
               <h3>AI Vision Tech</h3>
@@ -801,16 +1197,16 @@
             </article>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <section id="events" class="section" style="background:linear-gradient(135deg,#f8fafc,#eff6ff,#f5f3ff)">
+      <!-- <section id="events" class="section" style="background:linear-gradient(135deg,#f8fafc,#eff6ff,#f5f3ff)">
         <div class="container">
           <div class="section-title reveal">
             <div class="chip">Events & Achievements</div>
             <h2 class="headline">Stay Connected <span class="gradient">With Innovation</span></h2>
-          </div>
+          </div> -->
 
-          <h3 class="reveal" style="text-align:center;font-size:2rem;margin-bottom:28px">Upcoming Events</h3>
+          <!-- <h3 class="reveal" style="text-align:center;font-size:2rem;margin-bottom:28px">Upcoming Events</h3>
           <div class="event-grid stagger">
             <article class="event-card">
               <div class="event-visual bg-blue">📅</div>
@@ -836,9 +1232,9 @@
               <p>75+ Expected</p>
               <button class="btn btn-primary" style="width:100%;margin-top:10px">Register Now</button>
             </article>
-          </div>
+          </div> -->
 
-          <h3 id="achievements" class="reveal" style="text-align:center;font-size:2rem;margin:56px 0 28px">Gallery</h3>
+          <!-- <h3 id="achievements" class="reveal" style="text-align:center;font-size:2rem;margin:56px 0 28px">Gallery</h3>
           <div class="event-grid stagger">
             <article class="event-card">
               <div class="icon-wrap bg-orange">🏆</div>
@@ -857,7 +1253,7 @@
             </article>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <section id="team" class="section">
         <div class="container">
@@ -949,22 +1345,41 @@
         </div>
       </section>
 
-      <section class="section cta">
+      <!-- <section class="section cta-section">
         <div class="container">
-          <div class="hero-badge reveal" style="--i:0;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.24);color:white">Have an idea?</div>
-          <h2 class="headline reveal" style="--i:1;color:white">Let's build it together.</h2>
-          <p class="subtext reveal" style="--i:2;color:#cbd5e1">Join our ecosystem of innovators and transform your vision into a thriving technology startup.</p>
-          <div class="hero-actions reveal" style="--i:3">
-            <button class="btn btn-primary">Apply Now</button>
-            <button class="btn btn-light">Contact Us</button>
-          </div>
-          <div class="cta-pills stagger">
-            <div class="cta-pill"><strong>Free</strong><span>Initial Consultation</span></div>
-            <div class="cta-pill"><strong>24/7</strong><span>Support Available</span></div>
-            <div class="cta-pill"><strong>100%</strong><span>Commitment</span></div>
+          <div class="cta-panel reveal">
+            <span class="cta-glow one" aria-hidden="true"></span>
+            <span class="cta-glow two" aria-hidden="true"></span>
+            <div class="cta-content">
+              <span class="cta-eyebrow"><i class="ri-lightbulb-flash-line"></i> Have an idea?</span>
+              <h2 class="cta-title">Let's build it <span class="gradient">together</span>.</h2>
+              <p class="cta-text">Join our ecosystem of innovators and transform your vision into a thriving technology startup — backed by mentorship, funding, and world-class infrastructure.</p>
+              <div class="cta-actions">
+                <a href="#contact" class="btn btn-primary">Apply for Incubation</a>
+                <a href="https://www.meriise.org/eventsall.html" class="btn btn-events" target="_blank" rel="noopener"><i class="ri-calendar-event-line"></i> Access our Events</a>
+                <a href="https://www.meriise.org/contactus.html" class="btn btn-ghost">Contact Us</a>
+              </div>
+              <div class="cta-pills stagger">
+                <div class="cta-pill">
+                  <span class="cta-pill-ic"><i class="ri-graduation-cap-line"></i></span>
+                  <strong>Free</strong>
+                  <span class="cta-pill-label">Initial Consultation</span>
+                </div>
+                <div class="cta-pill">
+                  <span class="cta-pill-ic"><i class="ri-customer-service-2-line"></i></span>
+                  <strong>24/7</strong>
+                  <span class="cta-pill-label">Support Available</span>
+                </div>
+                <div class="cta-pill">
+                  <span class="cta-pill-ic"><i class="ri-shake-hands-line"></i></span>
+                  <strong>100%</strong>
+                  <span class="cta-pill-label">Commitment</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <section id="contact" class="section">
         <div class="container">
@@ -1146,6 +1561,9 @@
 
       scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
+
+    <!-- Standard ME-RIISE navbar behavior (mobile toggle + dropdowns) -->
+    <script src="assets/NavbarCode/assets/js/main.js"></script>
   </body>
 </html>
   
