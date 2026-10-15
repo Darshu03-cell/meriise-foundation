@@ -131,6 +131,153 @@
           color: red;
         }
       }
+
+      /*=============== STARTUPS SECTION ===============*/
+      .startups {
+        background-color: #f8fafc;
+        padding: 72px 20px 88px;
+      }
+
+      .startups__inner {
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+
+      .startups__head {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto 56px;
+      }
+
+      .startups__eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2563eb;
+        background-color: #eff6ff;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 18px;
+      }
+
+      .startups__title {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+        color: #0f172a;
+        margin: 0 0 18px;
+      }
+
+      .startups__lead {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: #475569;
+        margin: 0;
+      }
+
+      .startups__grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 26px;
+      }
+
+      @media (min-width: 640px) {
+        .startups__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .startups__grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .startup-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: #ffffff;
+        border: 1px solid #eef1f6;
+        border-radius: 20px;
+        padding: 30px 28px;
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        transition: transform 0.25s ease, box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .startup-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 40px -18px rgba(15, 23, 42, 0.25);
+        border-color: #dbe3ef;
+      }
+
+      .startup-card__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 15px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 22px;
+      }
+
+      .startup-card__badge--blue {
+        background-image: linear-gradient(135deg, #3b82f6, #2563eb);
+      }
+      .startup-card__badge--indigo {
+        background-image: linear-gradient(135deg, #6366f1, #4f46e5);
+      }
+      .startup-card__badge--emerald {
+        background-image: linear-gradient(135deg, #10b981, #059669);
+      }
+      .startup-card__badge--amber {
+        background-image: linear-gradient(135deg, #f59e0b, #d97706);
+      }
+      .startup-card__badge--rose {
+        background-image: linear-gradient(135deg, #f43f5e, #e11d48);
+      }
+
+      .startup-card__name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.3;
+        color: #1e293b;
+        margin: 0 0 12px;
+      }
+
+      .startup-card__desc {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #64748b;
+        margin: 0 0 24px;
+      }
+
+      .startup-card__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: auto;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #2563eb;
+      }
+
+      .startup-card__arrow {
+        font-size: 1.1rem;
+        transition: transform 0.25s ease;
+      }
+
+      .startup-card:hover .startup-card__arrow {
+        transform: translateX(5px);
+      }
     </style>
   </head>
 
@@ -330,6 +477,7 @@
                           <i class="ri-cash-line"></i> Certificates
                         </a>
                       </li>
+                      <li><a href="assets/TBI-MCE_SOP.pdf" class="dropdown__sublink" target="_blank" rel="noopener"><i class="ri-file-pdf-2-line"></i> TBI-MCE SOP</a></li>
                     </ul>
                   </li>
 
@@ -494,6 +642,7 @@
                                             <i class="ri-pie-chart-line"></i> About TBI
                                         </a>
                                     </li>
+                                    <li><a href="assets/TBI-MCE_SOP.pdf" class="dropdown__link" target="_blank" rel="noopener"><i class="ri-file-pdf-2-line"></i> SOP</a></li>
                                     <li>
                                         <a href="https://www.meriise.org/tbi.html" class="dropdown__link">
                                             <i class="ri-pie-chart-line"></i> TBI Web
@@ -531,395 +680,108 @@
       </header>
     </div>
 
-    <!--  
+    <!--=============== STARTUPS SECTION ===============-->
+    <section class="startups">
+      <div class="startups__inner">
+        <header class="startups__head">
+          <span class="startups__eyebrow">ME-RIISE Foundation</span>
+          <h1 class="startups__title">Our Start-Ups</h1>
+          <p class="startups__lead">
+            We foster innovation and deliver solutions that drive progress. Our
+            start-ups embody creativity and forward-thinking — building
+            cutting-edge technology, empowering students and businesses, and
+            creating lasting impact for tomorrow.
+          </p>
+        </header>
 
-  <section id="two" class="wrapper style2 mt-5">
-    <div class="inner pl-5">
-      <div class="row"> -->
-    <!--<center>-->
-
-    <!-- <div class="col-md-6"> -->
-    <!--<div class="box" style="max-width: 1200px;box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);">-->
-    <!-- <div class="box" style="
-                max-width: 400px;
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-              ">
-            <div class="content">
-              <header class="align-center">
-                <h2><b>ME-RIISE FOUNDATION</b></h2>
-              </header>
-              <div style="border: solid grey" class="pl-1 pr-1 pb-4">
-                <br />
-                <center>
-                  <img src="img/meriise-found.png" alt="" class="img-fluid w-100 text-center" /><br />
-                </center>
-                <center>
-                  <a href="meriise-found.html"><button style="background-color: rgb(15, 177, 241)">
-                      <b class="text-dark">KNOW MORE</b>
-                    </button></a>
-                </center>
-                <br />
-                <br />
-              </div>
-            </div>
-            <br />
-          </div>
-        </div> -->
-    <!--</center>-->
-    <!--</div>-->
-    <!--<div class="row ">-->
-    <!-- <div class="col-md-6">
-          <div class="box" style="
-                max-width: 400px;
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-              ">
-            <div class="content">
-              <header class="align-center">
-                <h2><b>TECH@10</b></h2>
-              </header>
-              <div style="border: solid grey" class="pl-1 pr-1 pb-4">
-                <br />
-                <center>
-                  <img src="img/s41.png" alt="" class="img-fluid w-100 text-center" /><br />
-                </center>
-                <center>
-                  <a href="techat10.html"><button style="background-color: rgb(15, 177, 241)">
-                      <b class="text-dark">KNOW MORE</b>
-                    </button></a>
-                </center>
-                <br />
-                <br />
-              </div>
-            </div>
-            <br />
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="box" style="
-                max-width: 400px;
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-              "> -->
-    <!-- <div class="content">
-            <header class="align-center">
-              <h2><b>DEVELOPERS COMMUNITY</b></h2>
-            </header>
-            <div style="border: solid grey" class="pl-1 pr-1 pb-4">
-              <br />
-              <center>
-                <img src="img/web.png" alt="" class="img-fluid w-100 text-center pl-2 pr-2 mt-4"
-                  style="height: 70px" /><br />
-              </center>
-              <center>
-                <a href="developers.html"><button style="
-                          background-color: rgb(241, 126, 213);
-                          margin-top: 50px;
-                        "> -->
-    <!-- <b class="text-dark">KNOW MORE</b>
-                  </button></a>
-              </center>
-              <br />
-              <br />
-            </div>
-          </div>
-          <br />
-        </div>
-      </div>
-    </div> -->
-    <!-- <div class="row">
-      <div class="col-md-6">
-        <div class="box" style="
-                max-width: 400px;
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-              "> -->
-    <!-- <div class="content">
-            <header class="align-center">
-              <h2><b>TechWithKPG</b></h2>
-            </header> -->
-    <!--<div style="border: solid grey;" class="pl-1 pr-1">	-->
-    <!-- <div style="border: solid grey" class="pl-1 pr-1 pb-4">
-              <br />
-              <center>
-                <img src="img/kpglo.jpg" alt="" class="img-fluid w-100 text-center" /><br />
-              </center>
-              <center>
-                <a href="teckwithkpg.html"><button style="background-color: rgb(255, 0, 0)">
-                    <b class="text-dark">KNOW MORE</b>
-                  </button></a>
-              </center>
-              <br />
-              <br />
-            </div>
-            <br />
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-
-      </div> -->
-
-    <!-- <div class="row"> -->
-    <!--<center>-->
-
-    <!-- <div class="col-md-6"> -->
-    <!--<div class="box" style="max-width: 1200px;box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);">-->
-    <!-- <div class="box" style="
-                max-width: 400px;
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-              ">
-            <div class="content">
-              <header class="align-center">
-                <h2><b>Edutechsphere</b></h2>
-              </header>
-              <div style="border: solid grey" class="pl-1 pr-1 pb-4">
-                <br />
-                <center>
-                  <img src="img/meriise-found.png" alt="" class="img-fluid w-100 text-center" /><br />
-                </center>
-                <center>
-                  <a href="meriise-found.html"><button style="background-color: rgb(15, 177, 241)">
-                      <b class="text-dark">KNOW MORE</b>
-                    </button></a>
-                </center>
-                <br />
-                <br />
-              </div>
-            </div>
-            <br />
-          </div>
-        </div> -->
-    <!--</center>-->
-    <!--</div>-->
-    <!--<div class="row ">-->
-    <!-- <div class="col-md-6">
-          <div class="box" style="
-                max-width: 400px;
-                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
-              ">
-            <div class="content">
-              <header class="align-center">
-                <h2><b>Chathurpravarthan private limited</b></h2>
-              </header>
-              <div style="border: solid grey" class="pl-1 pr-1 pb-4">
-                <br />
-                <center>
-                  <img src="img/s41.png" alt="" class="img-fluid w-100 text-center" /><br />
-                </center>
-                <center>
-                  <a href="techat10.html"><button style="background-color: rgb(15, 177, 241)">
-                      <b class="text-dark">KNOW MORE</b>
-                    </button></a>
-                </center>
-                <br />
-                <br />
-              </div>
-            </div>
-            <br />
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!--
-			<div class="row">
-					<div class="col-md-6">
-						<div class="box" style="max-width: 400px;box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);">
-						<div class="content">
-							<header class="align-center">
-								<h2 ><b>TechWithKPG</b></h2>
-								
-							</header>
-							<!--<div style="border: solid grey;" class="pl-1 pr-1">	
-							<div style="border: solid grey;" class="pl-1 pr-1 pb-4">
-							<br>		
-						   <center><img src="img/kpglo.jpg" alt="" class="img-fluid w-100 text-center"><br></center> 
-							<center><a href="teckwithkpg.html"><button  style="background-color: rgb(255, 0, 0);"><b class="text-dark">KNOW MORE</b></button></a></center>	
-								<br>	
-								<br>
-									
-									
-							</div>
-							<br>
-						</div>
-					</div>
-				   </div>
-
-			</div>-->
-    <!--	</div>-->
-    <!--</div>-->
-    <!-- </section> -->
-
-    <div class="bg-black pt-16 lg:pt-20 p-0">
-      <div class="text-white text-center text-[60px] md:text-[80px]">
-        StartUps.
-      </div>
-      <p
-        class="m-6 lg:m-10 text-white text-sm lg:text-xl"
-        style="text-align: justify"
-      >
-        At ME-RIISE Foundation, we are committed to fostering innovation and
-        delivering solutions that drive progress. Our startup represents the
-        spirit of creativity and forward-thinking that defines our approach.
-        With a focus on cutting-edge technology and continuous growth, we aim to
-        transform industries and empower businesses. Join us on this exciting
-        journey as we create lasting impact and revolutionize the future.
-        Together, we can achieve remarkable success and pave the way for
-        tomorrow’s breakthroughs.
-      </p>
-
-      <div class="p-2">
-        <div class="lg:grid grid-cols-2">
-          <div class="bg-gray-700 m-2 lg:m-10 rounded-2xl">
-            <p class="text-[40px] m-10 pt-10 lg:p-0 text-white">TECH @10</p>
-            <p
-              class="text-white text-sm lg:text-xl m-8 lg:m-10 py-4 justify-content"
-            >
-              Tech@10 is an idea to provide technical knowledge to the budding
-              technical students at a reasonable price that is ten rupees per
-              session. Hence the name Tech@10. In our startup we teach students
-              the technical skills life programming, android development, web
-              development. The main aim of our startup is to create awareness
-              about the technical skills that they require to get into corporate
-              sector and also make it easy for them to get the knowledge as we
-              provide at a very reasonable cost.
+        <div class="startups__grid">
+          <!-- Tech@10 -->
+          <a href="techat10.html" class="startup-card group">
+            <span class="startup-card__badge startup-card__badge--blue">T</span>
+            <h2 class="startup-card__name">Tech@10</h2>
+            <p class="startup-card__desc">
+              An idea to provide technical knowledge to budding students at a
+              reasonable price — ten rupees per session, hence the name. We teach
+              programming, Android and web development, making the skills needed
+              for the corporate sector accessible and affordable.
             </p>
-            <a href="techat10.html">
-              <div
-                class="bg-white m-10 py-4 px-4 rounded-2xl cursor-pointer text-md text-center"
-              >
-                Know More about Tech @10
-              </div>
-            </a>
-            <br />
-          </div>
+            <span class="startup-card__cta">
+              Know more
+              <i class="ri-arrow-right-line startup-card__arrow"></i>
+            </span>
+          </a>
 
-          <div class="bg-gray-700 m-2 lg:m-10 rounded-2xl">
-            <p class="text-[40px] m-10 pt-10 lg:p-0 text-white">
-              TECH with KGP
+          <!-- Tech with KGP -->
+          <a href="teckwithkpg.html" class="startup-card group">
+            <span class="startup-card__badge startup-card__badge--indigo">K</span>
+            <h2 class="startup-card__name">Tech with KGP</h2>
+            <p class="startup-card__desc">
+              A simple but effective vision built on teaching, effective learning
+              and problem solving. Driven by a passion for app development,
+              TechWithKPG has done tremendous work providing courses and
+              internships for students of Malnad College of Engineering.
             </p>
-            <p
-              class="text-white text-sm lg:text-xl m-8 lg:m-10 py-4 justify-content"
-            >
-              The goal and vision of Techwithkpg is pretty simple but much
-              effective. Having the goal of teaching , effective learning and
-              problem solving which made us inspire and aspired us to drive our
-              passion . App development helped us to shape our career,
-              TechWithKPG has done a tremendous work in providing various
-              Courses and Internships for students of Malnad College of
-              Engineering .
-            </p>
-            <a href="teckwithkpg.html">
-              <div
-                class="bg-white m-10 py-4 px-4 rounded-2xl cursor-pointer text-md text-center"
-              >
-                Know More about TECH with KGP
-              </div>
-            </a>
-            <br />
-          </div>
+            <span class="startup-card__cta">
+              Know more
+              <i class="ri-arrow-right-line startup-card__arrow"></i>
+            </span>
+          </a>
 
-          <!-- KPG , meriise , awake , techkid ,  -->
-
-          <div class="bg-gray-700 m-2 lg:m-10 rounded-2xl">
-            <p class="text-[40px] m-10 pt-10 lg:p-0 text-white">
-              Developers Community
+          <!-- Developers Community -->
+          <a href="developers.html" class="startup-card group">
+            <span class="startup-card__badge startup-card__badge--emerald">D</span>
+            <h2 class="startup-card__name">Developers Community</h2>
+            <p class="startup-card__desc">
+              Started by Adarsh D and Manoj Kumar H R in 2020 to spread knowledge
+              and develop an interest in industry-standard coding. The community
+              built a web-based application for monitoring people under home
+              quarantine during the COVID-19 pandemic.
             </p>
-            <p
-              class="text-white text-md lg:text-xl m-8 lg:m-10 py-4 justify-content"
-            >
-              Started by Adarsh D and Manoj Kumar H R in the year 2020. Our
-              motto of this community is to spread knowledge and develop
-              interests in the students to learn coding in the industry standard
-              and contribute to the college and society. We developed a
-              web-based application for monitoring people under home quarantine
-              during the pandemic situation of covid-19.
-            </p>
-            <a href="developers.html">
-              <div
-                class="bg-white m-10 py-4 px-4 rounded-2xl cursor-pointer text-md text-center"
-              >
-                Know More about Developers Community
-              </div>
-            </a>
-            <br />
-          </div>
+            <span class="startup-card__cta">
+              Know more
+              <i class="ri-arrow-right-line startup-card__arrow"></i>
+            </span>
+          </a>
 
           <!-- Chathurpravarthan Private Limited -->
-          <div class="bg-gray-700 m-2 lg:m-10 rounded-2xl">
-            <p class="text-[25px] lg:text-[35px] m-10 pt-10 lg:p-0 text-white">
-              Chathurpravarthan Private Limited
-            </p>
-            <p
-              class="text-white text-md lg:text-xl m-8 lg:m-10 py-4 justify-content"
-            >
-              Chathur Pravarthan Private Limited, established in 2022, is a
-              remarkable success story. It originated as a start-up within the
-              premises of Malnad College of Engineering, born out of the
+          <a
+            href="https://pravarthan.in/"
+            target="_blank"
+            rel="noopener"
+            class="startup-card group"
+          >
+            <span class="startup-card__badge startup-card__badge--amber">C</span>
+            <h2 class="startup-card__name">Chathurpravarthan Private Limited</h2>
+            <p class="startup-card__desc">
+              Established in 2022, a remarkable success story. It originated as a
+              start-up within Malnad College of Engineering, born out of the
               successful implementation of the "Solar Panel Cleaning Robot"
               project.
             </p>
-
-            <a href="https://pravarthan.in/">
-              <div
-                class="bg-white m-10 py-4 px-4 rounded-2xl cursor-pointer text-md text-center"
-              >
-                Know More about Chathurpravarthan Private Limited
-              </div>
-            </a>
-            <br />
-          </div>
-
-          <div class="bg-gray-700 m-2 lg:m-10 rounded-2xl">
-            <p class="text-[35px] lg:text-[35px] m-10 pt-10 lg:p-0 text-white">
-              Edutechsphere
-            </p>
-            <p
-              class="text-white text-sm lg:text-xl m-8 lg:m-10 py-4 justify-content"
-            >
-              Welcome to Edutechsphere, where technology meets education to
-              create transformative learning experiences. Our mission is to
-              empower learners and educators with innovative tools and solutions
-              that inspire growth and unlock potential. At Edutechsphere, we
-              believe in shaping the future of education through cutting-edge
-              technology and a passion for excellence. Join us in
-              revolutionizing the way the world learns and grows.
-            </p>
-
-            <a href="EdutechSphere.html">
-              <div
-                class="bg-white m-10 py-4 px-4 rounded-2xl cursor-pointer text-md text-center"
-              >
-                Know More about Edutechsphere
-              </div>
-            </a>
-            <br />
-          </div>
-        </div>
-
-        <!-- <div class="lg:grid grid-cols-3">
-        <div class="bg-gray-700 m-10 rounded-2xl">
-          <p class="text-[30px] lg:text-[40px] pt-10 lg:pt-0 m-10 text-white">Edutechsphere</p>
-          <p class="text-white text-md lg:text-xl m-10 py-4 justify-content">
-            Welcome to Edutechsphere, where technology meets education to create transformative learning experiences.
-            Our mission is to empower learners and educators with innovative tools and solutions that inspire growth and
-            unlock potential. At Edutechsphere, we believe in shaping the future of education through cutting-edge
-            technology and a passion for excellence. Join us in revolutionizing the way the world learns and grows.
-          </p>
-          <a href="assets/StartUps/Edutechshere.pdf">
-            <div class="bg-white m-8 px-10 rounded-2xl py-4 cursor-pointer text-lg text-center">Know More about
-              Edutechsphere
-            </div>
+            <span class="startup-card__cta">
+              Visit website
+              <i class="ri-external-link-line startup-card__arrow"></i>
+            </span>
           </a>
 
-          <br>
-
-
+          <!-- Edutechsphere -->
+          <a href="EdutechSphere.html" class="startup-card group">
+            <span class="startup-card__badge startup-card__badge--rose">E</span>
+            <h2 class="startup-card__name">Edutechsphere</h2>
+            <p class="startup-card__desc">
+              Where technology meets education to create transformative learning
+              experiences. Our mission is to empower learners and educators with
+              innovative tools and solutions that inspire growth, unlock
+              potential and shape the future of education.
+            </p>
+            <span class="startup-card__cta">
+              Know more
+              <i class="ri-arrow-right-line startup-card__arrow"></i>
+            </span>
+          </a>
         </div>
-
-      </div> -->
       </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer id="footer" class="bg-black">
