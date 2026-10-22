@@ -3902,6 +3902,84 @@
             });
         </script>
 
+        <!-- Bridging Generations 2.0: Alumni Insights Episode 6 -->
+        <div id="bg2-episode6-popup" class="bg2-popup bg2-episode6-popup" role="dialog" aria-modal="true" aria-labelledby="bg2-episode6-title">
+            <div class="bg2-popup__card bg2-episode6-popup__card">
+                <button class="bg2-popup__close" type="button" aria-label="Close popup" onclick="closeBg2Episode6Popup()">&times;</button>
+                <h2 id="bg2-episode6-title" class="bg2-popup__title">Bridging Generations 2.0<br>Alumni Insights · Episode 6</h2>
+                <img class="bg2-episode6-popup__poster" src="popup_assets/sanjaygjendra.png" alt="Bridging Generations Alumni Insights 2.0 Episode 6 featuring Mr. Sanjay Gajendra" loading="eager">
+                <!-- <p class="bg2-episode6-popup__copy"><strong>Mr. Sanjay Gajendra</strong><br>CSE Batch of 1996 · President, Chief Operating Officer &amp; Co-Founder of Astera Labs</p> -->
+                <!-- <p class="bg2-episode6-popup__copy">A globally recognized technology leader and semiconductor industry veteran with over 20 years of experience. Join the conversation on innovation, entrepreneurship, leadership, and building globally successful technology ventures.</p> -->
+                <p class="bg2-episode6-popup__details"><strong>24 October 2026</strong><br>6:00 PM – 7:00 PM IST</p>
+                <div class="bg2-popup__buttons">
+                    <a href="https://youtube.com/shorts/Ws1zHOT_tEs" target="_blank" rel="noopener" class="bg2-popup__cta bg2-popup__cta--primary">Watch Teaser</a>
+                    <a href="https://forms.gle/5N5sSqVK9T6osu4RA" target="_blank" rel="noopener" class="bg2-popup__cta bg2-popup__cta--primary">Submit a Question</a>
+                    <a href="https://teams.microsoft.com/meet/483648520330122?p=NUR1AJvmXmeWWHCb6g" target="_blank" rel="noopener" class="bg2-popup__cta bg2-popup__cta--secondary">Join the Session</a>
+                    <a href="bridging-generations/index.html" class="bg2-popup__cta bg2-popup__cta--secondary">Bridging Generations Page</a>
+                </div>
+                <p class="bg2-episode6-popup__signatories"><strong>Dr. Geetha Kiran A</strong> · CEO, ME-RIISE FOUNDATION<br><strong>Dr. S. Pradeep</strong> · Principal, MCE</p>
+            </div>
+        </div>
+
+        <style>
+            .bg2-episode6-popup {
+                z-index: 10002;
+            }
+
+            .bg2-episode6-popup__card {
+                max-width: 390px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .bg2-episode6-popup__poster {
+                display: block;
+                width: 100%;
+                height: auto;
+                border: 2px solid #01adfc;
+                border-radius: 12px;
+            }
+
+            .bg2-episode6-popup__copy,
+            .bg2-episode6-popup__details,
+            .bg2-episode6-popup__signatories {
+                margin: 12px 0 0;
+                color: #374151;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .bg2-episode6-popup__details {
+                color: #0182bd;
+                font-weight: 700;
+            }
+
+            .bg2-episode6-popup__signatories {
+                font-size: 12px;
+            }
+
+            @media (max-width: 480px) {
+                .bg2-episode6-popup {
+                    padding: 12px;
+                }
+
+                .bg2-episode6-popup__card {
+                    padding: 14px;
+                }
+            }
+        </style>
+
+        <script>
+            function closeBg2Episode6Popup() {
+                document.getElementById('bg2-episode6-popup').classList.add('hidden');
+            }
+            document.getElementById('bg2-episode6-popup').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeBg2Episode6Popup();
+                }
+            });
+        </script>
+
         <!-- ============================================================= -->
         <!-- On-load popup DECK: shows multiple announcement cards          -->
         <!-- side-by-side (desktop) / stacked (mobile). Each card has its   -->

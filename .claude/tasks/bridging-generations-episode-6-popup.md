@@ -30,5 +30,17 @@ Publish the Episode 6 announcement on the homepage using the supplied
 - Preview the homepage at desktop and mobile sizes: the announcement card should appear in
   the existing deck, remain scrollable if needed, and all links and close behavior should work.
 
-## Status
-Awaiting user review and approval before implementation.
+## Implementation completed (2026-10-22)
+- Added a separate, visible Episode 6 overlay to `index.html`, above the active announcement
+   deck. Existing announcement cards and the hidden Episode 5 popup remain unchanged.
+- Reused the Bridging Generations popup visual classes and added Episode 6-specific sizing,
+   detail text, and mobile spacing. The card is capped at 90vh and scrolls when its contents
+   exceed the viewport.
+- Added the supplied Sanjay Gajendra poster, biography, session date/time, teaser, question
+   form, join link, and both signatories.
+- Verified required asset, content, and unique popup ID with a focused PowerShell check.
+- Browser preview confirmed the popup is visible at z-index 10002, the poster loads, all
+   three external destinations are correct, and the card scrolls within the viewport.
+- The browser also reports an existing unrelated homepage script error at `index.html:3693`
+   (`Cannot set properties of null (setting 'innerHTML')`); it was not changed as part of this
+   popup request.
