@@ -20,7 +20,7 @@
       html { scroll-behavior: smooth; }
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Poppins', sans-serif;
         color: var(--text);
         background: #fff;
         line-height: 1.6;
@@ -132,41 +132,91 @@
       }
 
       .hero {
-        min-height: min(650px, calc(100vh - 4.3rem));
-        min-height: min(650px, calc(100svh - 4.3rem));
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, #ffffff, #eff6ff, #ecfeff);
-        padding: 40px 0;
+        min-height: 0;
+        display: block;
+        background: #f4f8fb;
+        padding: 48px 0 68px;
       }
       .hero-wrap {
         position: relative;
         z-index: 1;
-        text-align: center;
-        padding: clamp(28px, 5vh, 56px) 0;
+        padding: 0;
       }
-      .hero-orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(34px);
-        opacity: 0.52;
+      .intro-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        align-items: start;
+        gap: clamp(36px, 6vw, 88px);
       }
-      .hero-orb.one { width: 300px; height: 300px; top: 130px; left: 50px; background: #93c5fd; }
-      .hero-orb.two { width: 300px; height: 300px; right: 70px; bottom: 120px; background: #67e8f9; }
-      .hero-orb.three { width: 420px; height: 420px; left: 50%; top: 50%; transform: translate(-50%, -50%); background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(6,182,212,0.12)); }
+      .intro-copy { text-align: left; padding-top: 20px; }
+      .intro-copy .hero-badge {
+        max-width: 520px;
+        border-radius: 4px;
+        background: transparent;
+        border: 0;
+        border-left: 3px solid var(--secondary);
+        padding: 2px 0 2px 14px;
+        color: #475569;
+        margin: 0 0 24px;
+        font-size: 0.92rem;
+      }
+      .intro-copy .headline {
+        max-width: 620px;
+        font-size: clamp(2.45rem, 4vw, 3.8rem);
+        line-height: 1.08;
+        margin-bottom: 20px;
+      }
+      .intro-managed-label {
+        margin: 0;
+        font-size: 1rem;
+        color: #526176;
+      }
+      .intro-managed-label strong { color: var(--primary); }
+      .intro-about { padding: 12px 0 0; }
+      .intro-about .section-title { text-align: left; margin-bottom: 10px; }
+      .intro-about .headline { font-size: clamp(1.85rem, 3vw, 2.45rem); margin-bottom: 0; }
+      .intro-about-lead {
+        max-width: 660px;
+        margin: 0 0 24px;
+        color: #526176;
+        font-size: 0.96rem;
+      }
+      .about-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 24px;
+      }
+      .about-fact {
+        padding: 17px 0;
+        border-top: 1px solid #d6e0e8;
+      }
+      .about-fact strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #123044;
+        font-size: 1rem;
+      }
+      .about-fact p {
+        margin: 0;
+        color: #5a6b7c;
+        font-size: 0.84rem;
+        line-height: 1.55;
+      }
       .hero-logos {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        gap: clamp(12px, 2.5vw, 34px);
-        max-width: 790px;
-        margin: 0 auto 24px;
+        gap: 18px 28px;
+        width: 100%;
+        margin: 0 auto 42px;
+        padding: 0 0 24px;
+        border-bottom: 1px solid #dce6ed;
       }
       .hero-logos img {
-        flex: 0 1 124px;
-        width: 124px;
-        height: 68px;
+        flex: 0 1 112px;
+        width: 112px;
+        height: 54px;
         object-fit: contain;
       }
       .hero-managed {
@@ -185,8 +235,14 @@
       @media (max-width: 640px) {
         .hero-logos { gap: 10px 16px; margin-bottom: 20px; }
         .section { padding: 40px 0; }
-        .hero-logos img { flex-basis: 84px; width: 84px; height: 50px; }
+        .hero { padding: 30px 0 42px; }
+        .hero-logos { justify-content: center; padding-bottom: 18px; }
+        .hero-logos img { flex-basis: 80px; width: 80px; height: 44px; }
         .hero-badge { max-width: 100%; font-size: 0.92rem; line-height: 1.45; }
+        .intro-copy { padding-top: 0; }
+        .intro-copy .headline { font-size: 2.35rem; }
+        .about-facts { grid-template-columns: 1fr; }
+        .about-fact { padding: 14px 0; }
       }
       .hero-badge {
         display: inline-block;
@@ -717,6 +773,9 @@
       @media (max-width: 960px) {
         .program-grid, .portfolio-grid, .team-grid, .footer-grid, .stats-grid, .impact-cards, .roadmap, .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .support-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .intro-layout { grid-template-columns: 1fr; gap: 28px; }
+        .intro-copy { text-align: center; }
+        .intro-copy .hero-badge, .intro-copy .headline { margin-inline: auto; }
         .about-grid, .contact-grid, .split-grid { grid-template-columns: 1fr; }
         .nav-links { display: none; position: absolute; top: 80px; right: 16px; background: white; padding: 18px; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 14px 40px rgba(148,163,184,0.18); flex-direction: column; align-items: flex-start; }
         .nav-links.open { display: flex; }
@@ -734,6 +793,9 @@
         .contact-item { margin-bottom: 18px; }
         form .field { margin-bottom: 14px; }
         .hero-wrap { padding: 36px 0; }
+        .intro-layout { gap: 24px; }
+        .intro-copy { text-align: center; }
+        .intro-about { padding: 18px; }
         .headline { font-size: 2.3rem; }
         .nav-inner { padding: 14px 0; }
       }
@@ -1123,9 +1185,6 @@
 
     <main>
       <section id="home" class="hero section">
-        <div class="hero-orb one"></div>
-        <div class="hero-orb two"></div>
-        <div class="hero-orb three"></div>
         <div class="container hero-wrap">
           <div class="hero-logos reveal" style="--i:0" role="group" aria-label="TBI-MCE partners and supporters">
             <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" />
@@ -1134,46 +1193,42 @@
             <img src="assets/collaborations/startupkarnataka.png" alt="Startup Karnataka" />
             <img src="assets/mce.png" alt="Malnad College of Engineering, Hassan" />
           </div>
-          <div class="hero-badge reveal" style="--i:1">Welcome to Technology Business Incubator - Malnad College of Engineering, Hassan.</div>
-          <h1 class="headline reveal" style="--i:2">Department of <span class="gradient">Electronics, IT, BT, S&amp;T, Government of Karnataka</span></h1>
-          <p class="hero-managed reveal" style="--i:3">Managed by <strong>ME-RIISE Foundation</strong></p>
+          <div class="intro-layout">
+            <div class="intro-copy">
+              <div class="hero-badge reveal" style="--i:1">Welcome to Technology Business Incubator - Malnad College of Engineering, Hassan.</div>
+              <h1 class="headline reveal" style="--i:2">Department of <span class="gradient">Electronics, IT, BT, S&amp;T, Government of Karnataka</span></h1>
+              <p class="intro-managed-label reveal" style="--i:3">Managed by <strong>ME-RIISE Foundation</strong></p>
+            </div>
+            <div class="intro-about">
+              <div class="section-title reveal">
+                <h2 class="headline">About <span class="gradient">TBI-MCE</span></h2>
+              </div>
+              <p class="intro-about-lead reveal">TBI-MCE supports innovators and early-stage ventures at Malnad College of Engineering, Hassan, with infrastructure, mentoring, and connections to help ideas become viable businesses.</p>
+              <div class="about-facts">
+                <article class="about-fact reveal">
+                  <strong>Government-backed</strong>
+                  <p>Supported by the Department of Electronics, IT, BT, S&amp;T, Government of Karnataka through KITS.</p>
+                </article>
+                <article class="about-fact reveal">
+                  <strong>₹10 Crore grant</strong>
+                  <p>Sanctioned for a five-year period from 2025 to 2030.</p>
+                </article>
+                <article class="about-fact reveal">
+                  <strong>Seed funding up to ₹9 lakh</strong>
+                  <p>Available to eligible startups, subject to programme guidelines and selection criteria.</p>
+                </article>
+                <article class="about-fact reveal">
+                  <strong>Built for founders</strong>
+                  <p>Incubation space, prototyping, technical and business mentoring, industry connections, and investor networking.</p>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="about" class="section">
         <div class="container">
-          <div class="section-title reveal">
-            <!-- <div class="chip">About TBI-MCE</div> -->
-            <h2 class="headline">About <span class="gradient">TBI-MCE</span></h2>
-          </div>
-
-          <!-- Department of Electronics, IT, BT, S&T, Government of Karnataka -->
-          <div class="gov-logo reveal">
-            <img src="assets/government.png" alt="Government of Karnataka" />
-          </div>
-
-          <div class="about-cards stagger">
-            <article class="card about-card">
-              <div class="icon-wrap bg-blue"><i class="ri-building-2-line"></i></div>
-              <h3>About the Incubator</h3>
-              <p>Technology Business Incubator – Malnad College of Engineering (<strong>TBI-MCE</strong>), Hassan, managed by <strong>ME-RIISE FOUNDATION</strong>, is an initiative supported by the Department of Electronics IT, Bt, S&amp;T, Government of Karnataka through the Karnataka Innovation and Technology Society (KITS) to foster innovation, entrepreneurship, and technology-driven startups.</p>
-            </article>
-            <article class="card about-card">
-              <div class="icon-wrap bg-cyan"><i class="ri-money-rupee-circle-line"></i></div>
-              <h3>₹10 Crore Grant · 2025–2030</h3>
-              <p>TBI-MCE has been sanctioned a grant of <strong>₹10 Crore</strong> for a period of five years from 2025-2030. The incubator provides state-of-the-art infrastructure, prototyping facilities, technical and business mentoring, seed funding, industry connections, and investor networking opportunities.</p>
-            </article>
-            <article class="card about-card">
-              <div class="icon-wrap bg-purple"><i class="ri-rocket-2-line"></i></div>
-              <h3>Seed Funding up to ₹9 Lakh</h3>
-              <p>With a dedicated incubation space, TBI-MCE aims to nurture innovative ideas into commercially viable ventures, supporting student innovators, faculty entrepreneurs, researchers, and startups. Eligible startups can receive <strong>seed funding support of up to ₹9 Lakh</strong> per startup, subject to the programme guidelines and selection criteria.</p>
-            </article>
-            <article class="card about-card">
-              <div class="icon-wrap bg-green"><i class="ri-hand-heart-line"></i></div>
-              <h3>Our Commitment</h3>
-              <p>ME-RIISE FOUNDATION through TBI-MCE is committed to strengthen the regional startup ecosystem by promoting innovation, accelerating technology commercialization, and enabling sustainable entrepreneurship.</p>
-            </article>
-          </div>
 
           <!-- TBI-MCE SOP document -->
           <div class="sop-doc reveal">
@@ -1668,7 +1723,7 @@
       </section>
     </main>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container footer-grid stagger">
         <div>
           <div class="brand" style="margin-bottom:20px">
@@ -1708,7 +1763,7 @@
         <div>© 2026 TBI - ME-RIISE Foundation. All rights reserved.</div>
         <div><a href="#">Privacy Policy</a> · <a href="#">Terms & Conditions</a></div>
       </div>
-    </footer>
+    </footer> -->
 
     <button class="scroll-top" id="scrollTop" title="Back to top">↑</button>
 
