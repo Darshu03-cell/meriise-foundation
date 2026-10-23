@@ -3758,18 +3758,67 @@
 
         </script>
 
-        <!-- Bridging Generations 2.0 Popup (disabled: replaced by Arogya Manthan 2K26 popup below) -->
-        <div id="bg2-popup" class="bg2-popup hidden" role="dialog" aria-modal="true" aria-labelledby="bg2-popup-title">
-            <div class="bg2-popup__card">
-                <button class="bg2-popup__close" type="button" aria-label="Close popup" onclick="closeBg2Popup()">&times;</button>
-                <h2 id="bg2-popup-title" class="bg2-popup__title">Bridging Generations 2.0</h2>
-                <a href="bridging-generations/index.html" class="bg2-popup__poster" aria-label="Open Bridging Generations 2.0">
-                    <img src="popup_assets/poster.png" alt="Bridging Generations 2.0 poster" loading="lazy">
-                </a>
-                <div class="bg2-popup__buttons">
-                    <a href="https://teams.microsoft.com/meet/41783379945761?p=RZoLdbOcywF6EFhsfW" class="bg2-popup__cta bg2-popup__cta--primary">Watch Live</a>
-                    <a href="bridging-generations/index.html" class="bg2-popup__cta bg2-popup__cta--secondary">Know More</a>
-                </div>
+        <!-- Homepage announcements -->
+        <div id="bg2-popup" class="bg2-popup" role="dialog" aria-modal="true" aria-label="ME-RIISE announcements">
+            <div class="announcement-deck">
+                <button class="announcement-close" type="button" aria-label="Close announcements" onclick="closeBg2Popup()">&times;</button>
+
+                <article class="announcement-slide" aria-labelledby="announcement-bridging-title">
+                    <a class="announcement-poster" href="bridging-generations/index.html" aria-label="Open Bridging Generations">
+                        <img src="popup_assets/sanjaygjendra.png" alt="Bridging Generations Episode 6 with Sanjay Gajendra">
+                    </a>
+                    <div class="announcement-content">
+                        <p class="announcement-eyebrow">Episode 6 · Alumni Insights 2.0</p>
+                        <h2 id="announcement-bridging-title">Bridging Generations 2.0</h2>
+                        <p>Join Sanjay Gajendra, President, COO and Co-Founder of Astera Labs, for a conversation on innovation, entrepreneurship, and leadership.</p>
+                        <ul class="announcement-details">
+                            <li><strong>Date</strong><span>October 24, 2026</span></li>
+                            <li><strong>Time</strong><span>6:00–7:00 PM IST</span></li>
+                        </ul>
+                        <div class="announcement-actions">
+                            <a class="announcement-button" href="bridging-generations/index.html">Know More</a>
+                            <a class="announcement-button announcement-button--primary" href="https://teams.microsoft.com/meet/483648520330122?p=NUR1AJvmXmeWWHCb6g" target="_blank" rel="noopener">Join Live</a>
+                            <a class="announcement-button" href="https://youtube.com/shorts/Ws1zHOT_tEs" target="_blank" rel="noopener">Watch Teaser</a>
+                            <a class="announcement-text-link" href="https://forms.gle/5N5sSqVK9T6osu4RA" target="_blank" rel="noopener">Submit a question</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="announcement-slide" aria-labelledby="announcement-pragyatha-title">
+                    <a class="announcement-poster" href="https://www.meriise.org/" target="_blank" rel="noopener" aria-label="Visit ME-RIISE for Pragyatha 2026">
+                        <img src="popup_assets/pragyatha26-fest.jpg" alt="Pragyatha 2026 fest poster">
+                    </a>
+                    <div class="announcement-content">
+                        <p class="announcement-eyebrow">Annual Innovation Fest</p>
+                        <h2 id="announcement-pragyatha-title">Pragyatha '26</h2>
+                        <p>Three days of innovation, ideas, and celebration at Malnad College of Engineering, Hassan.</p>
+                        <ul class="announcement-details">
+                            <li><strong>Dates</strong><span>October 30–November 1, 2026</span></li>
+                            <li><strong>Prize pool</strong><span>₹75,000</span></li>
+                        </ul>
+                        <div class="announcement-actions">
+                            <a class="announcement-button announcement-button--primary" href="popup_assets/pragyatha26_rulebook.pdf" target="_blank" rel="noopener">Pragyatha '26 Rulebook</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="announcement-slide" aria-labelledby="announcement-cohort-title">
+                    <a class="announcement-poster" href="https://forms.gle/E6hoccyAMDiEtqrH6" target="_blank" rel="noopener" aria-label="Apply for TBI-MCE Cohort 2">
+                        <img src="popup_assets/tbi-cohort2.jpg" alt="TBI-MCE Cohort 2 application poster">
+                    </a>
+                    <div class="announcement-content">
+                        <p class="announcement-eyebrow">TBI-MCE · Applications Open</p>
+                        <h2 id="announcement-cohort-title">Cohort 2</h2>
+                        <p>Applications for the next TBI-MCE cohort are open. Apply before the deadline.</p>
+                        <ul class="announcement-details">
+                            <li><strong>Application deadline</strong><span>October 31, 2026</span></li>
+                        </ul>
+                        <div class="announcement-actions">
+                            <a class="announcement-button announcement-button--primary" href="https://forms.gle/E6hoccyAMDiEtqrH6" target="_blank" rel="noopener">Apply Now</a>
+                        </div>
+                    </div>
+                </article>
+
             </div>
         </div>
 
@@ -3892,17 +3941,194 @@
             .bg2-popup__cta--secondary:hover {
                 background: #4b5563;
             }
+
+            .announcement-deck {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 16px;
+                width: min(1320px, 100%);
+                max-height: 92vh;
+                overflow-y: auto;
+                padding: 42px 18px 18px;
+                border: 3px solid #0e7c86;
+                border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 18px 50px rgba(14, 124, 134, 0.35);
+            }
+
+            .announcement-slide {
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                padding: 14px;
+                border: 1px solid #dce8e9;
+                border-radius: 8px;
+                background: #fff;
+            }
+
+            .announcement-poster {
+                display: block;
+                min-width: 0;
+                text-align: center;
+            }
+
+            .announcement-poster img {
+                display: block;
+                max-width: 100%;
+                width: 100%;
+                height: 250px;
+                margin: 0 auto;
+                object-fit: contain;
+            }
+
+            .announcement-content {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                padding-top: 14px;
+                color: #283238;
+            }
+
+            .announcement-eyebrow {
+                margin: 0 0 8px;
+                color: #0e7c86;
+                font-size: 12px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .announcement-content h2 {
+                margin: 0 0 12px;
+                color: #0e7c86;
+                font-size: 23px;
+                line-height: 1.15;
+            }
+
+            .announcement-content > p:not(.announcement-eyebrow) {
+                margin: 0 0 16px;
+                line-height: 1.55;
+            }
+
+            .announcement-details {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .announcement-details li {
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 10px 0;
+                border-bottom: 1px solid #dce8e9;
+                font-size: 14px;
+            }
+
+            .announcement-details strong {
+                color: #0e7c86;
+            }
+
+            .announcement-details span {
+                text-align: right;
+            }
+
+            .announcement-actions {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: auto;
+                padding-top: 18px;
+            }
+
+            .announcement-button {
+                display: inline-block;
+                padding: 10px 16px;
+                border: 1px solid #0e7c86;
+                border-radius: 5px;
+                color: #0e7c86;
+                font-weight: 700;
+                text-decoration: none;
+            }
+
+            .announcement-button--primary {
+                background: #0e7c86;
+                color: #fff;
+            }
+
+            .announcement-text-link {
+                color: #0e7c86;
+                font-weight: 700;
+            }
+
+            .announcement-close {
+                display: inline-grid;
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #0e7c86;
+                border-radius: 50%;
+                background: #fff;
+                color: #0e7c86;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .announcement-close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 1;
+                border: 0;
+                font-size: 28px;
+            }
+
+            @media (max-width: 900px) {
+                .announcement-deck {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+            @media (max-width: 600px) {
+                .announcement-deck {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 12px;
+                    padding: 42px 12px 12px;
+                }
+
+                .announcement-slide {
+                    padding: 12px;
+                }
+
+                .announcement-poster img {
+                    height: 220px;
+                }
+
+                .announcement-content h2 {
+                    font-size: 21px;
+                }
+            }
         </style>
 
         <script>
             function closeBg2Popup() {
                 document.getElementById('bg2-popup').classList.add('hidden');
+                document.body.style.overflow = '';
             }
-            document.getElementById('bg2-popup').addEventListener('click', function (e) {
-                if (e.target === this) {
-                    closeBg2Popup();
-                }
-            });
+            (function () {
+                var popup = document.getElementById('bg2-popup');
+                popup.addEventListener('click', function (event) {
+                    if (event.target === popup) closeBg2Popup();
+                });
+
+                document.addEventListener('keydown', function (event) {
+                    if (popup.classList.contains('hidden')) return;
+                    if (event.key === 'Escape') closeBg2Popup();
+                });
+
+                document.body.style.overflow = 'hidden';
+            })();
         </script>
 
         <!-- ============================================================= -->
@@ -3910,7 +4136,7 @@
         <!-- Poster: popup_assets/arogya-manthan.jpeg                      -->
         <!-- Register link: https://www.certifyy.in                        -->
         <!-- ============================================================= -->
-        <div id="am-popup" class="am-popup" role="dialog" aria-modal="true" aria-labelledby="am-popup-title">
+        <div id="am-popup" class="am-popup hidden" role="dialog" aria-modal="true" aria-labelledby="am-popup-title">
             <div class="am-popup__card">
                 <button class="am-popup__close" type="button" aria-label="Close popup" onclick="closeAmPopup()">&times;</button>
 
