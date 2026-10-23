@@ -96,6 +96,23 @@ backup/stash is taken before running so the bulk edit is reversible.
    resolves.
 4. `git diff --stat` to confirm only the intended `<li>` additions (no stray reindentation).
 
+## Follow-up plan: fill remaining TBI-MCE navigation gaps (2026-10-23)
+
+### Audit finding
+- A targeted audit of pages with the TBI-MCE navbar dropdown found the SOP link missing from `index.html` and `notifications.html`.
+- Other pages with that dropdown already point to the existing `assets/TBI-MCE_SOP.pdf`; `courses/index.html` correctly uses `../assets/TBI-MCE_SOP.pdf`.
+- The SOP file exists at `assets/TBI-MCE_SOP.pdf`.
+
+### Implementation
+1. Add a `SOP` menu item after `About TBI` in the TBI-MCE dropdown on `index.html` and `notifications.html`.
+2. Use `href="assets/TBI-MCE_SOP.pdf"`, `target="_blank"`, `rel="noopener"`, and the existing `ri-file-pdf-2-line` icon, matching neighboring pages.
+3. Do not change other pages or add another Documents-menu entry.
+
+### Verification
+- Confirm each affected page has exactly one SOP link in its TBI-MCE dropdown and that its relative path resolves to the PDF.
+- Check editor diagnostics for both edited HTML files.
+
+Approval is required before applying these follow-up code changes.
 ## Note on workflow
 CLAUDE.md asks for the plan under `.claude/tasks/`. Plan mode restricts edits to this plan
 file only, so after approval I'll copy this plan to `.claude/tasks/add-tbi-sop-nav.md` and
