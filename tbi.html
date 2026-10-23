@@ -30,10 +30,10 @@
       img { max-width: 100%; display: block; }
 
       .container { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
-      .section { padding: 88px 0; position: relative; overflow: hidden; }
+      .section { padding: clamp(48px, 5vw, 72px) 0; position: relative; overflow: hidden; }
       .section-title {
         text-align: center;
-        margin-bottom: 56px;
+        margin-bottom: 36px;
       }
       .chip {
         display: inline-block;
@@ -132,17 +132,18 @@
       }
 
       .hero {
-        min-height: 100vh;
+        min-height: min(650px, calc(100vh - 4.3rem));
+        min-height: min(650px, calc(100svh - 4.3rem));
         display: grid;
         place-items: center;
         background: linear-gradient(135deg, #ffffff, #eff6ff, #ecfeff);
-        padding-top: 88px;
+        padding: 40px 0;
       }
       .hero-wrap {
         position: relative;
         z-index: 1;
         text-align: center;
-        padding: clamp(36px, 7vh, 72px) 0;
+        padding: clamp(28px, 5vh, 56px) 0;
       }
       .hero-orb {
         position: absolute;
@@ -183,6 +184,7 @@
       }
       @media (max-width: 640px) {
         .hero-logos { gap: 10px 16px; margin-bottom: 20px; }
+        .section { padding: 40px 0; }
         .hero-logos img { flex-basis: 84px; width: 84px; height: 50px; }
         .hero-badge { max-width: 100%; font-size: 0.92rem; line-height: 1.45; }
       }
@@ -441,6 +443,7 @@
         gap: 22px;
       }
       .program-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .support-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
       .event-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .portfolio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -713,6 +716,7 @@
 
       @media (max-width: 960px) {
         .program-grid, .portfolio-grid, .team-grid, .footer-grid, .stats-grid, .impact-cards, .roadmap, .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .support-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .about-grid, .contact-grid, .split-grid { grid-template-columns: 1fr; }
         .nav-links { display: none; position: absolute; top: 80px; right: 16px; background: white; padding: 18px; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 14px 40px rgba(148,163,184,0.18); flex-direction: column; align-items: flex-start; }
         .nav-links.open { display: flex; }
@@ -721,6 +725,14 @@
 
       @media (max-width: 640px) {
         .program-grid, .portfolio-grid, .team-grid, .stats-grid, .impact-cards, .roadmap, .event-grid, .cta-pills, .footer-grid { grid-template-columns: 1fr; }
+        .support-grid { grid-template-columns: 1fr; }
+        .section-title { margin-bottom: 28px; }
+        .about-cards { gap: 14px; }
+        .card, .contact-card { padding: 20px; }
+        .program-card { padding: 18px; }
+        .contact-grid { gap: 16px; }
+        .contact-item { margin-bottom: 18px; }
+        form .field { margin-bottom: 14px; }
         .hero-wrap { padding: 36px 0; }
         .headline { font-size: 2.3rem; }
         .nav-inner { padding: 14px 0; }
@@ -961,7 +973,7 @@
         .nav__menu::-webkit-scrollbar { width: 0; }
         .nav__list { background-color: #fff; color: #000; padding-top: 1rem; }
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1117px) {
         .nav__menu { flex-direction: column; align-items: center; }
         .nav__list { padding: 1rem; flex-direction: column; width: 100%; }
         .nav__link { width: 100%; text-align: center; }
@@ -1120,7 +1132,7 @@
             <img src="assets/collaborations/KTECH.png" alt="K-TECH" />
             <img src="assets/government.png" alt="Government of Karnataka" />
             <img src="assets/collaborations/startupkarnataka.png" alt="Startup Karnataka" />
-            <img src="assets/malnad_college_of_engineering_logo (1).jpg" alt="Malnad College of Engineering, Hassan" />
+            <img src="assets/mce.png" alt="Malnad College of Engineering, Hassan" />
           </div>
           <div class="hero-badge reveal" style="--i:1">Welcome to Technology Business Incubator - Malnad College of Engineering, Hassan.</div>
           <h1 class="headline reveal" style="--i:2">Department of <span class="gradient">Electronics, IT, BT, S&amp;T, Government of Karnataka</span></h1>
@@ -1186,10 +1198,10 @@
           <!-- Partner / supporter logos -->
           <!-- <div class="logo-strip reveal">
             <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" />
-            <img src="assets/malnad_college_of_engineering_logo (1).jpg" alt="Malnad College of Engineering, Hassan" />
+            <img src="assets/mce.png" alt="Malnad College of Engineering, Hassan" />
             <img src="assets/collaborations/KTECH.png" alt="K-TECH, Government of Karnataka" />
             <img src="assets/collaborations/startupkarnataka.png" alt="Startup Karnataka" />
-          </div> --> -->
+          </div> -->
 
           <!-- <div class="about-grid stagger">
             <div>
@@ -1221,6 +1233,44 @@
             <div class="step"><div class="ring bg-pink">4</div><div class="label">Incubation</div></div>
             <div class="step"><div class="ring bg-orange">5</div><div class="label">Scaling</div></div>
           </div> -->
+        </div>
+      </section>
+
+      <section id="programs" class="section">
+        <div class="container">
+          <div class="section-title reveal">
+            <div class="chip">Incubation Support</div>
+            <h2 class="headline">From idea to <span class="gradient">enterprise</span></h2>
+            <p class="subtext">Practical support for innovators, researchers, and early-stage startups at TBI-MCE.</p>
+          </div>
+
+          <div class="support-grid stagger">
+            <article class="program-card">
+              <div class="icon-wrap bg-blue"><i class="ri-lightbulb-line"></i></div>
+              <h3>Idea Development</h3>
+              <p>Guidance to shape promising ideas into viable, technology-driven ventures.</p>
+            </article>
+            <article class="program-card">
+              <div class="icon-wrap bg-cyan"><i class="ri-tools-line"></i></div>
+              <h3>Technical Support</h3>
+              <p>Access to prototyping facilities, dedicated incubation space, and technical mentoring.</p>
+            </article>
+            <article class="program-card">
+              <div class="icon-wrap bg-green"><i class="ri-hand-coin-line"></i></div>
+              <h3>Seed Funding</h3>
+              <p>Eligible startups may receive up to ₹9 lakh, subject to programme guidelines and selection.</p>
+            </article>
+            <article class="program-card">
+              <div class="icon-wrap bg-orange"><i class="ri-links-line"></i></div>
+              <h3>Networks and Mentors</h3>
+              <p>Business mentoring, industry connections, and investor networking opportunities.</p>
+            </article>
+          </div>
+
+          <div class="about-events reveal">
+            <a href="#contact" class="btn btn-primary btn-access-events">Get in touch about incubation</a>
+            <a href="assets/TBI-MCE_SOP.pdf" class="btn btn-light btn-access-events" target="_blank" rel="noopener"><i class="ri-file-pdf-2-line"></i> Read the SOP</a>
+          </div>
         </div>
       </section>
 
@@ -1528,7 +1578,7 @@
             </article>
           </div>
         </div>
-      </section> --> -->
+      </section> -->
 
       <!-- <section class="section cta-section">
         <div class="container">
@@ -1569,12 +1619,12 @@
       <section id="contact" class="section">
         <div class="container">
           <div class="section-title reveal">
-            <div class="chip">Get In Touch</div>
-            <h2 class="headline">Let's Start <span class="gradient">The Conversation</span></h2>
-            <p class="subtext">Ready to transform your startup idea? Reach out to us today.</p>
+            <a class="chip" href="https://www.meriise.org/contactus.html">Contact Us</a>
+            <!-- <h2 class="headline">Let's Start <span class="gradient">The Conversation</span></h2>
+            <p class="subtext">Ready to transform your startup idea? Reach out to us today.</p> -->
           </div>
 
-          <div class="contact-grid stagger">
+          <!-- <div class="contact-grid stagger">
             <div class="contact-card">
               <h3>Contact Information</h3>
               <div class="contact-item">
@@ -1612,7 +1662,7 @@
                 </div>
                 <button class="btn btn-primary" style="width:100%">Send Message</button>
               </form>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
