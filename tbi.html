@@ -139,8 +139,10 @@
         padding-top: 88px;
       }
       .hero-wrap {
+        position: relative;
+        z-index: 1;
         text-align: center;
-        padding: 60px 0;
+        padding: clamp(36px, 7vh, 72px) 0;
       }
       .hero-orb {
         position: absolute;
@@ -156,10 +158,16 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        gap: 44px;
-        margin-bottom: 30px;
+        gap: clamp(12px, 2.5vw, 34px);
+        max-width: 790px;
+        margin: 0 auto 24px;
       }
-      .hero-logos img { height: 92px; width: auto; object-fit: contain; }
+      .hero-logos img {
+        flex: 0 1 124px;
+        width: 124px;
+        height: 68px;
+        object-fit: contain;
+      }
       .hero-managed {
         margin: 18px auto 0;
         font-size: 1.15rem;
@@ -174,8 +182,9 @@
         color: transparent;
       }
       @media (max-width: 640px) {
-        .hero-logos { gap: 22px; }
-        .hero-logos img { height: 54px; }
+        .hero-logos { gap: 10px 16px; margin-bottom: 20px; }
+        .hero-logos img { flex-basis: 84px; width: 84px; height: 50px; }
+        .hero-badge { max-width: 100%; font-size: 0.92rem; line-height: 1.45; }
       }
       .hero-badge {
         display: inline-block;
@@ -1106,13 +1115,15 @@
         <div class="hero-orb two"></div>
         <div class="hero-orb three"></div>
         <div class="container hero-wrap">
-          <div class="hero-logos reveal" style="--i:0">
+          <div class="hero-logos reveal" style="--i:0" role="group" aria-label="TBI-MCE partners and supporters">
             <img src="assets/MERIISE FOUNDATION logo 2.0.png" alt="ME-RIISE Foundation" />
-            <img src="assets/govt.png" alt="Department of Electronics IT, Bt, S&amp;T, Government of Karnataka" />
+            <img src="assets/collaborations/KTECH.png" alt="K-TECH" />
+            <img src="assets/government.png" alt="Government of Karnataka" />
+            <img src="assets/collaborations/startupkarnataka.png" alt="Startup Karnataka" />
             <img src="assets/malnad_college_of_engineering_logo (1).jpg" alt="Malnad College of Engineering, Hassan" />
           </div>
           <div class="hero-badge reveal" style="--i:1">Welcome to Technology Business Incubator - Malnad College of Engineering, Hassan.</div>
-          <h1 class="headline reveal" style="--i:2">Department of <span class="gradient">Electronics IT, Bt, S&T, Government of Karnataka</span></h1>
+          <h1 class="headline reveal" style="--i:2">Department of <span class="gradient">Electronics, IT, BT, S&amp;T, Government of Karnataka</span></h1>
           <p class="hero-managed reveal" style="--i:3">Managed by <strong>ME-RIISE Foundation</strong></p>
         </div>
       </section>
@@ -1126,7 +1137,7 @@
 
           <!-- Department of Electronics, IT, BT, S&T, Government of Karnataka -->
           <div class="gov-logo reveal">
-            <img src="assets/govt.png" alt="Department of Electronics IT, Bt, S&amp;T, Government of Karnataka" />
+            <img src="assets/government.png" alt="Government of Karnataka" />
           </div>
 
           <div class="about-cards stagger">
