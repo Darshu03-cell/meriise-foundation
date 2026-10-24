@@ -1,0 +1,2037 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events | ME-RIISE Foundation</title>
+    <link rel="icon" type="image/png" href="assets/meriise_new_logo.png" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
+
+      :root {
+        --bg: #05070c;
+        --panel: #111827;
+        --accent: #01adfc;
+        --warm: #f3a65a;
+        --text: #f8fbff;
+        --muted: #a9b5c4;
+        --line: rgba(255, 255, 255, 0.11);
+        --card: rgba(17, 24, 39, 0.72);
+        --body-gradient: linear-gradient(180deg, #070b16 0%, #05070c 100%);
+        --topbar: rgba(0, 0, 0, 0.9);
+        --soft-text: #d7e4f5;
+        --modal: #0b1221;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        background: var(--body-gradient);
+        color: var(--text);
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      body.light-theme {
+        --bg: #f4f8fc;
+        --panel: #ffffff;
+        --text: #172235;
+        --muted: #526174;
+        --line: rgba(23, 34, 53, 0.13);
+        --card: rgba(255, 255, 255, 0.78);
+        --body-gradient: linear-gradient(180deg, #f8fbff 0%, #e8f0f8 100%);
+        --topbar: rgba(255, 255, 255, 0.94);
+        --soft-text: #334155;
+        --modal: #ffffff;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--topbar);
+        padding: 0.8rem 1.2rem;
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: max-content;
+      }
+
+      .logo {
+        width: 148px;
+        max-height: 58px;
+        object-fit: contain;
+      }
+
+      .brand-copy {
+        border-left: 1px solid var(--line);
+        padding-left: 0.75rem;
+        color: var(--muted);
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .nav {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 0.5rem 1.15rem;
+        border: 1px solid rgba(1, 173, 252, 0.55);
+        border-radius: 999px;
+        transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      .nav a:hover {
+        color: #062033;
+        background: var(--accent);
+        border-color: var(--accent);
+        box-shadow: 0 6px 18px rgba(1, 173, 252, 0.3);
+      }
+
+      .theme-toggle {
+        border: 1px solid rgba(1, 173, 252, 0.55);
+        border-radius: 8px;
+        padding: 0.55rem 0.8rem;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .container {
+        width: min(1280px, calc(100% - 2.5rem));
+        margin: 0 auto;
+      }
+
+      .hero-banner {
+        margin: 1rem 0 1.5rem;
+        padding: clamp(1.4rem, 4vw, 3rem);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #111827 0%, #07111f 70%, #0b3043 100%);
+        border: 1px solid rgba(1, 173, 252, 0.35);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-banner::after {
+        content: '';
+        position: absolute;
+        right: 7%;
+        top: -5rem;
+        width: 15rem;
+        height: 15rem;
+        border: 1px solid rgba(1, 173, 252, 0.22);
+        border-radius: 50%;
+        box-shadow: 0 0 0 2rem rgba(1, 173, 252, 0.04), 0 0 0 4rem rgba(1, 173, 252, 0.025);
+        pointer-events: none;
+      }
+
+      .hero-banner h2 {
+        margin: 0;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        letter-spacing: -0.02em;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-eyebrow {
+        margin: 0 0 0.8rem;
+        color: var(--warm) !important;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .hero-banner p {
+        margin: 0.8rem 0 0;
+        color: #d4e7fb;
+        max-width: 780px;
+        line-height: 1.7;
+        position: relative;
+        z-index: 1;
+      }
+
+      .year-grid {
+        margin: 1.75rem 0 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+      }
+
+      .year-card {
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: var(--card);
+        padding: 0.7rem 1.3rem;
+        border-radius: 12px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .year-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+      }
+
+      .year-card.active {
+        background: linear-gradient(135deg, var(--accent), #0176c4);
+        border-color: var(--accent);
+        box-shadow: 0 10px 24px rgba(1, 173, 252, 0.28);
+      }
+
+      .year-card .year-label {
+        display: block;
+        color: var(--text);
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+
+      .year-card .year-meta {
+        display: block;
+        color: var(--muted);
+        margin-top: 0.1rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .year-card.active .year-label,
+      .year-card.active .year-meta {
+        color: #042033;
+      }
+
+      .detail-panel {
+        margin: 1.4rem 0 3rem;
+        background: transparent;
+        border-top: 1px solid var(--line);
+        padding: 1.8rem 0 1.2rem;
+      }
+
+      .detail-panel h2 {
+        margin-top: 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        color: var(--accent);
+      }
+
+      .detail-panel p {
+        color: var(--soft-text);
+        line-height: 1.8;
+      }
+
+      .event-list {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      .event-item {
+        border-left: 3px solid var(--accent);
+        padding: 0.8rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+      }
+
+      .event-item strong {
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .event-grid {
+        margin-top: 1.6rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .event-card {
+        display: flex;
+        flex-direction: column;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+        animation: card-in 0.45s ease both;
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px rgba(1, 173, 252, 0.35), 0 18px 40px rgba(1, 173, 252, 0.18);
+      }
+
+      .event-card__media {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        background: #05070c;
+        overflow: hidden;
+      }
+
+      .event-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .event-card:hover .event-card__media img {
+        transform: scale(1.05);
+      }
+
+      .event-card__count {
+        position: absolute;
+        bottom: 0.7rem;
+        right: 0.7rem;
+        background: rgba(4, 10, 20, 0.78);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.32rem 0.7rem;
+        border-radius: 999px;
+        backdrop-filter: blur(6px);
+        letter-spacing: 0.02em;
+      }
+
+      .event-card__body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.15rem 1.3rem 1.45rem;
+        flex: 1;
+      }
+
+      .event-card__body .date {
+        color: var(--warm);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .event-card__body h3 {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.14rem;
+        font-weight: 600;
+        line-height: 1.32;
+        color: var(--text);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .event-card__body p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+        line-height: 1.62;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .event-support {
+        color: var(--warm);
+        font-size: 0.82rem;
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      .event-card__more {
+        margin-top: auto;
+        padding-top: 0.3rem;
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .event-card:hover .event-card__more {
+        text-decoration: underline;
+      }
+
+      .gallery {
+        margin: 1.1rem 0 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+        max-height: 82vh;
+        object-fit: contain;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #05070c;
+      }
+
+      @keyframes card-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--warm);
+        outline-offset: 3px;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.72);
+        padding: 1rem;
+        z-index: 50;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(1160px, 96vw);
+        max-height: 94vh;
+        overflow: auto;
+        background: var(--modal);
+        color: var(--text);
+        border-radius: 18px;
+        border: 1px solid rgba(1, 173, 252, 0.35);
+        padding: 1.6rem;
+      }
+
+      .modal-card h3 {
+        margin-top: 0;
+        color: var(--accent);
+        font-size: 1.6rem;
+      }
+
+      .modal-card p {
+        font-size: 1.02rem;
+      }
+
+      .modal-close {
+        margin-top: 0.8rem;
+        padding: 0.7rem 1rem;
+        border: none;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #062033;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+        .topbar {
+          gap: 0.75rem;
+          padding: 0.65rem 0.8rem;
+        }
+
+        .brand-copy {
+          display: none;
+        }
+
+        .logo {
+          width: 124px;
+        }
+
+        .nav a {
+          font-size: 0.85rem;
+          padding: 0.42rem 0.9rem;
+        }
+
+        .modal-card {
+          padding: 1.1rem;
+        }
+
+        .gallery img {
+          max-height: 72vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img class="logo" src="assets/meriise_new_logo.png" alt="ME-RIISE" />
+        <span class="brand-copy">Innovation<br />Incubation<br />Impact</span>
+      </div>
+      <nav class="nav">
+        <a href="http://www.meriise.org/">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+          Home
+        </a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to light mode">Light mode</button>
+    </header>
+
+    <main class="container">
+      <section id="yearGrid" class="year-grid"></section>
+      <section id="heroBanner" class="hero-banner"></section>
+      <section id="detailPanel" class="detail-panel"></section>
+    </main>
+
+    <div id="eventModal" class="modal" aria-hidden="true">
+      <div class="modal-card"></div>
+    </div>
+
+    <script>
+      /* ==========================================================================
+         HOW TO ADD A NEW EVENT   (read this — it's easy, just follow the steps)
+         ==========================================================================
+
+         STEP 1 — Put your photo(s) in the folder:  assets/events26/
+                  (Remember the EXACT file name, e.g. "My Event.jpg")
+
+         STEP 2 — Copy the TEMPLATE block below (everything between the { and },).
+
+         STEP 3 — Paste it as the FIRST event, right under "events: [" for 2026
+                  (a few lines down). Newest event goes at the TOP.
+
+         STEP 4 — Change the 4 lines: title, date, description, images.
+                  For images, type the exact file name(s) from assets/events26/.
+                  One photo:   images: ['assets/events26/My Event.jpg']
+                  Many photos: images: ['assets/events26/a.jpg', 'assets/events26/b.jpg']
+
+         STEP 5 — Save the file. Done! The event shows up automatically.
+
+         RULES (important, or the page breaks):
+           • Keep the single quotes '  ' around every piece of text.
+           • Keep the comma , after the }  (except it's optional on the last one).
+           • If your text has an apostrophe (like It's), write it as It\'s.
+
+         ------------------------- TEMPLATE (copy me) -------------------------
+            {
+              title: 'Event name here',
+              date: '1st January 2026',
+              description: 'One or two sentences about what happened.',
+              images: ['assets/events26/your-photo.jpg']
+            },
+         ----------------------------------------------------------------------
+      */
+      const eventData = {
+        2026: {
+          title: '2026 Highlights',
+          events: [
+            {
+              title: 'Orientation on Agentic AI',
+              date: '7th October 2026',
+              sortdate: '2026-10-07',
+              description: 'An introduction to AI agents, RAG and the Agentic AI Saksham pathway for ISBS, Robotics and Computer Science students, led by Mr. Mayank Arora of Capabl.',
+              images: ['https://meriise.org/assets/uploads/20261012_072614_b2ec188a.png']
+            },
+            {
+              title: 'EV SAKSHAM',
+              date: '6th October 2026',
+              sortdate: '2026-10-06',
+              description: 'An awareness session on electric mobility for EEE, ECE and Mechanical students, led by Mr. Mayank Arora of Capabl, exploring EV technologies, careers and innovation.',
+              images: ['https://meriise.org/assets/uploads/20261012_071950_5dbd8735.png']
+            },
+            {
+              title: '✨ Bridging Generations Alumni Insights 2.0 | Episode 05',
+              date: '27th September 2026',
+              sortdate: '2026-09-27',
+              description: 'Ms. Shubha Girish, alumna of the 1993 CSE batch, joined us for an inspiring online session on “Life After Engineering.” With over two decades of experience in technology, she shared valuable insights on career growth, continuous learning, and opportunities beyond engineering. We thank Ms. Shubha Girish for inspiring our students and staying connected with the MCE community. Connecting alumni. Inspiring futures.',
+              images: ['https://meriise.org/assets/uploads/20261005_044154_7bed4701.jpg']
+            },
+            {
+              title: 'Samanvaya 2k26',
+              date: '25 th September',
+              sortdate: '2026-09-25',
+              description: 'SAMANVAYA 2K26 | Inaugural Ceremony\n\nSAMANVAYA 2K26, held on 25th September 2026, brought together 153 students to explore innovation and entrepreneurship. Hosted by ME-RIISE Foundation, MCE, with partner institutions and IIITB Innovation Centre, the programme focused on Design Thinking, IP, startups, and commercialization.',
+              images: ['https://meriise.org/assets/uploads/20261004_143342_16f8531a.jpeg', 'https://meriise.org/assets/uploads/20261004_143342_6ef46d7b.jpeg']
+            },
+            {
+              title: 'Campus to Career',
+              date: '22nd to 24th September 2026',
+              sortdate: '2026-09-22',
+              description: 'ME-RIISE Foundation organized “Campus to Career” – a 3-Day Intensive Placement Programme for EEE students from 22nd to 24th September 2026. The programme focused on enhancing students’ career readiness, communication, professional confidence, and technical skills.\n\nThe sessions covered career guidance, resume building, professional writing, effective communication, presentation skills, group communication, aptitude and logical reasoning, Group Discussion, Technical Round, and HR Round. Students actively participated in practical activities that provided exposure to real-world placement and selection processes.\n\nThe programme helped students strengthen their employability skills, confidence, teamwork, communication, and interview readiness, preparing them to take a confident step from campus to career.\n\nPrepare. Practice. Perform. 🚀',
+              images: ['https://meriise.org/assets/uploads/20261005_042221_d1eb3c5c.png', 'https://meriise.org/assets/uploads/20261005_042221_536efabe.png', 'https://meriise.org/assets/uploads/20261005_042221_341eda3f.png']
+            },
+            {
+              title: '𝐈𝐠𝐧𝐢𝐭𝐢𝐧𝐠 𝐘𝐨𝐮𝐧𝐠 𝐌𝐢𝐧𝐝𝐬 𝟖.𝟎 | 𝐒𝐞𝐬𝐬𝐢𝐨𝐧 𝟓 💡',
+              date: '17th September 2026',
+              sortdate: '2026-09-17',
+              description: 'Session 5 of Igniting Young Minds - introduced young minds to Tinkercad, an interactive platform that helps students explore and understand the basics of electronics and circuit design.\nStudents were introduced to the basics of circuits, including simple components, their functions, and how they come together to form a working circuit. The session helped students build a basic understanding of circuit design and encouraged them to think about how simple ideas can lead to interesting creations.\n\nThis introduction set the stage for students to explore, experiment, and create as they continue their tinkering journey.',
+              images: ['https://meriise.org/assets/uploads/20261005_044007_7bddb9de.jpg']
+            },
+            {
+              title: '𝐈𝐠𝐧𝐢𝐭𝐢𝐧𝐠 𝐘𝐨𝐮𝐧𝐠 𝐌𝐢𝐧𝐝𝐬 𝟖.𝟎 | 𝐒𝐞𝐬𝐬𝐢𝐨𝐧 𝟒 💡',
+              date: '15th September 2026',
+              sortdate: '2026-09-15',
+              description: 'The session took young minds one step further — from creating ideas to presenting them with confidence! 💡✨\nStudents were introduced to the basics of idea pitching and learned how to present their thoughts clearly, confidently, and without fear of speaking on stage.\nAs part of the session, students stepped onto the stage and pitched their own ideas, gaining practical experience in communication, public speaking, and effective presentation. 🎤🌟\n🌱 Think. Prepare. Pitch. Believe. Innovate.',
+              images: ['https://meriise.org/assets/uploads/20261005_043505_e6bb1589.jpg']
+            },
+            {
+              title: 'Igniting Young Minds 8.0 - Session 3',
+              date: '3rd September 2026',
+              description: 'Students moved from identifying real-life problems to designing practical solution ideas through drawings, sketches, and creative thinking.',
+              images: ['assets/events26/Igniting Young Minds 8.0 Session 3.jpg']
+            },
+            {
+              title: 'Infusion 5.0 | Internal Smart India Hackathon 2026',
+              date: '8th September 2026',
+              description: 'ME-RIISE Foundation, through TBI-MCE, with the support of the IT BT Department, Karnataka, hosted Infusion 5.0 – Internal Smart India Hackathon 2026 on 8 September 2026 at MCE, Hassan. The event saw 234 students across 40 teams presenting innovative solutions to real-world challenges, with expert evaluation and feedback. 234 Participants | 40 Teams | 158 Female | 76 Male',
+              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              images: ['https://meriise.org/assets/uploads/20261005_044849_cd1ee98d.png', 'https://meriise.org/assets/uploads/20261005_044849_93d4d517.png', 'https://meriise.org/assets/uploads/20261005_044849_1c0adc6c.png']
+            },
+            {
+              title: 'TBI-MCE Startup Selection Process - Cohort 1',
+              date: '1st September 2026',
+              description: 'Eleven startups and innovative teams presented their ideas, solutions, and business models to an expert jury during the Cohort 1 selection and evaluation process.',
+              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              images: ['assets/events26/start.png']
+            },
+            {
+              title: 'Igniting Young Minds 8.0 - Session 2',
+              date: '1st September 2026',
+              description: 'Students learned to observe challenges in daily life, understand real-world problems, and begin developing creative ideas to solve them.',
+              images: ['assets/events26/Igniting Young Minds 8.0 Session 2.jpg']
+            },
+            {
+              title: '5-Day Innovation Bootcamp',
+              date: '24th to 28th August 2026',
+              description: 'A robotics bootcamp covering design thinking, coding, app development, Arduino, electronics, and hands-on RC Bot building, testing, and troubleshooting.',
+              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              images: ['assets/events26/Innovation Bootcamp (1).jpeg', 'assets/events26/Innovation Bootcamp (2).jpeg', 'assets/events26/Innovation Bootcamp (3).jpeg', 'assets/events26/Innovation Bootcamp (4).jpeg', 'assets/events26/Innovation Bootcamp (5).jpeg']
+            },
+            {
+              title: 'Idea Spark 4.0 - MSME Idea Hackathon 6.0',
+              date: '25th August 2026',
+              description: 'An idea and innovation event supported by ME-RIISE Foundation, TBI-MCE, and the IT-BT Department, Government of Karnataka.',
+              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              images: ['assets/events26/Idea Spark 4.0.jpeg']
+            },
+            {
+              title: 'Bridging Generations Alumni Insights 2.0 - Episode 4',
+              date: '22nd August 2026',
+              description: 'Alumnus Guruprasad S. shared practical guidance on career readiness, continuous learning, communication, proof of work, adaptability, and well-being.',
+              images: ['assets/events26/Bg 2.0 Ep4.jpg']
+            },
+            {
+              title: 'Igniting Young Minds 8.0',
+              date: '18th August 2026',
+              description: 'Students explored innovation, creativity, technology, and real-world problem solving through an interactive session led by ME-RIISE Foundation.',
+              images: ['assets/events26/Igniting Young Minds 8.0.jpeg']
+            },
+            {
+              title: 'Arogya Manthan 2K26',
+              date: '27th & 28th July 2026',
+              description: 'A 24-hour state-level healthcare innovation hackathon where 288 participants across 68 teams developed real-world healthcare solutions with expert mentoring and startup support.',
+              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              images: ['assets/events26/Arogya (1).jpeg', 'assets/events26/Arogya (2).jpeg', 'assets/events26/Arogya (3).jpeg', 'assets/events26/Arogya (4).jpeg']
+            },
+            {
+              title: 'Bridging Generations 2.0',
+              date: '25th July 2026',
+              description: 'An alumni interaction series that shared lessons on entrepreneurship, resilience, integrity, and calculated risk-taking with students and faculty.',
+              images: ['assets/events26/BG 2.0 Ep3.jpg']
+            },
+            {
+              title: 'AI Nexus 2026',
+              date: '10th July 2026',
+              description: 'A student AI project showcase featuring innovative ideas, idea presentation, and strong pitch-oriented problem-solving.',
+              images: ['assets/events26/AI Nexus.png']
+            },
+            {
+              title: 'Project Review and Feature Enhancement Session',
+              date: '30th June 2026',
+              description: 'MCA students presented and refined AI-based ideas through detailed mentor feedback on documentation, solution design, and deployment readiness.',
+              images: ['assets/events26/Projct MCA.jpeg', 'assets/events26/Project MCA1.jpeg', 'assets/events26/Project MCA 2.jpeg']
+            },
+            {
+              title: 'Visit to Craftronics India Private Limited, Hyderabad',
+              date: '22nd June 2026',
+              description: 'A collaborative industry visit focused on VLSI, embedded systems, PCB design, internships, live projects, and joint skill development.',
+              images: ['assets/events26/Craftronics.jpeg']
+            },
+            {
+              title: 'Visit to T-Hub, Hyderabad',
+              date: '19th June 2026',
+              description: 'A strategic visit to explore innovation and startup ecosystem partnerships through mentorship, incubation, workshop support, and entrepreneurial programs.',
+              images: ['assets/events26/T-Hub.png']
+            },
+            {
+              title: 'AI Tools & Web Development Awareness Workshop',
+              date: '15th June 2026',
+              description: 'A hands-on workshop for MCA students on AI-assisted development, VS Code, Gemini CLI, HTML, CSS, and JavaScript with problem-solving teams.',
+              images: ['assets/events26/MCA (1).jpeg', 'assets/events26/MCA (2).jpeg', 'assets/events26/MCA (3).jpeg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights | Episode 14',
+              date: '27th June 2026',
+              description: 'An alumni talk on the evolving AI landscape and the future of engineering, inspiring students on value creation and collaborative growth.',
+              images: ['assets/events26/BG14 (1).jpeg', 'assets/events26/BG14 (2).jpeg']
+            },
+            {
+              title: 'Youth Research Catalyst',
+              date: '10th June 2026',
+              description: 'A research-forward student event for first-year engineering students with interdisciplinary projects and jury-reviewed prototypes.',
+              images: ['assets/events26/Youth (1).png', 'assets/events26/Youth (2).png']
+            },
+            {
+              title: 'Inauguration of the Digital Lab',
+              date: '6th June 2026',
+              description: 'The launch of the Digital Lab under CSR support to expand access to digital literacy, STEM learning, and future-ready skills.',
+              images: ['assets/events26/digitallab.jpg', 'assets/events26/digitallab2.jpg', 'assets/events26/digitallab3.jpg']
+            },
+            {
+              title: 'World Environment Day 2026',
+              date: '6th June 2026',
+              description: 'A sustainability-led plantation drive alongside the Digital Lab inauguration to reinforce environmental responsibility and community impact.',
+              images: ['assets/events26/Environment Day.png', 'assets/events26/Environment Day (1).jpeg', 'assets/events26/Environment Day (2).jpeg', 'assets/events26/Environment Day (3).jpeg', 'assets/events26/Environment Day (4).jpeg', 'assets/events26/Environment Day (5).jpeg', 'assets/events26/Environment Day (6).jpeg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights 2.0',
+              date: '23rd May 2026',
+              description: 'A mentor-led session with practical wisdom around AI, continuous learning, emotional intelligence, and decision-making.',
+              images: ['assets/events26/BG 2.0.jpg', 'assets/events26/BG 2.0(1).jpg']
+            },
+            {
+              title: 'Build for Investment – Founders & Funders Meet',
+              date: '7th May 2026',
+              description: 'Startup founders and investors discussed market-fit, customer psychology, scalability, and how to build fund-ready ventures.',
+              images: ['assets/events26/Founders & Funders Meet.jpg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights | Episode 12',
+              date: '10th April 2026',
+              description: 'The 12th episode celebrated the 1st year anniversary with a panel discussion and collective alumni insights on careers and growth.',
+              images: ['assets/events26/BG12.jpg']
+            },
+            {
+              title: 'Roots of Innovation: Engineering Meets Agriculture',
+              date: '12th March 2026',
+              description: 'A launch event for the book “ದರಗುಟ್ಟಿ ಮಳೆ ಸುರಿದು” showcasing the role of engineering in solving agricultural challenges with technology.',
+              images: ['assets/events26/Roots.jpg', 'assets/events26/Roots1.jpg', 'assets/events26/Roots2.jpg']
+            },
+            {
+              title: 'Bridging Generations: Alumni Insights - Episode 11',
+              date: '28th February 2026',
+              description: 'An alumni session with Oracle senior director Bindu Nanjundaswamy on professional growth, shaping one\'s journey, and weaving a meaningful career story.',
+              images: ['assets/events26/BG11.jpg']
+            },
+            {
+              title: 'Radio Kisaan Divas',
+              date: '27th February 2026',
+              description: 'A state-level symposium at All India Radio, Hassan, where ME-RIISE Foundation CEO Dr. Geetha Kiran A. discussed artificial intelligence for agricultural development.',
+              images: ['assets/events26/Radio.jpg']
+            },
+            {
+              title: 'Getting Started with AI',
+              date: '18th February 2026',
+              description: 'A NASSCOM Foundation and IBM SkillsBuild bootcamp where more than 600 students explored artificial intelligence, industry applications, and future-ready skills.',
+              images: ['assets/events26/AI.jpg']
+            },
+            {
+              title: 'IGNITE - Catalyzing Innovation through Interdisciplinary Project-Based Learning',
+              date: '17th & 20th February 2026',
+              description: 'A two-day faculty development program that guided interdisciplinary teams in planning, presenting, and refining project-based learning proposals.',
+              images: ['assets/events26/Catalyzing1.jpg', 'assets/events26/Catalyzing2.jpg', 'assets/events26/Catalyzing3.jpg']
+            },
+            {
+              title: 'Bridging Generations Alumni Insights - Episode 10',
+              date: '24th January 2026',
+              description: 'An alumni interaction with Anu Chowdipura on embracing failure, self-growth, passion, women empowerment, resilience, and lifelong learning.',
+              images: ['assets/events26/BG10.jpg']
+            }
+          ]
+        },
+        2025: {
+          title: '2025 Highlights',
+          events: [
+            {
+              title: 'Bridging Generations, Alumni Insights | Episode 9',
+              date: '27th December 2025',
+              description: 'An emotional and motivating alumni session on mindset, empathy, respect, and continuous learning.',
+              images: ['assets/events25/BG9.jpeg']
+            },
+            {
+              title: 'IGNITE – Idea to Proto 2.0',
+              date: '23rd December 2025',
+              description: 'First-year AI project showcase where students presented hands-on prototypes developed through their AI course.',
+              images: ['assets/events25/Ignite 2 (2).jpeg', 'assets/events25/Ignite 2.jpeg']
+            },
+            {
+              title: 'IIC Regional Meet 2025',
+              date: '2nd December 2025',
+              description: 'ME-RIISE and MCE showcased innovation ecosystem efforts, earning the Best IIC Poster Award.',
+              images: ['assets/events25/IIC 2025.jpg']
+            },
+            {
+              title: 'Semiconductor Science: Innovation Meets Creativity',
+              date: '1st December 2025',
+              description: 'An industry-oriented semiconductor science session connecting creativity with technical career pathways.',
+              images: ['assets/events25/Semiconductor.jpeg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights | Episode 8',
+              date: '22nd November 2025',
+              description: 'A cultural and professional growth discussion led by a seasoned technologist with social impact perspective.',
+              images: ['assets/events25/Bg8.JPG']
+            },
+            {
+              title: 'Bengaluru Tech Summit 2025',
+              date: '20th November 2025',
+              description: 'A milestone recognition event celebrating the ₹10 crore Technology Business Incubator grant commitment.',
+              images: ['assets/events25/BTS1 (1).jpeg', 'assets/events25/BTS1 (2).jpeg', 'assets/events25/BTS1 (3).jpeg', 'assets/events25/BTS1 (4).jpeg', 'assets/events25/BTS1 (5).jpeg', 'assets/events25/BTS1 (6).jpeg']
+            },
+            {
+              title: 'Empowering Innovation in the Malnad Region',
+              date: '6th November 2025',
+              description: 'A one-day incubation awareness programme conducted under the RAMP initiative with MSME DIC Hassan.',
+              images: ['assets/events25/Empowering.jpeg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights | Episode 7',
+              date: '25th October 2025',
+              description: 'An alumni networking-focused episode highlighting the value of connections and career elevation.',
+              images: ['assets/events25/BG7.1.jpg']
+            },
+            {
+              title: 'Igniting Young Minds 6.0',
+              date: '15th & 16th October 2025',
+              description: 'A two-day robotics workshop for school students with hands-on design, coding, and robot-race exposure.',
+              images: ['assets/events25/Igniting Young Minds 6 (1).jpeg', 'assets/events25/Igniting Young Minds 6 (2).jpeg']
+            },
+            {
+              title: 'Digital Sakhi 2.0 for Smart Women',
+              date: '11th October 2025',
+              description: 'A digital literacy and smartphone-skills session focused on confidence building for women in everyday digital tasks.',
+              images: ['assets/events25/Digital2.0.jpeg']
+            },
+            {
+              title: 'EV Saksham Tech Fusion',
+              date: '26th September to 9th October 2025',
+              description: 'A large-scale electric and IC vehicle fabrication programme where students built and tested functional vehicles.',
+              images: ['assets/events25/EV Tech Fusion.jpeg', 'assets/events25/EV Tech Fusion 1.jpeg']
+            },
+            {
+              title: 'INFUSION 4.0 – Internal Smart India Hackathon',
+              date: '17th September 2025',
+              description: 'A rigorous internal hackathon where 19 teams presented solutions and 16 were shortlisted for national evaluation.',
+              images: ['assets/events25/SIH1.jpeg', 'assets/events25/SIH2.jpeg', 'assets/events25/SIH3.jpeg']
+            },
+            {
+              title: 'Digital Sakhi: For Smart Women',
+              date: '16th September 2025',
+              description: 'A practical digital- and financial-literacy program that demonstrated everyday app-based services for women.',
+              images: ['assets/events25/DigitalSakhi.jpeg', 'assets/events25/DigitalSakhi2.jpeg', 'assets/events25/DigitalSakhi 3.jpeg']
+            },
+            {
+              title: 'Ignition: Idea to Proto',
+              date: '12th & 13th September 2025',
+              description: 'A two-day induction experience where students moved from design thinking to prototyping and team racing.',
+              images: ['assets/events25/Idea to proto 1.jpeg', 'assets/events25/Idea to proto 2.jpeg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights',
+              date: '23rd August 2025',
+              description: 'A flagship alumni session with a global semiconductor leader sharing career and leadership lessons.',
+              images: ['assets/events25/alumni1.jpeg', 'assets/events25/alumni2.jpeg', 'assets/events25/alumni3.jpeg', 'assets/events25/alumni4.jpeg', 'assets/events25/alumni5.jpeg', 'assets/events25/alumni6.jpeg']
+            },
+            {
+              title: 'TantraSudha Series – Startup Insights',
+              date: '17th August 2025',
+              description: 'Startup journey insights shared in a radio-feature style talk connecting entrepreneurship, resilience, and incubation.',
+              images: ['assets/events25/Tantrasudha series.JPG']
+            },
+            {
+              title: 'Idea Spark 3.0 – MSME Idea Hackathon 5.0',
+              date: '16th August 2025',
+              description: 'A celebration of entrepreneurial thinking where student and MSME ideas were evaluated by expert panelists.',
+              images: ['assets/events25/IdeaHackathon2.jpeg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights',
+              date: '26th July 2025',
+              description: 'An inspiring alumni conversation on placements, leadership, network building, and lifelong learning.',
+              images: ['assets/events25/BG.jpg']
+            },
+            {
+              title: 'Drone Quest 2K25',
+              date: '22nd to 24th July 2025',
+              description: 'A bootcamp on drone design, soldering, programming, and flying with more than 50 students participating.',
+              images: ['assets/events25/Drone.jpeg', 'assets/events25/Drone1.jpeg', 'assets/events25/Drone2.jpeg', 'assets/events25/Drone3.jpeg']
+            },
+            {
+              title: 'MCE HR Synergy 2.0',
+              date: '12th July 2025',
+              description: 'Industry leaders and HR professionals discussed AI in HR, change management, and stronger academia-industry collaboration.',
+              images: ['assets/events25/synergy1.jpg']
+            },
+            {
+              title: 'ನಮ್ಮ Idea - 2025',
+              date: '30th June 2025',
+              description: 'A high-energy idea-sharing event where students presented bold concepts, while panellists helped shape them into strategy.',
+              images: ['assets/events25/nammaidea1.jpg', 'assets/events25/nammaidea2.jpg', 'assets/events25/nammaidea3.jpg', 'assets/events25/nammaidea4.jpg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights',
+              date: '28th June 2025',
+              description: 'Episode 3 featured an internationally acclaimed alumnus and her journey from a small town to global recognition.',
+              images: ['assets/events25/bridgingGenerations.jpg', 'assets/events25/bg5.jpg']
+            },
+            {
+              title: 'District Level Innovation Outreach Program',
+              date: '17th June 2025',
+              description: 'An outreach initiative where innovations, future leaders, and problem-solvers connected in one inspiring forum.',
+              images: ['assets/events25/DIOP.jpg', 'assets/events25/DIOP1.jpg', 'assets/events25/DIOP2.jpg', 'assets/events25/DIOP3.jpg']
+            },
+            {
+              title: 'Research Quest – Problem to Paper',
+              date: '14th June 2025',
+              description: 'A design-thinking research workshop where students explored concepts such as the Arecanut Plucker and AI cancer detector.',
+              images: ['assets/events24/RQPP4.jpeg', 'assets/events24/RQPP3.png']
+            },
+            {
+              title: 'Innovator to Entrepreneur: A Startup Readiness Session',
+              date: '27th May 2025',
+              description: 'A startup-readiness session focused on finance, capital raising, and entrepreneurship for student innovators.',
+              images: ['assets/events24/innovator1.jpg', 'assets/events24/innovator2.jpg', 'assets/events24/innovator3.jpg', 'assets/events24/innovator4.jpg', 'assets/events24/innovaor5.jpg']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights',
+              date: '24th May 2025',
+              description: 'A business etiquette and leadership session that blended workplace maturity with broader life lessons.',
+              images: ['assets/events24/Alumni insights 1.jpeg', 'assets/events24/Alumni insights.jpg']
+            },
+            {
+              title: 'Routing Hackathon with PCB',
+              date: '15th to 17th May 2025',
+              description: 'A practical PCB design and routing hackathon under the NAIN 2.0 initiative.',
+              images: ['assets/events24/PCB.jpeg', 'assets/events24/PCB2.jpeg', 'assets/events24/PCB3.jpeg']
+            },
+            {
+              title: 'EV-Saksham',
+              date: '13th May 2025',
+              description: 'An orientation session for the EV Tech Fusion programme, focusing on building and riding electric vehicles.',
+              images: ['assets/events25/EV.jpeg']
+            },
+            {
+              title: 'UI/UX Workshop',
+              date: '26th April, 1st and 4th May 2025',
+              description: 'A hands-on UI/UX design workshop using user-centric principles, Figma, and prototype feedback loops.',
+              images: ['assets/events24/UI workshop 1.png', 'assets/events24/UI workshop 2.png', 'assets/events24/UI workshop 3.png', 'assets/events24/UI workshop 4.png']
+            },
+            {
+              title: 'Bridging Generations – Alumni Insights',
+              date: '26th April 2025',
+              description: 'The inaugural bridging session featured a visionary founder sharing the 4S framework for growth and purpose.',
+              images: ['assets/events24/alumnitalk01.jpeg', 'assets/events24/alumnitalk02.jpeg']
+            },
+            {
+              title: 'Concept to Customer: Essential Startup Roadmap',
+              date: '28th March 2025',
+              description: 'A startup roadmap workshop that guided students through entrepreneurship, innovation, and venture thinking.',
+              images: ['assets/events24/Con1.jpeg', 'assets/events24/Con2.jpeg', 'assets/events24/Con3.jpeg', 'assets/events24/Con4.jpeg']
+            },
+            {
+              title: 'Codex-2025',
+              date: '26th March 2025',
+              description: 'An interactive design and prototyping experience covering UI/UX fundamentals, Figma, and user feedback.',
+              images: ['assets/events24/codex1.jpeg', 'assets/events24/codex2.jpeg', 'assets/events24/codex3.jpeg', 'assets/events24/codex4.jpeg']
+            },
+            {
+              title: 'Collaboration Meeting with Vice-Chancellors of Kodagu and Hassan University',
+              date: '12th March 2025',
+              description: 'A policy and collaboration meeting focusing on entrepreneurship, skill enhancement, and regional innovation outreach.',
+              images: ['assets/events24/VC1.jpeg', 'assets/events24/VC2.jpeg', 'assets/events24/VC3.jpeg', 'assets/events24/VC4.jpeg', 'assets/events24/VC5.jpeg']
+            },
+            {
+              title: 'Workshop on Visual AI Technology',
+              date: '4th March 2025',
+              description: 'A visual AI workshop conducted in collaboration with Xen Reality Technologies, Bengaluru.',
+              images: ['assets/events24/VAI1.jpeg']
+            },
+            {
+              title: 'Valedictory Program on Digital Skills',
+              date: '1st March 2025',
+              description: 'An internship and digital-skills felicitation programme that recognised student achievement and skill completion.',
+              images: ['assets/events24/VP1.JPG', 'assets/events24/VP2.jpeg']
+            },
+            {
+              title: 'Exposure Visit to NAIN 2.0',
+              date: '25th February 2025',
+              description: 'A collaborative exposure visit featuring student and faculty interaction with the New Age Innovation Network facility.',
+              images: ['assets/events24/EV1.jpeg', 'assets/events24/EV2.jpeg', 'assets/events24/EV3.jpeg']
+            },
+            {
+              title: 'National Startup Day',
+              date: '17th January 2025',
+              description: 'A startup-day celebration and awareness event promoting entrepreneurial spirit and regional innovation.',
+              images: ['assets/events24/NSD1.jpeg', 'assets/events24/NSD2.jpeg']
+            }
+          ]
+        },
+        2024: {
+          title: '2024 Highlights',
+          events: [
+            {
+              title: 'Pragyatha-24 State Level Entrepreneurial Fest',
+              date: '29th November to 1st December 2024',
+              description: 'A vibrant entrepreneurial fest with workshops, hackathons, and competitions.',
+              images: ['assets/events24/P24-1.png', 'assets/events24/P24-2.png', 'assets/events24/P24-3.png', 'assets/events24/P24-4.png']
+            },
+            {
+              title: 'Shark Tank 3.0',
+              date: '14th December 2024',
+              description: 'An investment-style business showcase that brought startups, mentors, and investors together for funding and mentorship.',
+              images: ['assets/events24/SK19.jpeg', 'assets/events24/SK20.jpeg', 'assets/events24/SK21.jpeg']
+            },
+            {
+              title: 'Tech Talk 1.0',
+              date: '14th December 2024',
+              description: 'A practical knowledge-sharing platform on emerging technologies and engineering problem solving.',
+              images: ['assets/events24/TT1.jpg', 'assets/events24/TT2.jpg', 'assets/events24/TT3.jpg']
+            },
+            {
+              title: 'Trade Show 4.0',
+              date: '14th December 2024',
+              description: 'A startup and product showcase exposing businesses across technology, education, construction, and real estate.',
+              images: ['assets/events24/SK4.jpg', 'assets/events24/SK5.jpg', 'assets/events24/SK6.jpg']
+            },
+            {
+              title: 'Energy Conservation Day',
+              date: '16th December 2024',
+              description: 'An awareness-driven event emphasizing sustainability and efficient energy use in daily life.',
+              images: ['assets/events24/ECD1.jpg', 'assets/events24/ECD2.jpg', 'assets/events24/ECD3.jpg', 'assets/events24/ECD4.jpg']
+            },
+            {
+              title: 'TIE Global Summit 2024',
+              date: '09th to 12th December 2024',
+              description: 'A global entrepreneurial summit hosted as a satellite engagement with future founders and innovators.',
+              images: ['assets/events24/TIE1.jpg', 'assets/events24/TIE2.jpg', 'assets/events24/TIE3.jpg']
+            },
+            {
+              title: 'MoU with Intuicent Innovations Private Limited',
+              date: '30th November 2024',
+              description: 'A centre-of-excellence partnership focused on cybersecurity, IoT, and digital forensics skills.',
+              images: ['assets/events24/Intuicent.jpeg']
+            },
+            {
+              title: 'Basics to Advanced Excel with Power BI for Business Insights',
+              date: '04th to 08th November 2024',
+              description: 'A one-week business analytics development programme for analytical mindset building and data-driven decisions.',
+              images: ['assets/events24/PBI1.jpeg', 'assets/events24/PBI2.jpeg', 'assets/events24/PBI3.jpeg']
+            },
+            {
+              title: 'Pathways to Global Education',
+              date: '26th October 2024',
+              description: 'A graduate-school and higher-education awareness session for students aspiring to study abroad.',
+              images: ['assets/events24/MIT.jpeg', 'assets/events24/MIT1.jpeg']
+            },
+            {
+              title: 'Job Fair',
+              date: '18th October 2024',
+              description: 'A recruitment and career-bridge programme connecting job seekers with industrial opportunities.',
+              images: ['assets/events24/JF1.jpeg', 'assets/events24/JF2.jpeg']
+            },
+            {
+              title: 'CareerCraft – Shaping Future Pathways',
+              date: '14th October 2024',
+              description: 'An orientation and counselling session focused on study and work options in the USA.',
+              images: ['assets/events24/CC1.jpeg', 'assets/events24/CC2.jpeg']
+            },
+            {
+              title: 'Infosys Finacle Pre-Placement Talk',
+              date: '03rd October 2024',
+              description: 'A campus pre-placement interaction helping students understand eligibility, recruitment process, and profiles.',
+              images: ['assets/events24/Info.jpeg']
+            },
+            {
+              title: 'Innovate and Escalate',
+              date: '03rd October 2024',
+              description: 'An idea-pitching event where student innovations were evaluated by industry and academic jury members.',
+              images: ['assets/events24/Evaluation.jpeg']
+            },
+            {
+              title: 'BOT BUILDING – Trainers Master Class',
+              date: '10th September 2024',
+              description: 'A hands-on trainer workshop introducing bot design concepts, architecture, and conversational applications.',
+              images: ['assets/events24/S1.jpeg', 'assets/events24/S2.jpeg', 'assets/events24/S3.jpeg', 'assets/events24/S4.jpeg']
+            },
+            {
+              title: 'Robo Soccer League 2024',
+              date: '2nd to 6th September 2024',
+              description: 'A five-day robotics competition where students built, programmed, and tested robots for a football-style challenge.',
+              images: ['assets/events24/RSL1.jpeg', 'assets/events24/RSL2.jpeg', 'assets/events24/RSL3.jpeg']
+            },
+            {
+              title: 'Smart India Hackathon',
+              date: '3rd September 2024',
+              description: 'Internal Smart India Hackathon engagement where promising teams were shortlisted for national-level participation.',
+              images: ['assets/events24/SIH1.jpeg', 'assets/events24/SIH2.jpeg', 'assets/events24/SIH3.jpeg']
+            },
+            {
+              title: 'Journey to Entrepreneurship',
+              date: '20th August 2024',
+              description: 'A mentoring session helping students understand the significance of start-up thinking and new venture creation.',
+              images: ['assets/events24/J1.jpeg', 'assets/events24/J2.jpeg', 'assets/events24/J3.jpeg']
+            },
+            {
+              title: 'MCE-HR Synergy',
+              date: '10th August 2024',
+              description: 'A collaborative HR and industry-academia exchange focused on campus-to-corporate alignment.',
+              images: ['assets/events24/HR1.jpeg', 'assets/events24/HR2.jpeg', 'assets/events24/HR3.jpeg']
+            },
+            {
+              title: 'Excel Essentials',
+              date: '24th July 2024',
+              description: 'A workshop strengthening computer and Excel capabilities for productivity and workplace readiness.',
+              images: ['assets/events24/Picture1.jpg', 'assets/events24/Picture2.jpg', 'assets/events24/Picture3.jpg']
+            },
+            {
+              title: 'Igniting Young Mind 5.0',
+              date: '21st June 2024',
+              description: 'A design-thinking outreach event encouraging creative problem-solving among school students.',
+              images: ['assets/events24/Ig1.jpeg', 'assets/events24/Ig2.jpeg', 'assets/events24/Ig3.jpeg']
+            },
+            {
+              title: 'Soft Skills Training Programme',
+              date: '08th July to 10th July 2024',
+              description: 'A three-day interpersonal and professional capability programme with graphic design and video editing exposure.',
+              images: ['assets/events24/P1.jpeg', 'assets/events24/P2.jpeg', 'assets/events24/P3.jpeg']
+            },
+            {
+              title: 'Visit to LBSCE, Kasargod',
+              date: '8th July 2024',
+              description: 'A mentor-mentee IIC visit focused on innovation policy, startup policy, and institutional growth direction.',
+              images: ['assets/events24/lbsce1.jpg']
+            },
+            {
+              title: 'Visit to CIT, Gubbi',
+              date: '28th June 2024',
+              description: 'Another IIC mentoring visit supporting institutional innovation policy and startup readiness.',
+              images: ['assets/events24/gubbi1.jpg']
+            },
+            {
+              title: 'Visit to MIT Thandavapura and Mysore',
+              date: '26th June 2024',
+              description: 'A mentor-mentee visit focused on quality improvement and star-rated innovation activities.',
+              images: ['assets/events24/mit.jpg']
+            },
+            {
+              title: 'Visit to BIT, Bengaluru',
+              date: '13th June 2024',
+              description: 'Mentor-mentee support for IEDC-led innovation planning and improved institutional activity depth.',
+              images: ['assets/events24/bit1.jpg', 'assets/events24/bit2.jpg', 'assets/events24/bit3.jpg']
+            },
+            {
+              title: 'Industry Visit to Elecnovo',
+              date: '5th June 2024',
+              description: 'Exposure to cutting-edge electric-vehicle technology and real-world applications of clean mobility.',
+              images: ['assets/events24/eviv.jpg']
+            },
+            {
+              title: 'The Design Workshop',
+              date: '31st May to 2nd June 2024',
+              description: 'A practical graphics and UX-oriented workshop covering Photoshop, Illustrator, and After Effects.',
+              images: ['assets/events24/dw1.jpg', 'assets/events24/dw2.jpg', 'assets/events24/dw3.jpg']
+            },
+            {
+              title: 'Dream Kit Robo War Camp',
+              date: '10th and 11th May 2024',
+              description: 'A robotics camp for children exploring automated systems, sensors, and future technologies.',
+              images: ['assets/events24/kit.jpg']
+            },
+            {
+              title: 'IPR in Academia: Strategies for Success',
+              date: '9th May 2024',
+              description: 'A workshop session focused on protecting knowledge assets and understanding academic intellectual property strategies.',
+              images: ['assets/events24/ipr1.jpg', 'assets/events24/ipr2.jpg']
+            },
+            {
+              title: 'Design Thinking',
+              date: '7th May 2024',
+              description: 'A practical design-thinking programme for five mentee institutes to solve problems through structured user-centric methods.',
+              images: ['assets/events24/pro1.jpg', 'assets/events24/pro2.jpg', 'assets/events24/pro3.jpg']
+            },
+            {
+              title: 'Idea Harvest’24 – Aura 3.0',
+              date: '27th April 2024',
+              description: 'A project-and-idea showcase that exemplified collaboration, creativity, and entrepreneurship among students.',
+              images: ['assets/events24/ihv1.jpg', 'assets/events24/ihv2.jpg', 'assets/events24/ihv3.jpg', 'assets/events24/ihv4.jpg']
+            },
+            {
+              title: 'Visit to HAMUL',
+              date: '19th May 2024',
+              description: 'An industry exposure visit to a dairy innovation and agricultural ecosystem company.',
+              images: ['assets/events24/hml1.jpg', 'assets/events24/hml2.jpg', 'assets/events24/hml3.jpg', 'assets/events24/hml4.jpg']
+            },
+            {
+              title: 'Summer Camp',
+              date: '13th and 14th April 2024',
+              description: 'A creativity and robotics summer camp with engaging coding and build activities for children.',
+              images: ['assets/events24/cmp1.jpg', 'assets/events24/cmp2.jpg', 'assets/events24/cmp3.jpg']
+            },
+            {
+              title: 'Design and Development Workshop',
+              date: '6th April 2024',
+              description: 'A user-centric design workshop designed to strengthen hands-on innovation in product and service development.',
+              images: ['assets/events24/inh1.jpg', 'assets/events24/inh2.jpg']
+            },
+            {
+              title: 'Collaboration with HADSSIA',
+              date: '23rd March 2024',
+              description: 'A partnership initiative for digital strategy and skill-development support in the entrepreneurship ecosystem.',
+              images: ['assets/events24/ha.jpg']
+            },
+            {
+              title: 'Unlocking Digital Strategies',
+              date: '20th March 2024',
+              description: 'An entrepreneurship awareness session guiding participants to leverage digital opportunities and sustainable growth.',
+              images: ['assets/events24/ent1.jpg', 'assets/events24/ent2.jpg']
+            },
+            {
+              title: 'Digital Marketing',
+              date: '11th to 15th March 2024',
+              description: 'A management development programme on practical digital marketing concepts and strategy implementation.',
+              images: ['assets/events24/mdp1.jpg', 'assets/events24/mdp2.jpg']
+            },
+            {
+              title: 'Igniting Young Minds 4.0',
+              date: '1st March 2024',
+              description: 'A creative problem-solving programme focused on teamwork, design thinking, and school-level innovation.',
+              images: ['assets/events24/iy1.jpg', 'assets/events24/iy2.jpg', 'assets/events24/iy3.jpg']
+            },
+            {
+              title: 'Orientation Session',
+              date: '20th February 2024',
+              description: 'An orientation programme for mentor-mentee institutions to align innovation collaboration roadmap and target outcomes.',
+              images: ['assets/events24/os1.jpg', 'assets/events24/os2.jpg', 'assets/events24/os3.jpg']
+            },
+            {
+              title: 'UBA Visit',
+              date: '15th and 16th February 2024',
+              description: 'A rural problem-solving visit where students ideated solutions for real-world community challenges.',
+              images: ['assets/events24/uba1.jpg', 'assets/events24/uba2.jpg', 'assets/events24/uba3.jpg']
+            },
+            {
+              title: 'Concepts To Reality',
+              date: '13th and 14th February 2024',
+              description: 'A two-day hands-on IoT workshop exposing students to innovative real-world applications and system building.',
+              images: ['assets/events24/con1.jpg', 'assets/events24/con2.jpg', 'assets/events24/con3.jpg']
+            },
+            {
+              title: 'Visit to Home Fabrics',
+              date: '02-02-2024',
+              description: 'A market-dynamics exposure visit to understand industry practices, research opportunities, and business engagement.',
+              images: ['assets/events24/fab1.jpg', 'assets/events24/fab2.jpg', 'assets/events24/fab3.jpg', 'assets/events24/fab4.jpg']
+            },
+            {
+              title: 'Visit to DIC, Hassan',
+              date: '2024',
+              description: 'A district innovation centre visit to understand institutional support for startups and ecosystem development.',
+              images: ['assets/events24/dic1.jpg', 'assets/events24/dic2.jpg', 'assets/events24/dic3.jpg']
+            }
+          ]
+        },
+        2023: {
+          title: '2023 Highlights',
+          events: [
+            {
+              title: '6-Week Web Designing Course',
+              date: '20th November to 29th December 2023',
+              description: 'A web design and personality-development training course for unemployed youth, focusing on employability and skill growth.',
+              images: ['assets/events23/web1.jpg', 'assets/events23/web2.jpg', 'assets/events23/web3.jpg']
+            },
+            {
+              title: 'Entrepreneurial Skill, Attitude and Behavioral Development',
+              date: '21st December 2023',
+              description: 'A mindset-building event to equip participants with the behavioral and strategic strengths needed by entrepreneurs.',
+              images: ['assets/events23/esa1.jpg', 'assets/events23/esa2.jpg']
+            },
+            {
+              title: 'Pragyatha’23 – State Level Entrepreneurial Fest',
+              date: '15th to 17th December 2023',
+              description: 'A flagship state-level entrepreneurial fest with multiple simultaneous events across departments and student teams.',
+              images: ['assets/events23/Prag1.jpg', 'assets/events23/prag2.jpg', 'assets/events23/Prag3.jpg']
+            },
+            {
+              title: 'National Energy Conservation Day',
+              date: '14th and 15th December 2023',
+              description: 'A student awareness initiative emphasizing renewable resources, responsible energy use, and conservation mindset.',
+              images: ['assets/events23/poll1.jpg']
+            },
+            {
+              title: 'National Pollution Control Day',
+              date: '7th December 2023',
+              description: 'A poster-presentation event to build student awareness of pollution-control actions and environmental innovation.',
+              images: ['assets/events23/nec1.jpg', 'assets/events23/nec2.jpg', 'assets/events23/nec3.jpg']
+            },
+            {
+              title: 'Celebration of National Entrepreneurship Day',
+              date: '9th November 2023',
+              description: 'An entrepreneurship celebration aligning the internship finale with the spirit of innovation and enterprise growth.',
+              images: ['assets/events23/nepd.jpg', 'assets/events23/nepd2.jpg']
+            },
+            {
+              title: 'From Ideas to Safeguarding Your Ideas',
+              date: '2nd November 2023',
+              description: 'An IPR-focused event that introduced the stages of innovation and the protection of intellectual properties.',
+              images: ['assets/events23/idea2.jpg', 'assets/events23/idea3.jpg', 'assets/events23/idea5.jpg']
+            },
+            {
+              title: 'Igniting Young Minds 2.0',
+              date: '25th October 2023',
+              description: 'An ideation and design-thinking initiative for school students to develop innovative problem-solving habits.',
+              images: ['assets/events23/iym3.jpg', 'assets/events23/iym1.jpg', 'assets/events23/iym2.jpg']
+            },
+            {
+              title: 'Motivational Session by Successful Entrepreneur-Startup',
+              date: '21st October 2023',
+              description: 'A real-world startup journey session that inspired interns and students on entrepreneurship mindset and purpose.',
+              images: ['assets/events23/mss1.jpg', 'assets/events23/mss2.jpg', 'assets/events23/mss3.jpg']
+            },
+            {
+              title: 'Expert Mentoring for Problem Statement Validation',
+              date: '20th October 2023',
+              description: 'An industry-academic mentoring session for validating ideas, improving problem clarity, and guiding venture direction.',
+              images: ['assets/events23/emp1.jpg', 'assets/events23/emp2.jpg', 'assets/events23/emp3.jpg']
+            },
+            {
+              title: 'Exposure and Field Visit for Problem Identification',
+              date: '19th October 2023',
+              description: 'A practical field-study initiative where student teams explored real-world problems relevant to their selected sectors.',
+              images: ['assets/events23/efvp1.jpg', 'assets/events23/efvp2.jpg', 'assets/events23/efvp3.jpg']
+            },
+            {
+              title: 'Celebration of Institution’s Innovation Day',
+              date: '17th October 2023',
+              description: 'A motivational innovation-focused session about entrepreneurship, its societal importance, and future impact.',
+              images: ['assets/events23/ciid1.jpg', 'assets/events23/ciie2.jpg', 'assets/events23/ciie3.jpg']
+            },
+            {
+              title: 'INFUSION 2.0',
+              date: '27th September 2023',
+              description: 'An internal Smart India Hackathon where 23 teams showcased real-world technology-based solutions for society.',
+              images: ['assets/events23/in2.jpg', 'assets/events23/in5.png', 'assets/events23/in3.png']
+            },
+            {
+              title: 'BOTCRAFT',
+              date: '27th & 28th September 2023',
+              description: 'A two-day robotics induction program that energized more than 550 first-year engineering students through build-and-play experiences.',
+              images: ['assets/events23/bot3.png', 'assets/events23/bot2.png', 'assets/events23/bot1.jpg']
+            },
+            {
+              title: 'Brain Brawl – Monthly Challenge',
+              date: '25th September 2023',
+              description: 'A mystery-themed puzzle challenge that created excitement, teamwork, and strong problem-solving engagement.',
+              images: ['assets/events23/bbm1.jpg', 'assets/events23/bbm2.jpg', 'assets/events23/bbm3.jpg']
+            },
+            {
+              title: 'Fueling the Future',
+              date: '13th September 2023',
+              description: 'A student entrepreneurship ignition event centered on passion, knowledge, and relentless pursuit of success.',
+              images: ['assets/events23/ftf1.jpg', 'assets/events23/ftf2.jpg', 'assets/events23/ftf3.jpg']
+            },
+            {
+              title: 'TiE Women Global Pitch',
+              date: '28th August 2023',
+              description: 'A global pitch event where women innovators were recognized through entrepreneurial evaluation and mentorship.',
+              images: ['assets/events23/wgp1.jpg', 'assets/events23/wgp2.jpg']
+            },
+            {
+              title: 'Idea Pitch and Panel Discussion',
+              date: '24th August 2023',
+              description: 'A guided problem-to-pitch event for school participants refining their innovative ideas for Inspire Awards submission.',
+              images: ['assets/events23/ipp.jpg']
+            },
+            {
+              title: 'Ideation for Young Minds',
+              date: '2023',
+              description: 'A concept-building programme helping students transform early ideas into structured and mentorable opportunities.',
+              images: ['assets/events23/iym1.jpg']
+            },
+            {
+              title: 'Igniting Young Minds',
+              date: '2023',
+              description: 'A school outreach event that pushed creativity, curiosity, and future-ready problem-solving in young learners.',
+              images: ['assets/events23/iym3.jpg']
+            },
+            {
+              title: 'ROBOTECHX – Soccer Bots',
+              date: '2023',
+              description: 'A robotics and engineering challenge that combined team coordination, prototyping, and practical innovation.',
+              images: ['assets/events23/robo1.jpg']
+            },
+            {
+              title: 'Industry Visit – BioNEST',
+              date: '2023',
+              description: 'A visit to an innovation ecosystem centre for exposure to bio-technology, entrepreneurship, and start-up support.',
+              images: ['assets/events23/bio1.jpg']
+            },
+            {
+              title: 'Meet with Team Co-Create',
+              date: '2023',
+              description: 'An entrepreneurial and co-creation discussion bringing together student innovators and startup mentors.',
+              images: ['assets/events23/co.jpg']
+            },
+            {
+              title: 'AURA 2.0 – State Level Project Expo',
+              date: '2023',
+              description: 'A project expo showcasing student-led solutions with strong societal relevance and practical invention quality.',
+              images: ['assets/events23/idea2.jpg', 'assets/events23/idea3.jpg', 'assets/events23/idea5.jpg']
+            },
+            {
+              title: 'Celebration of World Environment Day',
+              date: '2023',
+              description: 'A sustainability-driven celebration connecting innovation to environmental awareness and public responsibility.',
+              images: ['assets/events23/wed1.jpg']
+            },
+            {
+              title: 'Bootcamp: ASPIRE-23',
+              date: '2023',
+              description: 'An entrepreneurial bootcamp aimed to structure business ideas, prototype thinking, and confidence-building.',
+              images: ['assets/events23/bca1.jpg', 'assets/events23/bca2.jpg', 'assets/events23/bca3.jpg', 'assets/events23/bca4.jpg', 'assets/events23/bca5.jpg']
+            },
+            {
+              title: 'TechXperience',
+              date: '2023',
+              description: 'An exposure-based technology learning experience designed to connect students with practical engineering and innovation methods.',
+              images: ['assets/events23/tx1.jpg']
+            },
+            {
+              title: 'Visit to Innovation Centres',
+              date: '2023',
+              description: 'An exposure visit to innovation centres and ecosystem spaces that broadened understanding of mentoring and incubation.',
+              images: ['assets/events23/vci1.jpg']
+            },
+            {
+              title: 'Celebration of World IPR Day',
+              date: '2023',
+              description: 'A knowledge-sharing programme on the importance of IPR in academia and innovation generation.',
+              images: ['assets/events23/ipr1.jpg']
+            },
+            {
+              title: 'World Earth Day',
+              date: '2023',
+              description: 'An environmental awareness celebration to strengthen sustainability commitment and community stewardship.',
+              images: ['assets/events23/wed2.jpg', 'assets/events23/wed3.jpg', 'assets/events23/wed4.jpg']
+            },
+            {
+              title: 'Discussion with MSME Delegates',
+              date: '2023',
+              description: 'An interaction to strengthen ecosystem collaboration, policy insight, and entrepreneurial support structures.',
+              images: ['assets/events23/msme.jpg']
+            },
+            {
+              title: 'Visit to IISc',
+              date: '2023',
+              description: 'An academic and research exposure visit to a premier research institute for technical and innovation insight.',
+              images: ['assets/events23/iisc.jpg']
+            },
+            {
+              title: 'Visit to PES University',
+              date: '2023',
+              description: 'A high-value institution exposure visit connecting innovation-driven engineering education with new academic ecosystems.',
+              images: ['assets/events23/iv3.jpg']
+            },
+            {
+              title: 'Summer Camp in Association with Dream Kit',
+              date: '2023',
+              description: 'A children’s outreach camp on robotics, creativity, and future problem solving.',
+              images: ['assets/events23/sca1.jpg']
+            },
+            {
+              title: 'From Start-up to Success',
+              date: '2023',
+              description: 'A mentorship session on the startup journey, from concept creation to long-term sustainability and growth.',
+              images: ['assets/events23/ssn1.jpg']
+            },
+            {
+              title: 'Insights from a Successful Engineer',
+              date: '2023',
+              description: 'A career insight session giving students a grounded perspective on engineering life, goals, and resilience.',
+              images: ['assets/events23/iser1.jpg']
+            },
+            {
+              title: 'Inaugural Ceremony of ME-RIISE Foundation',
+              date: '2023',
+              description: 'A foundational program launch ceremony that set the tone for foundation-led innovation and community outreach.',
+              images: ['assets/events23/iemf1.jpg']
+            },
+            {
+              title: 'Student Entrepreneurship Bootcamp',
+              date: '2023',
+              description: 'A bootcamp-style development programme focused on venture creation and practical entrepreneurial behavior.',
+              images: ['assets/events23/seb1.jpg']
+            },
+            {
+              title: 'Empowering Holistic Education through Innovation',
+              date: '2023',
+              description: 'A program emphasizing innovation-led education and holistic student development.',
+              images: ['assets/events23/avk.jpg']
+            }
+          ]
+        },
+        2022: {
+          title: '2022 Highlights',
+          events: [
+            {
+              title: 'National Energy Conservation Day',
+              date: '21st & 22nd December 2022',
+              description: 'Raised awareness on the need to save energy and promote energy-efficient solutions worldwide.',
+              images: ['assets/events22/necd1.jpg', 'assets/events22/necd2.jpg', 'assets/events22/necd3.jpg']
+            },
+            {
+              title: 'National Pollution Control Day',
+              date: '29th December 2022',
+              description: 'Focused on creating awareness to adopt pollution-control measures in vehicles.',
+              images: ['assets/events22/npcd.jpg']
+            },
+            {
+              title: 'Entrepreneurship Awareness Programme',
+              date: '2nd December 2022',
+              description: 'Students gained knowledge on funding schemes and MSME opportunities for new start-ups.',
+              images: ['assets/events22/eap.jpg']
+            },
+            {
+              title: 'Bangalore Tech Summit',
+              date: '16th to 18th November 2022',
+              description: 'An exposure event to startups, innovation and technology-driven entrepreneurship development.',
+              images: ['assets/events22/bts1.jpg']
+            },
+            {
+              title: 'National Education Day – Kalakar',
+              date: '12th November 2022',
+              description: 'A creative and poster-making learning event focused on innovative communication and design thinking.',
+              images: ['assets/events22/nedk.jpg']
+            },
+            {
+              title: 'Internship',
+              date: '31st October to 19th November 2022',
+              description: 'A one-month internship on diverse engineering platforms giving hands-on technical exposure.',
+              images: ['assets/events22/int.jpg']
+            },
+            {
+              title: 'IDEATHON',
+              date: '21st October 2022',
+              description: 'Presentation of innovative ideas and student-led problem solutions.',
+              images: ['assets/events22/ide.jpg']
+            },
+            {
+              title: 'Innovation Day',
+              date: '15th October 2022',
+              description: 'A reflection on the role of innovative projects in solving societal needs.',
+              images: ['assets/events22/ide.jpg', 'assets/events22/ind.jpg']
+            },
+            {
+              title: 'India Startup Day',
+              date: '1st October 2022',
+              description: 'A platform to witness technological advancements and active startup culture in India.',
+              images: ['assets/events22/isd.jpg']
+            },
+            {
+              title: 'World Entrepreneur’s Day',
+              date: '21st August 2022',
+              description: 'Motivated students toward an entrepreneurial career through inspiration and awareness building.',
+              images: ['assets/events22/wed1.jpg', 'assets/events22/wed2.jpg']
+            },
+            {
+              title: 'NAVAPRAVARTHAN',
+              date: '16th August 2022',
+              description: 'An expo of projects funded by NAIN showcasing institutional innovation outcomes.',
+              images: ['assets/events22/nava1.jpg', 'assets/events22/nava2.jpg']
+            },
+            {
+              title: 'Inspire',
+              date: '16th August 2022',
+              description: 'Students exhibited prototypes developed during design thinking laboratory work.',
+              images: ['assets/events22/insp1.jpg']
+            },
+            {
+              title: 'Hackathon',
+              date: '14th & 15th August 2022',
+              description: 'A platform to ideate, design, and build strong student prototypes.',
+              images: ['assets/events22/hack1.jpg']
+            },
+            {
+              title: 'Har Ghar Thiranga',
+              date: '15th August 2022',
+              description: 'A patriotic celebration with singing, logo, and drawing competitions across departments.',
+              images: ['assets/events22/hgt1.jpg']
+            },
+            {
+              title: 'Incubation, Entrepreneurship and Seed Funding',
+              date: '1st August 2023',
+              description: 'Dr. Geetha Kiran A addressed the benefits and process of incubation at the VTU Education Conclave.',
+              images: ['assets/events22/pdin1.jpg']
+            },
+            {
+              title: 'Summer Camp for Your Kids',
+              date: '18th, 19th & 20th April 2022',
+              description: 'An initiative to induce enthusiasm and synergy in young minds through experiential activities.',
+              images: ['assets/events22/sum1.jpg']
+            },
+            {
+              title: 'FIGMA Prototyping Workshop',
+              date: '16th & 17th April 2022',
+              description: 'Enhanced technical expertise in developing prototypes and communicating design thinking through UI mockups.',
+              images: ['assets/events22/fig1.png', 'assets/events22/fig2.jpg']
+            }
+          ]
+        },
+        2021: {
+          title: '2021 Highlights',
+          events: [
+            {
+              title: 'Virtual School – UBA',
+              date: 'June–July 2021',
+              description: 'Empowered rural education through an innovative teaching-learning process.',
+              images: ['assets/events21/VS1.jpg']
+            },
+            {
+              title: 'Rural Awareness Programme',
+              date: '31st March 2021',
+              description: 'Induced interest in agriculture and trained students to use technology in farm practices.',
+              images: ['assets/events20/rap.png']
+            },
+            {
+              title: 'Soil Health Analysis and Management of Plant Nutrition',
+              date: '1st March 2021',
+              description: 'Trained participants to improve economic stability and the health of agricultural ecosystems.',
+              images: ['assets/events20/shamp1.jpg', 'assets/events20/shamp2.jpg']
+            },
+            {
+              title: 'Arduino Programming',
+              date: '5th–6th March 2021',
+              description: 'Provided hands-on experience in using embedded and software tools for engineering problem solving.',
+              images: ['assets/events20/ap1.jpg']
+            },
+            {
+              title: 'Specifications, Wiring and Protection of Electrical Appliances',
+              date: '18th February 2021',
+              description: 'Enhanced knowledge on protection and specifications in electrical wiring.',
+              images: ['assets/events20/swpe1.jpg', 'assets/events20/swpe2.jpg', 'assets/events20/swpe3.jpg']
+            },
+            {
+              title: 'TechGeek Session',
+              date: '17th February 2021',
+              description: 'Signified the need for technical capabilities to become a successful entrepreneur.',
+              images: ['assets/events20/tg1.jpg', 'assets/events20/tg2.jpg', 'assets/events20/tg3.jpg']
+            },
+            {
+              title: 'Panel Discussion',
+              date: '24th August 2021',
+              description: 'Students expressed their views on design thinking and future career pathways.',
+              images: ['assets/events21/Picture1.jpg']
+            },
+            {
+              title: 'Debate on Entrepreneurship',
+              date: '24th August 2021',
+              description: 'Students expressed their choice of career and entrepreneurial vision with confidence.',
+              images: ['assets/events21/Picture6.jpg', 'assets/events21/Picture5.jpg']
+            },
+            {
+              title: 'Impact Lecture Series',
+              date: '7th October 2021',
+              description: 'Created an entrepreneurial ecosystem in the campus through insight-driven mentoring.',
+              images: ['assets/events21/Picture4.jpg', 'assets/events21/Picture3.jpg', 'assets/events21/picture2.jpg']
+            },
+            {
+              title: 'PRAGYATHA’21 – State Level Entrepreneurial Fest',
+              date: '7th October 2021',
+              description: 'Enabled students across the state to understand phases of becoming an entrepreneur through tools, software, and motivation.',
+              images: ['assets/events21/Pragyatha1.jpg', 'assets/events21/Pragyatha2.jpg', 'assets/events21/Pragyatha3.jpg']
+            }
+          ]
+        },
+        2020: {
+          title: '2020 Highlights',
+          events: [
+            {
+              title: 'CODE – IT',
+              date: '24th May 2020',
+              description: 'Provided a platform to solve real-world problems online using different coding languages.',
+              images: ['assets/events20/img2.jpg']
+            },
+            {
+              title: 'IDEATHON',
+              date: '14th May 2020',
+              description: 'Emphasized the usage of technology to overcome the COVID crisis.',
+              images: ['assets/events20/img5.jpg']
+            },
+            {
+              title: 'Hackathon COVID 19',
+              date: '12th May 2020',
+              description: 'Provided a platform to innovate solutions to combat the COVID-19 crisis.',
+              images: ['assets/events20/img1.jpg']
+            }
+          ]
+        },
+        2019: {
+          title: '2019 Highlights',
+          events: [
+            {
+              title: 'MANTHAN-2020',
+              date: '27th November 2019',
+              description: 'Expressed great enthusiasm in developing business plans and participating in the MANTHAN-2020 event organized by FKCCI.',
+              images: ['assets/events19/manthan.jpg']
+            },
+            {
+              title: 'PRAGYATHA’19 – State Level Entrepreneurial Fest',
+              date: '8th to 10th November 2019',
+              description: 'Enabled students across the state to understand the phases of becoming entrepreneurs while developing modern skillsets.',
+              images: ['assets/events19/pragyatha.jpg']
+            },
+            {
+              title: 'Outreach Programme and Lateral Thinking',
+              date: '14th October 2019',
+              description: 'Prepared students for goal-setting, emotional intelligence, and problem-solving capability building.',
+              images: ['assets/events19/opl.jpg']
+            },
+            {
+              title: 'Ideathon-19',
+              date: '12th October 2019',
+              description: 'Built collaborative capability among budding engineers to drive result-oriented innovation and impact.',
+              images: ['assets/events19/ideathon.jpg']
+            },
+            {
+              title: 'Capacity Building and Entrepreneurship Development',
+              date: '12th October 2019',
+              description: 'Enhanced clarity, focus, creativity, confidence, and productivity of the individual.',
+              images: ['assets/events19/Capacity.jpg']
+            },
+            {
+              title: 'Boot Camp',
+              date: '14th September 2019',
+              description: 'Understood the basics of entrepreneurship from experienced trainers and mentors.',
+              images: ['assets/events19/Boot.jpg']
+            },
+            {
+              title: 'Salesforce Developer 402',
+              date: '9th to 14th September 2019',
+              description: 'Mastered concepts of Salesforce administration, platform building, automation, debugging, and app customization.',
+              images: ['assets/events19/Sales.jpg']
+            },
+            {
+              title: 'Idea Generation to Incubation',
+              date: '7th May 2019',
+              description: 'Students strengthened design thinking and entrepreneurial evaluation capabilities from idea generation to incubation.',
+              images: ['assets/events19/igi.jpg']
+            },
+            {
+              title: 'Revit Architecture',
+              date: '9th to 13th April 2019',
+              description: 'Created more accurate and optimized building designs using advanced 3D architectural workflows.',
+              images: ['assets/events19/revit.jpg']
+            },
+            {
+              title: 'Visit to MRPL and Incubation Centre – Mangalore',
+              date: '1st April 2019',
+              description: 'Developed skills in component identification, industry-awareness, and understanding incubation practices in manufacturing.',
+              images: ['assets/events19/mrpl.jpg', 'assets/events19/mrpl2.jpg', 'assets/events19/mrpl3.jpg']
+            },
+            {
+              title: 'Proof of Concept',
+              date: '23rd March 2019',
+              description: 'Students improved customer validation, competitive analysis, and iteration skills through design-thinking processes.',
+              images: ['assets/events19/poc.jpg']
+            },
+            {
+              title: 'Fusion 360',
+              date: '18th and 19th February 2019',
+              description: 'Students solved engineering challenges faster using 3D modeling tools.',
+              images: ['assets/events19/f360.jpg']
+            }
+          ]
+        },
+        2018: {
+          title: '2018 Highlights',
+          events: [
+            {
+              title: 'Empowering Entrepreneurship and Innovation',
+              date: '30th April 2018',
+              description: 'Students gained knowledge on entrepreneurship and were motivated toward entrepreneurial careers.',
+              images: ['assets/events18/eei.jpg']
+            },
+            {
+              title: 'MCE Learnathon and Super Coders',
+              date: '1st and 2nd July 2018',
+              description: 'Students were able to solve industry-oriented problems and improve technical problem-solving confidence.',
+              images: ['assets/events18/lsc.jpg']
+            },
+            {
+              title: 'Visit to Entrepreneurial Establishments and Panel Discussion',
+              date: '17th September 2018',
+              description: 'Students identified prospective work areas and gained knowledge on industrial practices and regulations.',
+              images: ['assets/events18/eepd.jpg']
+            },
+            {
+              title: 'Ideation',
+              date: '13th October 2018',
+              description: 'Students created presentations on innovative project ideas, linking finance, operations, sales, and value creation.',
+              images: ['assets/events18/ideation.jpg']
+            }
+          ]
+        }
+      };
+
+      const yearGrid = document.getElementById('yearGrid');
+      const detailPanel = document.getElementById('detailPanel');
+      const heroBanner = document.getElementById('heroBanner');
+      const modal = document.getElementById('eventModal');
+      const modalCard = modal.querySelector('.modal-card');
+      const themeToggle = document.getElementById('themeToggle');
+      const years = Object.keys(eventData).sort((a, b) => Number(b) - Number(a));
+
+      // Branded fallback shown when an image fails to load (missing file or deploy gap).
+      const PLACEHOLDER = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc2NDAnIGhlaWdodD0nNDAwJyB2aWV3Qm94PScwIDAgNjQwIDQwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+PHN0b3Agb2Zmc2V0PScwJyBzdG9wLWNvbG9yPScjMGQxYTJiJy8+PHN0b3Agb2Zmc2V0PScwLjYnIHN0b3AtY29sb3I9JyMwYjE0MjQnLz48c3RvcCBvZmZzZXQ9JzEnIHN0b3AtY29sb3I9JyMwYTIyMzMnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0nNjQwJyBoZWlnaHQ9JzQwMCcgZmlsbD0ndXJsKCNnKScvPjxjaXJjbGUgY3g9JzUyMCcgY3k9JzcwJyByPScxMjAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzAxYWRmYycgc3Ryb2tlLW9wYWNpdHk9JzAuMTInIHN0cm9rZS13aWR0aD0nMicvPjxjaXJjbGUgY3g9JzUyMCcgY3k9JzcwJyByPScxNzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzAxYWRmYycgc3Ryb2tlLW9wYWNpdHk9JzAuMDcnIHN0cm9rZS13aWR0aD0nMicvPjx0ZXh0IHg9JzUwJScgeT0nNDclJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nUG9wcGlucywgQXJpYWwsIHNhbnMtc2VyaWYnIGZvbnQtc2l6ZT0nNDAnIGZvbnQtd2VpZ2h0PSc3MDAnIGZpbGw9JyNlYWY0ZmYnIGxldHRlci1zcGFjaW5nPSczJz5NRSYjMTgzO1JJSVNFPC90ZXh0Pjx0ZXh0IHg9JzUwJScgeT0nNjAlJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nSW50ZXIsIEFyaWFsLCBzYW5zLXNlcmlmJyBmb250LXNpemU9JzE4JyBmaWxsPScjOGZhNmJmJyBsZXR0ZXItc3BhY2luZz0nMSc+UGhvdG8gY29taW5nIHNvb248L3RleHQ+PC9zdmc+';
+      window.imgFallback = function (img) { img.onerror = null; img.src = PLACEHOLDER; };
+
+      // Turn a free-text date ("3rd September 2026", "27th & 28th July 2026",
+      // "February 2024", "02-02-2024", "2023") into a sortable number YYYYMMDD.
+      const MONTHS = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+      function parseEventDate(str) {
+        const s = (str || '').toString().toLowerCase();
+        const ym = s.match(/(19|20)\d{2}/);
+        const year = ym ? parseInt(ym[0], 10) : 0;
+        let month = 0, day = 0;
+        const num = s.match(/\b(\d{1,2})[-/](\d{1,2})[-/](\d{2,4})\b/); // dd-mm-yyyy
+        if (num) {
+          day = parseInt(num[1], 10);
+          month = parseInt(num[2], 10);
+        } else {
+          for (const key in MONTHS) { if (s.indexOf(key) !== -1) { month = MONTHS[key]; break; } }
+          const dm = s.match(/\b(\d{1,2})(?:st|nd|rd|th)?\b/); // first day number
+          if (dm) day = parseInt(dm[1], 10);
+        }
+        if (day > 31) day = 0;
+        if (month > 12) month = 0;
+        return year * 10000 + month * 100 + day;
+      }
+
+      // 'YYYY-MM-DD' (from the admin calendar) -> sortable number, or 0 if absent.
+      function isoKey(s) {
+        const m = (s || '').toString().match(/^(\d{4})-(\d{2})-(\d{2})/);
+        return m ? (+m[1]) * 10000 + (+m[2]) * 100 + (+m[3]) : 0;
+      }
+
+      // Best sort key for an event: prefer the admin calendar date, then the typed
+      // date text; if the text has no year, fall back to the event's year / its bucket.
+      function dateKey(ev, bucketYear) {
+        const iso = isoKey(ev.sortdate);
+        if (iso) return iso;
+        const parsed = parseEventDate(ev.date);
+        let yr = Math.floor(parsed / 10000);
+        const md = parsed % 10000;
+        if (!yr) yr = parseInt(ev.year, 10) || bucketYear || 0;
+        return yr * 10000 + md;
+      }
+
+      // Sort every year's events newest-first by date (stable for equal/vague dates).
+      function sortAllYears() {
+        Object.keys(eventData).forEach((y) => {
+          const by = parseInt(y, 10);
+          eventData[y].events.sort((a, b) => dateKey(b, by) - dateKey(a, by));
+        });
+      }
+
+      function updateThemeToggle() {
+        const isLight = document.body.classList.contains('light-theme');
+        themeToggle.textContent = isLight ? 'Dark mode' : 'Light mode';
+        themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const isLight = document.body.classList.toggle('light-theme');
+        localStorage.setItem('meriise-theme', isLight ? 'light' : 'dark');
+        updateThemeToggle();
+      });
+
+      if (localStorage.getItem('meriise-theme') === 'light') {
+        document.body.classList.add('light-theme');
+      }
+      updateThemeToggle();
+
+      function renderGrid() {
+        yearGrid.innerHTML = '';
+        years.forEach((year) => {
+          const card = document.createElement('button');
+          card.className = 'year-card';
+          card.type = 'button';
+          card.innerHTML = `<span class="year-label">${year}</span><span class="year-meta">${eventData[year].events.length} events</span>`;
+          card.addEventListener('click', () => {
+            document.querySelectorAll('.year-card').forEach((button) => button.classList.remove('active'));
+            card.classList.add('active');
+            renderDetails(year);
+          });
+          yearGrid.appendChild(card);
+        });
+      }
+
+      function openEventModal(eventDataItem) {
+        modalCard.innerHTML = `
+          <h3>${eventDataItem.title}</h3>
+          <div class="date">${eventDataItem.date}</div>
+          <p>${eventDataItem.description}</p>
+          ${eventDataItem.support ? `<p class="event-support">${eventDataItem.support}</p>` : ''}
+          <div class="gallery">
+            ${eventDataItem.images.map((image) => `<img src="${image}" alt="${eventDataItem.title}" loading="lazy" onerror="imgFallback(this)" />`).join('')}
+          </div>
+          <button class="modal-close" type="button">Close</button>
+        `;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        modal.querySelector('.modal-close').addEventListener('click', closeEventModal);
+      }
+
+      function closeEventModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      function renderDetails(year) {
+        const data = eventData[year];
+        heroBanner.innerHTML = `
+          <p class="hero-eyebrow">Selected year / ${data.events.length} documented events</p>
+          <h2>${year} Events Details</h2>
+        `;
+        detailPanel.innerHTML = `
+          <h2>${data.title}</h2>
+          <div class="event-grid">
+          ${data.events.map((event, i) => `
+            <article class="event-card" data-index="${i}">
+              <div class="event-card__media">
+                <img src="${event.images[0]}" alt="${event.title}" loading="lazy" onerror="imgFallback(this)" />
+                ${event.images.length > 1 ? `<span class="event-card__count">${event.images.length} photos</span>` : ''}
+              </div>
+              <div class="event-card__body">
+                <span class="date">${event.date}</span>
+                <h3>${event.title}</h3>
+                <p>${event.description}</p>
+                ${event.support ? `<p class="event-support">${event.support}</p>` : ''}
+                <span class="event-card__more">View details &rarr;</span>
+              </div>
+            </article>
+          `).join('')}
+          </div>
+        `;
+
+        detailPanel.querySelectorAll('.event-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const selectedEvent = data.events[Number(card.dataset.index)];
+            if (selectedEvent) openEventModal(selectedEvent);
+          });
+        });
+      }
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closeEventModal();
+        }
+      });
+
+      function initEvents() {
+        sortAllYears();
+        renderGrid();
+        // Open the most recent year that has events (usually the current/latest year).
+        const firstYear = years[0];
+        renderDetails(firstYear);
+        const firstCard = document.querySelector('.year-card');
+        if (firstCard) firstCard.classList.add('active');
+      }
+
+      const tbiSupportedEventTitles = new Set([
+        'Arogya Manthan 2K26',
+        '5-Day Innovation Bootcamp',
+        'Idea Spark 4.0 - MSME Idea Hackathon 6.0',
+        'TBI-MCE Startup Selection Process - Cohort 1',
+        'Infusion 5.0 | Internal Smart India Hackathon 2026'
+      ]);
+      const tbiSupportDescription = 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme';
+
+      // Merge in events added through the secret admin page (event-admin.php),
+      // if any. Falls back silently to the built-in events if the file is absent.
+      fetch('events_dynamic.json', { cache: 'no-store' })
+        .then((response) => (response.ok ? response.json() : []))
+        .then((list) => {
+          if (!Array.isArray(list)) return;
+          list.forEach((item) => {
+            const year = parseInt(item.year, 10);
+            if (!year || !item.title || !Array.isArray(item.images) || !item.images.length) return;
+            if (!eventData[year]) {
+              eventData[year] = { title: year + ' Highlights', events: [] };
+              years.length = 0;
+              Object.keys(eventData).sort((a, b) => Number(b) - Number(a)).forEach((y) => years.push(y));
+            }
+            const existingEvent = eventData[year].events.find((event) => event.title === item.title);
+            if (existingEvent) {
+              existingEvent.date = item.date || existingEvent.date;
+              existingEvent.description = item.description || existingEvent.description;
+              existingEvent.images = item.images;
+              if (tbiSupportedEventTitles.has(item.title)) existingEvent.support = tbiSupportDescription;
+              return;
+            }
+            // newest admin events go to the top of their year
+            eventData[year].events.unshift({
+              title: item.title,
+              date: item.date || '',
+              description: item.description || '',
+              support: tbiSupportedEventTitles.has(item.title) ? tbiSupportDescription : '',
+              images: item.images
+            });
+          });
+        })
+        .catch(() => {})
+        .finally(initEvents);
+    </script>
+  </body>
+</html>
