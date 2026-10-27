@@ -58,7 +58,6 @@
       .topbar {
         position: sticky;
         top: 0;
-        z-index: 10;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -384,9 +383,24 @@
       }
 
       .event-support {
+        width: fit-content;
+        max-width: 100%;
+        margin: 0.7rem 0 1.2rem;
+        padding: 0.8rem 1rem;
+        border-left: 4px solid var(--warm);
+        background: rgba(243, 166, 90, 0.1);
         color: var(--warm);
-        font-size: 0.82rem;
-        font-weight: 600;
+        font-size: 1.25rem;
+        font-weight: 800;
+        line-height: 1.4;
+      }
+
+      .event-card .event-support {
+        width: auto;
+        margin: 0.25rem 0 0.4rem;
+        padding: 0.55rem 0.7rem;
+        font-size: 0.88rem;
+        font-weight: 800;
         line-height: 1.45;
       }
 
@@ -569,9 +583,37 @@
           title: '2026 Highlights',
           events: [
             {
+              title: 'Deeksharambha – Workshop on Creativity, Teamwork & Leadership',
+              date: '22nd October 2026',
+              sortdate: '2026-10-22',
+              description: '',
+              images: ['assets/events26/Deeksharambha.png']
+            },
+            {
+              title: 'Robo Race at MSRIT',
+              date: '14th, 15th & 16th October 2026',
+              sortdate: '2026-10-14',
+              description: '',
+              images: ['assets/events26/roboracemsrit.png']
+            },
+            {
+              title: 'IIM',
+              date: '12th October 2026',
+              sortdate: '2026-10-12',
+              description: '',
+              images: ['assets/events26/iim.png']
+            },
+            {
+              title: 'Orientation on EV SAKSHAM',
+              date: '5th October 2026',
+              sortdate: '2026-10-05',
+              description: '',
+              images: ['assets/events26/orientationevsaksham.png']
+            },
+            {
               title: 'Orientation on Agentic AI',
-              date: '7th October 2026',
-              sortdate: '2026-10-07',
+              date: '5th October 2026',
+              sortdate: '2026-10-05',
               description: 'An introduction to AI agents, RAG and the Agentic AI Saksham pathway for ISBS, Robotics and Computer Science students, led by Mr. Mayank Arora of Capabl.',
               images: ['https://meriise.org/assets/uploads/20261012_072614_b2ec188a.png']
             },
@@ -595,6 +637,20 @@
               sortdate: '2026-09-25',
               description: 'SAMANVAYA 2K26 | Inaugural Ceremony\n\nSAMANVAYA 2K26, held on 25th September 2026, brought together 153 students to explore innovation and entrepreneurship. Hosted by ME-RIISE Foundation, MCE, with partner institutions and IIITB Innovation Centre, the programme focused on Design Thinking, IP, startups, and commercialization.',
               images: ['https://meriise.org/assets/uploads/20261004_143342_16f8531a.jpeg', 'https://meriise.org/assets/uploads/20261004_143342_6ef46d7b.jpeg']
+            },
+            {
+              title: 'Manipal Start-up Expo 2026',
+              date: '25th September 2026',
+              sortdate: '2026-09-25',
+              description: '',
+              images: ['assets/events26/manipalmahevisit.png']
+            },
+            {
+              title: 'SEAC Meeting of TBI',
+              date: '21st September 2026',
+              sortdate: '2026-09-21',
+              description: '',
+              images: ['assets/events26/seac.png']
             },
             {
               title: 'Campus to Career',
@@ -627,14 +683,14 @@
               title: 'Infusion 5.0 | Internal Smart India Hackathon 2026',
               date: '8th September 2026',
               description: 'ME-RIISE Foundation, through TBI-MCE, with the support of the IT BT Department, Karnataka, hosted Infusion 5.0 – Internal Smart India Hackathon 2026 on 8 September 2026 at MCE, Hassan. The event saw 234 students across 40 teams presenting innovative solutions to real-world challenges, with expert evaluation and feedback. 234 Participants | 40 Teams | 158 Female | 76 Male',
-              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              support: 'Supported by Department of E, IT, Bt , S&T, GoK under TBI 2.0 programme',
               images: ['https://meriise.org/assets/uploads/20261005_044849_cd1ee98d.png', 'https://meriise.org/assets/uploads/20261005_044849_93d4d517.png', 'https://meriise.org/assets/uploads/20261005_044849_1c0adc6c.png']
             },
             {
               title: 'TBI-MCE Startup Selection Process - Cohort 1',
               date: '1st September 2026',
               description: 'Eleven startups and innovative teams presented their ideas, solutions, and business models to an expert jury during the Cohort 1 selection and evaluation process.',
-              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              support: 'Supported by Department of E, IT, Bt , S&T, GoK under TBI 2.0 programme',
               images: ['assets/events26/start.png']
             },
             {
@@ -647,14 +703,15 @@
               title: '5-Day Innovation Bootcamp',
               date: '24th to 28th August 2026',
               description: 'A robotics bootcamp covering design thinking, coding, app development, Arduino, electronics, and hands-on RC Bot building, testing, and troubleshooting.',
-              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              support: 'Supported by Department of E, IT, Bt , S&T, GoK under TBI 2.0 programme',
               images: ['assets/events26/Innovation Bootcamp (1).jpeg', 'assets/events26/Innovation Bootcamp (2).jpeg', 'assets/events26/Innovation Bootcamp (3).jpeg', 'assets/events26/Innovation Bootcamp (4).jpeg', 'assets/events26/Innovation Bootcamp (5).jpeg']
             },
             {
               title: 'Idea Spark 4.0 - MSME Idea Hackathon 6.0',
-              date: '25th August 2026',
+              date: '12th August 2026',
+              sortdate: '2026-08-12',
               description: 'An idea and innovation event supported by ME-RIISE Foundation, TBI-MCE, and the IT-BT Department, Government of Karnataka.',
-              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              support: 'Supported by Department of E, IT, Bt , S&T, GoK under TBI 2.0 programme',
               images: ['assets/events26/Idea Spark 4.0.jpeg']
             },
             {
@@ -671,10 +728,25 @@
             },
             {
               title: 'Arogya Manthan 2K26',
-              date: '27th & 28th July 2026',
+              date: '25th June 2026',
+              sortdate: '2026-06-25',
               description: 'A 24-hour state-level healthcare innovation hackathon where 288 participants across 68 teams developed real-world healthcare solutions with expert mentoring and startup support.',
-              support: 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme',
+              support: 'Supported by Department of E, IT, Bt , S&T, GoK under TBI 2.0 programme',
               images: ['assets/events26/Arogya (1).jpeg', 'assets/events26/Arogya (2).jpeg', 'assets/events26/Arogya (3).jpeg', 'assets/events26/Arogya (4).jpeg']
+            },
+            {
+              title: 'Anvesana TBI at PESITM',
+              date: '29th July 2026',
+              sortdate: '2026-07-29',
+              description: '',
+              images: ['assets/events26/anveshanatbi.png']
+            },
+            {
+              title: 'Krishimanthan',
+              date: '12th March 2026',
+              sortdate: '2026-03-12',
+              description: '',
+              images: ['assets/Hackathon/Krishimanthan.jpeg']
             },
             {
               title: 'Bridging Generations 2.0',
@@ -1921,8 +1993,7 @@
         modalCard.innerHTML = `
           <h3>${eventDataItem.title}</h3>
           <div class="date">${eventDataItem.date}</div>
-          <p>${eventDataItem.description}</p>
-          ${eventDataItem.support ? `<p class="event-support">${eventDataItem.support}</p>` : ''}
+          ${eventDataItem.description ? `<p>${eventDataItem.description}</p>` : ''}
           <div class="gallery">
             ${eventDataItem.images.map((image) => `<img src="${image}" alt="${eventDataItem.title}" loading="lazy" onerror="imgFallback(this)" />`).join('')}
           </div>
@@ -1946,17 +2017,18 @@
         `;
         detailPanel.innerHTML = `
           <h2>${data.title}</h2>
+          ${data.events.some((event) => event.support) ? `<p class="event-support">${tbiSupportDescription}</p>` : ''}
           <div class="event-grid">
           ${data.events.map((event, i) => `
             <article class="event-card" data-index="${i}">
               <div class="event-card__media">
-                <img src="${event.images[0]}" alt="${event.title}" loading="lazy" onerror="imgFallback(this)" />
+                <img src="${event.images[0] || PLACEHOLDER}" alt="${event.title}" loading="lazy" onerror="imgFallback(this)" />
                 ${event.images.length > 1 ? `<span class="event-card__count">${event.images.length} photos</span>` : ''}
               </div>
               <div class="event-card__body">
                 <span class="date">${event.date}</span>
                 <h3>${event.title}</h3>
-                <p>${event.description}</p>
+                ${event.description ? `<p>${event.description}</p>` : ''}
                 ${event.support ? `<p class="event-support">${event.support}</p>` : ''}
                 <span class="event-card__more">View details &rarr;</span>
               </div>
@@ -1980,6 +2052,10 @@
       });
 
       function initEvents() {
+        const supportedEvents = eventData[2026].events;
+        supportedEvents.forEach((event) => {
+          if (tbiSupportedEventTitles.has(event.title)) event.support = tbiSupportDescription;
+        });
         sortAllYears();
         renderGrid();
         // Open the most recent year that has events (usually the current/latest year).
@@ -1990,13 +2066,37 @@
       }
 
       const tbiSupportedEventTitles = new Set([
+        'Krishimanthan',
+        'KrishiManthan',
+        'Krishimanthan 2026',
         'Arogya Manthan 2K26',
+        'Anvesana TBI at PESITM',
+        'Idea Spark',
         '5-Day Innovation Bootcamp',
         'Idea Spark 4.0 - MSME Idea Hackathon 6.0',
+        'Samanvaya 2k26',
+        'SAMANVAYA 2K26',
+        'SEAC Meeting of TBI',
+        'Campus to Career',
+        'Manipal Start-up Expo 2026',
+        'Manipal Startup Expo 2026',
+        'IIM',
+        'Igniting Young Minds 8.0',
+        'Igniting Young Minds 8.0 - Session 2',
+        'Igniting Young Minds 8.0 - Session 3',
+        '𝐈𝐠𝐧𝐢𝐭𝐢𝐧𝐠 𝐘𝐨𝐮𝐧𝐠 𝐌𝐢𝐧𝐝𝐬 𝟖.𝟎 | 𝐒𝐞𝐬𝐬𝐢𝐨𝐧 𝟒 💡',
+        '𝐈𝐠𝐧𝐢𝐭𝐢𝐧𝐠 𝐘𝐨𝐮𝐧𝐠 𝐌𝐢𝐧𝐝𝐬 𝟖.𝟎 | 𝐒𝐞𝐬𝐬𝐢𝐨𝐧 𝟓 💡',
+        'Igniting Young Minds 8.0 | Total Session 5',
+        'EV SAKSHAM',
+        'Orientation on EV SAKSHAM',
+        'Orientation on Agentic AI',
+        'Deeksharambha – Workshop on Creativity, Teamwork & Leadership',
+        'Robo Race at MSRIT',
         'TBI-MCE Startup Selection Process - Cohort 1',
-        'Infusion 5.0 | Internal Smart India Hackathon 2026'
+        'Infusion 5.0 | Internal Smart India Hackathon 2026',
+        'IIM'
       ]);
-      const tbiSupportDescription = 'Supported by Department of E, IT, Bt , S&T,  GoK under TBI 2.0 programme';
+      const tbiSupportDescription = 'Supported by Department of E, IT, Bt , S&T, GoK under TBI 2.0 programme';
 
       // Merge in events added through the secret admin page (event-admin.php),
       // if any. Falls back silently to the built-in events if the file is absent.
@@ -2014,7 +2114,7 @@
             }
             const existingEvent = eventData[year].events.find((event) => event.title === item.title);
             if (existingEvent) {
-              existingEvent.date = item.date || existingEvent.date;
+              if (!tbiSupportedEventTitles.has(item.title)) existingEvent.date = item.date || existingEvent.date;
               existingEvent.description = item.description || existingEvent.description;
               existingEvent.images = item.images;
               if (tbiSupportedEventTitles.has(item.title)) existingEvent.support = tbiSupportDescription;
