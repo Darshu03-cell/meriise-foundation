@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRAGYATHA '26 — State Level Entrepreneurial Fest</title>
+  <meta name="description" content="PRAGYATHA '26 — State Level Entrepreneurial Fest by ME-RIISE Foundation & Malnad College of Engineering, Hassan. 8 events, ₹75,000 prize pool, Oct 30 – Nov 1, 2026." />
+  <meta name="theme-color" content="#2d2a7a" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <!-- Social preview -->
+  <meta property="og:title" content="PRAGYATHA '26 — State Level Entrepreneurial Fest" />
+  <meta property="og:description" content="8 events · ₹75,000 prize pool · Oct 30 – Nov 1, 2026 · MCE Hassan × ME-RIISE Foundation" />
+  <meta property="og:image" content="assets/poster.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Decorative animated gradient blobs -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+    <span class="blob blob--4"></span>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#home" class="nav__brand" aria-label="Pragyatha '26 home">
+        <img src="assets/meriise-logo.png" alt="ME-RIISE Foundation" class="nav__logo" />
+        <span class="nav__wordmark">PRAGYATHA&nbsp;<span class="accent">'26</span></span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#events">Events</a>
+        <a href="#prizes">Prizes</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.certifyy.in/" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Register</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="container hero__inner">
+      <div class="hero__hosts">
+        <img src="assets/mce-logo.png" alt="Malnad College of Engineering, Hassan" />
+        <div class="hero__hosts-text">
+          <strong>Malnad College of Engineering, Hassan</strong>
+          <span>ME-RIISE Foundation · Technology Business Incubator (TBI-MCE)</span>
+        </div>
+      </div>
+
+      <p class="hero__eyebrow">State Level Entrepreneurial Fest</p>
+      <h1 class="hero__title">PRAGYATHA <span class="accent">'26</span></h1>
+      <p class="hero__tagline">Elevating Ideas, Incubating Success.</p>
+
+      <ul class="hero__facts">
+        <li><span>🗓️</span> Oct 30, 31 &amp; Nov 1, 2026</li>
+        <li><span>🏆</span> Prize Pool ₹75,000</li>
+        <li><span>⚡</span> 8 Flagship Events</li>
+      </ul>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown" aria-label="Countdown to Pragyatha '26">
+        <div class="countdown__unit"><span class="countdown__num" id="cd-days">00</span><span class="countdown__label">Days</span></div>
+        <div class="countdown__sep">:</div>
+        <div class="countdown__unit"><span class="countdown__num" id="cd-hours">00</span><span class="countdown__label">Hours</span></div>
+        <div class="countdown__sep">:</div>
+        <div class="countdown__unit"><span class="countdown__num" id="cd-mins">00</span><span class="countdown__label">Minutes</span></div>
+        <div class="countdown__sep">:</div>
+        <div class="countdown__unit"><span class="countdown__num" id="cd-secs">00</span><span class="countdown__label">Seconds</span></div>
+      </div>
+
+      <div class="hero__cta">
+        <a href="https://www.certifyy.in/" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Register Now</a>
+        <a href="#events" class="btn btn--ghost btn--lg">View Events</a>
+      </div>
+
+      <div class="hero__partners">
+        <span>Supported by</span>
+        <div class="hero__partner-badges">
+          <span class="partner"><img src="assets/partners/meriise.png" alt="ME-RIISE Foundation" loading="lazy" /></span>
+          <span class="partner"><img src="assets/partners/mce.png" alt="Malnad College of Engineering, Hassan" loading="lazy" /></span>
+          <span class="partner"><img src="assets/partners/government.png" alt="Government of Karnataka" loading="lazy" /></span>
+          <span class="partner"><img src="assets/partners/ktech.png" alt="K-tech" loading="lazy" /></span>
+          <span class="partner"><img src="assets/partners/startup-karnataka.png" alt="Startup Karnataka" loading="lazy" /></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <p class="section__eyebrow">About the Fest</p>
+      <h2 class="section__title">Where ideas become ventures</h2>
+      <div class="about__grid">
+        <div class="about__text">
+          <p><strong>PRAGYATHA '26</strong> is the State Level Entrepreneurial Fest hosted by the
+            <strong>ME-RIISE Foundation</strong> (A Section 8 Company) and the <strong>Technology Business
+            Incubator at Malnad College of Engineering, Hassan</strong>. Over three days, students across the
+            state come together to build, pitch, code, design and compete.</p>
+          <p>From 24-hour hackathons to pitching battles, stock-market workshops and build challenges —
+            PRAGYATHA '26 is a celebration of innovation, creativity and excellence, with a
+            <strong>₹75,000 prize pool</strong> on the line.</p>
+          <a href="#events" class="btn btn--primary">Explore the 8 events</a>
+        </div>
+        <div class="about__stats">
+          <div class="stat"><span class="stat__num" data-count="8">8</span><span class="stat__label">Flagship Events</span></div>
+          <div class="stat"><span class="stat__num" data-count="75" data-prefix="₹" data-suffix="K">₹75K</span><span class="stat__label">Prize Pool</span></div>
+          <div class="stat"><span class="stat__num" data-count="3">3</span><span class="stat__label">Days of Action</span></div>
+          <div class="stat"><span class="stat__num" data-count="6" data-suffix="+">6+</span><span class="stat__label">Branches</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EVENTS ===== -->
+  <section class="events section" id="events">
+    <div class="container">
+      <p class="section__eyebrow">Compete &amp; Conquer</p>
+      <h2 class="section__title">8 events. One stage.</h2>
+      <p class="section__sub">Tap any event to see the full rules, timing, venue and what to bring.</p>
+
+      <div class="filters" id="filters" role="tablist" aria-label="Filter events by category"></div>
+      <div class="events__grid" id="eventsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== PRIZE BAND ===== -->
+  <section class="prizeband" id="prizes">
+    <div class="container prizeband__inner">
+      <div>
+        <p class="prizeband__kicker">Total Prize Pool</p>
+        <p class="prizeband__amount">₹75,000</p>
+        <p class="prizeband__dates">October 30 · 31 &amp; November 1, 2026</p>
+      </div>
+      <a href="https://www.certifyy.in/" target="_blank" rel="noopener" class="btn btn--light btn--lg">Register Your Team</a>
+    </div>
+  </section>
+
+  <!-- ===== RULEBOOK ===== -->
+  <section class="rulebook section">
+    <div class="container rulebook__inner">
+      <div class="rulebook__text">
+        <h2 class="section__title">Read the official Rule Book</h2>
+        <p class="section__sub">Full general rules, accommodation info, event briefs and evaluation criteria — in one PDF.</p>
+      </div>
+      <a href="assets/rulebook.pdf" target="_blank" rel="noopener" class="btn btn--primary btn--lg">⬇ Download Rule Book (PDF)</a>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <p class="section__eyebrow">Get in touch</p>
+      <h2 class="section__title">Questions? Talk to the organizers</h2>
+      <div class="contact__grid">
+        <a class="contact__card" href="tel:+917795636004">
+          <span class="contact__role">Event Coordinator</span>
+          <span class="contact__name">Megha H M</span>
+          <span class="contact__value">+91 77956 36004</span>
+        </a>
+        <a class="contact__card" href="tel:+919844293678">
+          <span class="contact__role">Event Coordinator</span>
+          <span class="contact__name">Stapley V S</span>
+          <span class="contact__value">+91 98442 93678</span>
+        </a>
+        <a class="contact__card" href="https://www.instagram.com/me_riise/" target="_blank" rel="noopener">
+          <span class="contact__role">Follow us</span>
+          <span class="contact__name">Instagram</span>
+          <span class="contact__value">@me_riise</span>
+        </a>
+        <a class="contact__card" href="https://meriise.org" target="_blank" rel="noopener">
+          <span class="contact__role">Website</span>
+          <span class="contact__name">meriise.org</span>
+          <span class="contact__value">ME-RIISE Foundation</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/meriise-logo.png" alt="ME-RIISE Foundation" />
+        <p>PRAGYATHA '26 — State Level Entrepreneurial Fest.<br />
+          Organised by ME-RIISE Foundation (A Section 8 Company) &amp; Malnad College of Engineering, Hassan.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#events">Events</a>
+        <a href="#prizes">Prizes</a>
+        <a href="assets/rulebook.pdf" target="_blank" rel="noopener">Rule Book</a>
+        <a href="https://www.certifyy.in/" target="_blank" rel="noopener">Register</a>
+      </nav>
+    </div>
+    <div class="footer__bottom container">
+      <span>© 2026 ME-RIISE Foundation. All rights reserved.</span>
+      <span>Elevating Ideas, Incubating Success.</span>
+    </div>
+  </footer>
+
+  <!-- ===== EVENT MODAL ===== -->
+  <div class="modal" id="eventModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="document">
+      <button class="modal__close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal__body" id="modalBody"><!-- filled by JS --></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
