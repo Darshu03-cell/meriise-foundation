@@ -19,7 +19,7 @@ define('PW_FILE',    __DIR__ . '/.htevtadmin');            // bcrypt hash (web-b
 define('DATA_FILE',  __DIR__ . '/events_dynamic.json');    // public event data
 define('UPLOAD_DIR', __DIR__ . '/assets/uploads');         // where photos are saved
 define('UPLOAD_URL', 'assets/uploads');                    // path written into JSON
-define('MAX_FILES',  12);
+define('MAX_FILES',  5);
 define('MAX_BYTES',  8 * 1024 * 1024);                     // 8 MB per photo
 $ALLOWED_EXT = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 
@@ -337,10 +337,11 @@ usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
       <input type="hidden" name="action" value="add">
       <input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>">
 
-      <label>Photos <span class="muted">(drag &amp; drop, or click — the first photo becomes the cover)</span></label>
+      <label>Photos <span class="muted">(up to 5; drag &amp; drop, or click — the first photo becomes the cover)</span></label>
       <div class="drop" id="drop">Drop photos here, or click to choose</div>
       <input type="file" id="fileInput" name="photos[]" accept="image/*" multiple hidden>
       <div class="previews" id="previews"></div>
+      <div class="muted" id="photoLimitMessage" role="status" aria-live="polite"></div>
 
       <label>Event title</label>
       <input type="text" name="title" required placeholder="e.g. Igniting Young Minds 8.0 – Session 4">
@@ -414,12 +415,26 @@ usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
     const drop = document.getElementById('drop');
     const input = document.getElementById('fileInput');
     const previews = document.getElementById('previews');
+    const photoLimitMessage = document.getElementById('photoLimitMessage');
+    const maxFiles = 5;
 
     drop.addEventListener('click', () => input.click());
     ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('hover'); }));
     ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('hover'); }));
-    drop.addEventListener('drop', e => { input.files = e.dataTransfer.files; showPreviews(); });
-    input.addEventListener('change', showPreviews);
+    drop.addEventListener('drop', e => setSelectedFiles(e.dataTransfer.files));
+    input.addEventListener('change', () => setSelectedFiles(input.files));
+
+    function setSelectedFiles(files) {
+      const selected = [...files];
+      const exceededLimit = selected.length > maxFiles;
+      const transfer = new DataTransfer();
+      selected.slice(0, maxFiles).forEach(file => transfer.items.add(file));
+      input.files = transfer.files;
+      photoLimitMessage.textContent = exceededLimit
+        ? 'Only the first 5 photos were kept. The maximum is 5.'
+        : '';
+      showPreviews();
+    }
 
     function showPreviews() {
       previews.innerHTML = '';
