@@ -1,6 +1,48 @@
 'use strict';
 
 (function () {
+    var themeButton = document.querySelector('[data-theme-toggle]');
+    var themeMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    var root = document.documentElement;
+
+    function updateThemeButton(isDark) {
+        themeButton.setAttribute('aria-pressed', String(isDark));
+    }
+
+    if (themeButton) {
+        var savedTheme = root.getAttribute('data-theme');
+        var isDark = savedTheme ? savedTheme === 'dark' : Boolean(themeMedia && themeMedia.matches);
+        updateThemeButton(isDark);
+
+        themeButton.addEventListener('click', function () {
+            isDark = themeButton.getAttribute('aria-pressed') !== 'true';
+            var selectedTheme = isDark ? 'dark' : 'light';
+            root.setAttribute('data-theme', selectedTheme);
+            updateThemeButton(isDark);
+
+            try {
+                localStorage.setItem('meriise-theme', selectedTheme);
+            } catch (error) {
+                // Keep the selection active for this page view when storage is unavailable.
+            }
+        });
+
+        if (themeMedia) {
+            var handleSystemThemeChange = function (event) {
+                if (!root.hasAttribute('data-theme')) {
+                    isDark = event.matches;
+                    updateThemeButton(isDark);
+                }
+            };
+
+            if (typeof themeMedia.addEventListener === 'function') {
+                themeMedia.addEventListener('change', handleSystemThemeChange);
+            } else if (typeof themeMedia.addListener === 'function') {
+                themeMedia.addListener(handleSystemThemeChange);
+            }
+        }
+    }
+
     var watchBtn = document.getElementById('watch-talk-btn');
     var modal = document.getElementById('live-modal');
     var modalDialog = modal.querySelector('[role="dialog"]');

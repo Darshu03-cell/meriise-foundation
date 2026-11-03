@@ -39,7 +39,7 @@
 
 /* Follow the operating system's appearance automatically. */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
         --color-bg: #0d0f12;
         --color-surface: #1a1d22;
         --color-surface-2: #262a31;
@@ -282,6 +282,33 @@ a {
 .ted-search svg {
     width: 1.3rem;
     height: 1.3rem;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-ink);
+    cursor: pointer;
+    transition: background-color 200ms, color 200ms, border-color 200ms;
+}
+
+.theme-toggle:hover {
+    background-color: var(--color-surface);
+    color: var(--color-accent);
+}
+
+.theme-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 /* Hamburger + drawer-only elements (hidden on desktop) */
@@ -983,3 +1010,755 @@ address {
     margin-left: 4px;
 }
 
+/* ---------- Editorial polish ---------- */
+:root {
+    --color-accent: #174ea6;
+    --color-accent-2: #103c82;
+    --color-accent-glow: rgba(23, 78, 166, 0.2);
+    --color-border: #dce3ed;
+    --color-surface: #f5f7fa;
+    --color-surface-2: #eaf0f8;
+    --radius-sm: 0.55rem;
+    --radius-md: 0.8rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --color-accent: #82adff;
+        --color-accent-2: #a9c5ff;
+        --color-accent-glow: rgba(79, 131, 255, 0.24);
+        --color-border: #303846;
+        --color-surface: #171d26;
+        --color-surface-2: #202b3a;
+    }
+
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+body {
+    letter-spacing: -0.01em;
+}
+
+.container {
+    width: min(100%, 1320px);
+    padding-inline: clamp(1.25rem, 4vw, 3.25rem);
+}
+
+.ted-nav {
+    background: color-mix(in srgb, var(--color-bg) 96%, transparent);
+    border-bottom-color: color-mix(in srgb, var(--color-border) 82%, transparent);
+}
+
+.ted-nav.is-scrolled {
+    box-shadow: 0 8px 26px rgba(18, 35, 62, 0.08);
+}
+
+.ted-nav__row {
+    min-height: 88px;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.ted-nav__brand {
+    gap: 1rem;
+}
+
+.ted-nav__logo img {
+    height: 76px;
+}
+
+.ted-nav__tagline {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.ted-nav__links {
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.ted-nav__links a {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    transition: color 180ms ease;
+}
+
+.ted-nav__cta {
+    min-height: 44px;
+    border-radius: var(--radius-full);
+    padding-inline: 1.2rem;
+    letter-spacing: 0.035em;
+}
+
+.ted-nav__toggle,
+.ted-nav__close,
+.ted-search {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.featured {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(3.5rem, 6vw, 5rem);
+    background:
+        radial-gradient(ellipse at 82% 28%, rgba(80, 135, 215, 0.12), transparent 34rem),
+        linear-gradient(180deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-surface) 68%, var(--color-bg)) 100%);
+}
+
+.featured::before {
+    position: absolute;
+    z-index: -1;
+    top: 10%;
+    left: -9rem;
+    width: 17rem;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-radius: 50%;
+    content: "";
+}
+
+.featured__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.82fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.featured__content {
+    max-width: 640px;
+}
+
+.eyebrow {
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    line-height: 1.4;
+}
+
+.featured__title {
+    max-width: 12ch;
+    margin-bottom: 1.4rem;
+    font-size: clamp(2.7rem, 5.2vw, 4.9rem);
+    line-height: 0.99;
+    letter-spacing: -0.055em;
+}
+
+.featured__lead {
+    max-width: 58ch;
+    margin-bottom: 1.4rem;
+    font-size: clamp(1rem, 1.3vw, 1.12rem);
+    line-height: 1.75;
+}
+
+.featured__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.65rem;
+    margin-bottom: 1.7rem;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.featured__meta .dot {
+    color: var(--color-accent);
+}
+
+.featured__buttons {
+    gap: 0.75rem;
+}
+
+.btn {
+    min-height: 48px;
+    padding: 0.75rem 1.2rem;
+    border-radius: var(--radius-full);
+    font-size: 0.86rem;
+    transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--color-accent-2);
+    color: var(--color-bg);
+    box-shadow: 0 10px 24px var(--color-accent-glow);
+}
+
+.btn-secondary {
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-ink);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-accent);
+    background: var(--color-surface-2);
+    color: var(--color-ink);
+}
+
+.featured__media {
+    position: relative;
+    margin: 0;
+}
+
+.media-frame {
+    border: 1px solid color-mix(in srgb, var(--color-border) 76%, transparent);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface-2);
+    box-shadow: 0 24px 60px rgba(18, 35, 62, 0.16);
+}
+
+.media-frame--vertical {
+    max-width: 340px;
+    border-radius: 1.15rem;
+}
+
+.featured__media .media-frame--vertical {
+    aspect-ratio: 2 / 3;
+    padding-bottom: 0;
+}
+
+.featured__caption {
+    margin-top: 0.9rem;
+    color: var(--color-text-muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    text-align: center;
+}
+
+.video-cover {
+    background: #101927;
+}
+
+.play-icon {
+    width: 68px;
+    height: 68px;
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    background: rgba(12, 24, 42, 0.72);
+    backdrop-filter: blur(8px);
+}
+
+.video-cover:hover .play-icon,
+.video-cover:focus-visible .play-icon {
+    background: var(--color-accent);
+}
+
+.section {
+    padding: clamp(3.25rem, 6vw, 5.25rem) 0;
+}
+
+.section--latest {
+    border-top: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-surface) 54%, var(--color-bg));
+}
+
+.section--latest:nth-of-type(odd) {
+    background: var(--color-bg);
+}
+
+.section-head {
+    max-width: 780px;
+    margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.section-head .eyebrow {
+    margin-bottom: 0.65rem;
+}
+
+.section-head h2 {
+    max-width: 22ch;
+    font-size: clamp(1.85rem, 3.4vw, 2.7rem);
+    letter-spacing: -0.045em;
+}
+
+.section-head h3 {
+    margin-top: 0.8rem;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.latest__media {
+    max-width: 1040px;
+}
+
+.latest__media .media-frame {
+    border-radius: var(--radius-lg);
+}
+
+#upcoming {
+    border-top: 1px solid var(--color-border);
+    background:
+        linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 65%, var(--color-bg)), var(--color-bg) 42%);
+}
+
+.talk-grid {
+    gap: 1.2rem;
+}
+
+.talk-card {
+    min-width: 0;
+    padding: 0.75rem 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    box-shadow: 0 8px 24px rgba(18, 35, 62, 0.045);
+    transition: opacity 400ms ease, transform 400ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.talk-card.is-visible {
+    opacity: 1;
+}
+
+.talk-card:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 42%, var(--color-border));
+    box-shadow: 0 16px 34px rgba(18, 35, 62, 0.1);
+}
+
+.thumb {
+    margin-bottom: 1rem;
+    border-radius: calc(var(--radius-md) - 0.2rem);
+    background: var(--color-surface-2);
+}
+
+.thumb-placeholder {
+    background:
+        radial-gradient(circle at 76% 18%, color-mix(in srgb, var(--color-accent) 13%, transparent) 0 2.8rem, transparent 2.9rem),
+        linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-2) 100%);
+    color: var(--color-text-muted);
+    font-size: 0.68rem;
+}
+
+.duration-badge {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    padding: 0.28rem 0.55rem;
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+}
+
+.talk-card__cat {
+    margin-bottom: 0.4rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+}
+
+.talk-card__title {
+    margin-bottom: 0.45rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+}
+
+.talk-card__meta {
+    margin-top: auto;
+    font-size: 0.76rem;
+}
+
+.site-footer {
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0 2.5rem;
+    background: var(--color-footer-bg);
+}
+
+.footer-top {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social {
+    gap: 0.65rem;
+}
+
+.social a {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+}
+
+.social a:hover {
+    border-color: var(--color-accent);
+}
+
+.footer-grid {
+    gap: 2.5rem;
+}
+
+.footer-title {
+    margin-bottom: 0.85rem;
+    font-size: 0.92rem;
+}
+
+.footer-col p,
+.footer-col a,
+.footer-col address {
+    font-size: 0.8rem;
+}
+
+.footer-col a,
+.social a {
+    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.modal-dialog-wrap {
+    width: min(90%, 500px);
+}
+
+.modal-dialog {
+    gap: 1.25rem;
+    padding: clamp(2rem, 6vw, 3.5rem);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+.modal-pill {
+    background: var(--color-surface-2);
+    color: var(--color-accent);
+}
+
+.modal-title {
+    font-size: clamp(1.5rem, 4vw, 1.85rem);
+    letter-spacing: -0.04em;
+}
+
+.modal-close {
+    width: 44px;
+    height: 44px;
+}
+
+.ted-nav__menu a:focus-visible,
+.footer-col a:focus-visible,
+.social a:focus-visible,
+.btn:focus-visible,
+.video-cover:focus-visible,
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+@media (hover: hover) {
+    .talk-card:hover .thumb img {
+        transform: scale(1.035);
+    }
+}
+
+@media (max-width: 900px) {
+    .ted-nav__row {
+        min-height: 68px;
+    }
+
+    .ted-nav__logo img {
+        height: 54px;
+    }
+
+    .ted-nav__menu {
+        background: var(--color-bg);
+    }
+
+    .ted-nav__links {
+        gap: 1.35rem;
+    }
+
+    .featured__grid {
+        grid-template-columns: minmax(0, 1fr) minmax(250px, 0.8fr);
+        gap: 2.5rem;
+    }
+
+    .featured__title {
+        font-size: clamp(2.5rem, 6vw, 3.7rem);
+    }
+}
+
+@media (max-width: 700px) {
+    html {
+        scroll-padding-top: 4.5rem;
+    }
+
+    .featured {
+        padding-block: 3.5rem 3rem;
+    }
+
+    .featured__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .featured__title {
+        max-width: 13ch;
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+    }
+
+    .featured__meta {
+        font-size: 0.75rem;
+    }
+
+    .featured__media {
+        width: min(100%, 390px);
+        margin-inline: auto;
+    }
+
+    .section {
+        padding-block: 3rem;
+    }
+
+    .section-head {
+        margin-bottom: 1.5rem;
+    }
+
+    .talk-grid {
+        gap: 0.8rem;
+    }
+
+    .talk-card {
+        padding: 0.55rem 0.55rem 0.8rem;
+    }
+
+    .talk-card__title {
+        font-size: 0.95rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 1.25rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .featured__buttons {
+        gap: 0.65rem;
+    }
+
+    .featured__buttons .btn {
+        min-height: 46px;
+    }
+
+    .talk-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .talk-card {
+        padding: 0.75rem;
+    }
+
+    .talk-card__title {
+        font-size: 1.05rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .ted-nav__row {
+        gap: 0.5rem;
+    }
+
+    .ted-nav__brand {
+        gap: 0.5rem;
+    }
+
+    .ted-nav__logo img {
+        height: 46px;
+    }
+
+    .ted-nav__tagline {
+        max-width: 10ch;
+        font-size: 0.68rem;
+    }
+
+    .ted-nav__actions {
+        gap: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .btn-primary,
+    :root:not([data-theme]) .ted-nav__cta {
+        background: #174ea6;
+        color: #fff;
+    }
+
+    :root:not([data-theme]) .btn-primary:hover,
+    :root:not([data-theme]) .ted-nav__cta:hover {
+        background: #103c82;
+        color: #fff;
+    }
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+}
+
+html[data-theme="light"],
+html[data-theme="light"] body {
+    background-color: #ffffff;
+    transition: color 200ms;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-bg: #0d0f12;
+    --color-surface: #171d26;
+    --color-surface-2: #202b3a;
+    --color-ink: #f2f4f7;
+    --color-text: #f2f4f7;
+    --color-text-muted: #a2a8b4;
+    --color-border: #303846;
+    --color-accent: #82adff;
+    --color-accent-2: #a9c5ff;
+    --color-tag: #14283b;
+    --color-tag-text: #9fd2ff;
+    --color-footer-bg: #07090b;
+    --color-footer-text: #aab0bb;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+    background-color: #0d0f12;
+    transition: color 200ms;
+}
+
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .ted-nav__cta {
+    background: #174ea6;
+    color: #fff;
+}
+
+:root[data-theme="dark"] .btn-primary:hover,
+:root[data-theme="dark"] .ted-nav__cta:hover {
+    background: #103c82;
+    color: #fff;
+}
+
+.past-sessions {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-surface) 54%, var(--color-bg));
+}
+
+.past-session-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.1rem;
+}
+
+.past-session-card.section--latest {
+    min-width: 0;
+    margin: 0;
+    padding: 1.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    box-shadow: 0 8px 24px rgba(18, 35, 62, 0.045);
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.past-session-card.section--latest:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 42%, var(--color-border));
+    box-shadow: 0 14px 30px rgba(18, 35, 62, 0.09);
+}
+
+.past-session-card .container {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.past-session-card .section-head {
+    margin-bottom: 1rem;
+}
+
+.past-session-card .section-head .eyebrow {
+    margin-bottom: 0.4rem;
+    font-size: 0.62rem;
+}
+
+.past-session-card .section-head h2 {
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+}
+
+.past-session-card .section-head h3 {
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+}
+
+.past-session-card .latest__media {
+    width: 100%;
+    margin: auto 0 0;
+}
+
+.past-session-card .media-frame {
+    border-radius: calc(var(--radius-md) - 0.2rem);
+    box-shadow: none;
+}
+
+.upcoming__details {
+    margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+    .past-session-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .past-session-card .section-head h2 {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .past-session-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+
+    .past-session-card.section--latest {
+        padding: 1rem;
+    }
+
+    .past-session-card .section-head {
+        margin-bottom: 0.8rem;
+    }
+
+    .past-session-card .section-head h2 {
+        font-size: 1.1rem;
+    }
+}

@@ -7,6 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var savedTheme = localStorage.getItem('meriise-theme');
+                if (savedTheme === 'light' || savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                }
+            } catch (error) {
+                // Continue with the operating system preference when storage is unavailable.
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,6 +57,11 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" data-theme-toggle>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"></path>
                     </svg>
                 </button>
                 <button class="ted-nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
@@ -97,6 +114,151 @@
             </div>
         </section>
 
+        <section class="past-sessions generation-one" id="generation-one" aria-labelledby="generation-one-title">
+            <div class="container past-sessions__container">
+                <div class="section-head generation-one__head">
+                    <p class="eyebrow">Selected Alumni Talks</p>
+                    <h2 id="generation-one-title">Bridging Generation 1</h2>
+                </div>
+                <div class="past-session-grid generation-one__grid">
+                    <article class="section section--latest past-session-card" aria-label="Episode 11 with Bindu B N">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 11</p>
+                                <h2>Bindu B N</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/PqTRpaput-8" title="Bridging Generations - Alumni Insights - Episode 11 - Bindu B N" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=PqTRpaput-8" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Episode 10 with Anu Chowdipura">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 10</p>
+                                <h2>Anu Chowdipura</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/-t5tVkp4uBg" title="Bridging Generations Alumni Insights - Episode 10 - Anu Chowdipura" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=-t5tVkp4uBg" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Episode 9">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 9</p>
+                                <h2>Alumni Insights</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/SGDUZvFQi7M" title="Bridging Generations - Alumni Insights - Episode 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=SGDUZvFQi7M" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Episode 8">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 8</p>
+                                <h2>Alumni Insights</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/fetqaMN8S_Y" title="Bridging Generations - Alumni Insights - Episode 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=fetqaMN8S_Y" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Episode 7 with Asha Kiran">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 7</p>
+                                <h2>Asha Kiran</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/xek90V4ydFY" title="Bridging Generations - Alumni Insights - Episode 7 - Asha Kiran" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=xek90V4ydFY" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Episode 5 with Dr. Shivoo Koteshwar">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 5</p>
+                                <h2>Dr. Shivoo Koteshwar</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/Dhu68XIq4MM" title="Bridging Generations - Alumni Insights - Episode 5 - Dr. Shivoo Koteshwar" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=Dhu68XIq4MM" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Episode 4">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Episode 4</p>
+                                <h2>Alumni Insights</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/Z8EFxRbnrwk" title="Bridging Generations - Alumni Insights - Episode 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=Z8EFxRbnrwk" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Satyesh Bellur">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Alumni Insights</p>
+                                <h2>Satyesh Bellur</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/yWSquZ3a_-U" title="ME-RIISE Foundation's Bridging Generations - Alumni Insights - Satyesh Bellur" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=yWSquZ3a_-U" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+
+                    <article class="section section--latest past-session-card" aria-label="Giri Devanur">
+                        <div class="container">
+                            <div class="section-head">
+                                <p class="eyebrow">Alumni Insights</p>
+                                <h2>Giri Devanur</h2>
+                            </div>
+                            <figure class="latest__media">
+                                <div class="media-frame">
+                                    <iframe src="https://www.youtube.com/embed/0Xcjnt0U-FM" title="Bridging Generations - Alumni Insights - Giri Devanur" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+                                </div>
+                            </figure>
+                            <a class="btn btn-secondary upcoming__details" href="https://www.youtube.com/watch?v=0Xcjnt0U-FM" target="_blank" rel="noopener">Watch on YouTube</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
 <!-- Hidden: previous featured video preserved when Episode 5 took the top slot. Un-comment to restore.
         <section class="section section--latest" aria-label="Alumni Insights 2.0 featured session video">
             <div class="container">
@@ -112,23 +274,14 @@
             </div>
         </section>
 -->
-
-
-        <!-- <section class="section section--latest" aria-label="Episode 5 past session video">
-            <div class="container">
+        <section class="past-sessions" aria-labelledby="generation-two-title">
+            <div class="container past-sessions__container">
                 <div class="section-head">
-                    <p class="eyebrow">Past Session</p>
-                    <h2>Episode 5 — Alumni Insights 2.0</h2>
+                    <p class="eyebrow">Bridging Generations</p>
+                    <h2 id="generation-two-title">Bridging Generation 2.0 Videos</h2>
                 </div>
-                <figure class="latest__media">
-                    <div class="media-frame media-frame--vertical">
-                        <!-- <iframe src="https://www.youtube.com/embed/r5yDfrottyE" title="Bridging Generations – Episode 5, Alumni Insights 2.0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe> -->
-                    </div>
-                </figure>
-            </div>
-        </section> -->
-
-        <section class="section section--latest" aria-label="Shubha Girish past session video">
+                <div class="past-session-grid">
+        <section class="section section--latest past-session-card" aria-label="Shubha Girish past session video">
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">Past Session</p>
@@ -142,7 +295,7 @@
             </div>
         </section>
 
-        <section class="section section--latest" aria-label="Guruprasad S session video">
+        <section class="section section--latest past-session-card" aria-label="Guruprasad S session video">
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">Past Session</p>
@@ -156,7 +309,7 @@
             </div>
         </section>
 
-        <section class="section section--latest" aria-label="Alumni Insights 2.0 session video">
+        <section class="section section--latest past-session-card" aria-label="Alumni Insights 2.0 session video">
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">Past Session</p>
@@ -177,7 +330,7 @@
             </div>
         </section>
 
-        <section class="section section--latest" aria-label="Latest talk video">
+        <section class="section section--latest past-session-card" aria-label="Latest talk video">
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">Past Session</p>
@@ -200,7 +353,7 @@
             </div>
         </section>
 
-        <section class="section section--latest" aria-label="Latest talk video">
+        <section class="section section--latest past-session-card" aria-label="Latest talk video">
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">Past Session</p>
@@ -221,12 +374,16 @@
                 </figure>
             </div>
         </section>
+                </div>
+            </div>
+        </section>
 
         <section class="section" id="upcoming" aria-label="Upcoming talks">
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">Coming Soon</p>
                     <h2>Upcoming Alumni Talks</h2>
+                    <button id="watch-talk-btn" class="btn btn-secondary upcoming__details" type="button" aria-haspopup="dialog" aria-controls="live-modal">Session details</button>
                 </div>
 
                 <div class="talk-grid" role="list" aria-label="Upcoming alumni talks">

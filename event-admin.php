@@ -337,7 +337,7 @@ usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
       <input type="hidden" name="action" value="add">
       <input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>">
 
-      <label>Photos <span class="muted">(up to 5; drag &amp; drop, or click — the first photo becomes the cover)</span></label>
+      <label>Photos <span class="muted">(up to 5; choose or drop more photos to add them — the first becomes the cover)</span></label>
       <div class="drop" id="drop">Drop photos here, or click to choose</div>
       <input type="file" id="fileInput" name="photos[]" accept="image/*" multiple hidden>
       <div class="previews" id="previews"></div>
@@ -417,6 +417,7 @@ usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
     const previews = document.getElementById('previews');
     const photoLimitMessage = document.getElementById('photoLimitMessage');
     const maxFiles = 5;
+    let selectedFiles = [];
 
     drop.addEventListener('click', () => input.click());
     ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('hover'); }));
@@ -425,13 +426,17 @@ usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
     input.addEventListener('change', () => setSelectedFiles(input.files));
 
     function setSelectedFiles(files) {
-      const selected = [...files];
-      const exceededLimit = selected.length > maxFiles;
+      const additions = [...files];
+      const availableSlots = Math.max(0, maxFiles - selectedFiles.length);
+      const accepted = additions.slice(0, availableSlots);
+      const rejectedCount = additions.length - accepted.length;
+      selectedFiles = [...selectedFiles, ...accepted];
+
       const transfer = new DataTransfer();
-      selected.slice(0, maxFiles).forEach(file => transfer.items.add(file));
+      selectedFiles.forEach(file => transfer.items.add(file));
       input.files = transfer.files;
-      photoLimitMessage.textContent = exceededLimit
-        ? 'Only the first 5 photos were kept. The maximum is 5.'
+      photoLimitMessage.textContent = rejectedCount
+        ? `Maximum is 5 photos. ${rejectedCount} additional photo(s) were not added.`
         : '';
       showPreviews();
     }
@@ -445,7 +450,7 @@ usort($events, fn($a, $b) => strcmp($b['created'] ?? '', $a['created'] ?? ''));
         previews.appendChild(img);
       });
       drop.textContent = input.files.length
-        ? input.files.length + ' photo(s) selected — click to change'
+        ? input.files.length + ' photo(s) selected — click to add more'
         : 'Drop photos here, or click to choose';
     }
   </script>

@@ -21,7 +21,8 @@ Allow admins to upload up to five photos per new event, rejecting additional sel
 ## Completed
 
 - Changed the server-side upload limit to five.
-- Added client-side limiting for both picker selection and drag-and-drop; selections over five keep the first five and announce that extra photos were dropped.
-- Updated the upload label to state the limit.
+- Added client-side accumulation for picker selections and drag-and-drop, so photos chosen in separate batches are retained up to five. Further selections are rejected with a clear message.
+- Updated the upload instructions and selection prompt to explain that more photos can be added.
 - `node` syntax validation passed for the changed upload JavaScript, and `git diff --check` passed.
 - PHP lint could not be run because PHP is not installed in the current environment. No live uploads or event data were changed.
+- A focused Node test confirmed batches of 1 + 4 produce five selected files, while a sixth is rejected and reported.
