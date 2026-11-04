@@ -152,7 +152,7 @@ h1,h2,h3{font-family:"Poppins",system-ui,sans-serif;line-height:1.1;margin:0;col
 
 .events__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .ecard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-  cursor:pointer;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;min-height:210px;
+  cursor:pointer;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;min-height:320px;
   opacity:0;transform:translateY(22px);
   transition:transform .34s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease,opacity .5s ease}
 .ecard.in{opacity:1;transform:none}
@@ -165,32 +165,21 @@ h1,h2,h3{font-family:"Poppins",system-ui,sans-serif;line-height:1.1;margin:0;col
 .ecard:hover:after{box-shadow:inset 0 0 0 1.5px rgba(124,92,255,.4)}
 .ecard:focus-visible{outline:none}
 
-/* poster media (shown when a poster image loads) */
+/* dedicated event photo boxes, matching the reference layout */
 .ecard__media{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--grad)}
 .ecard__poster{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .ecard:hover .ecard__poster{transform:scale(1.07)}
 .ecard__media:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(27,26,58,.52),rgba(27,26,58,.1) 42%,rgba(27,26,58,.16))}
 .ecard__badge{position:absolute;top:12px;left:12px;z-index:2;display:flex;align-items:center;justify-content:center;
-  width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.92);color:var(--red);
+  width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.92);color:var(--red);
   font-family:"Poppins",sans-serif;font-weight:800;font-size:1.1rem;box-shadow:var(--shadow-sm)}
-.ecard__visualtitle{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;
-  font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(1.35rem,2vw,2rem);letter-spacing:-.03em;
-  line-height:1.1;color:#fff;text-transform:uppercase;text-shadow:0 12px 28px rgba(0,0,0,.25);text-align:left}
-.ecard--noimg .ecard__media{display:none}
+.ecard__visualtitle{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;display:block;
+  font-family:"Poppins",sans-serif;font-weight:800;font-size:clamp(1.2rem,2vw,2.2rem);letter-spacing:-.04em;
+  line-height:1.05;color:#fff;text-transform:uppercase;text-shadow:0 12px 28px rgba(0,0,0,.25);text-align:left}
+.ecard--fallback .ecard__media{background:linear-gradient(135deg,var(--indigo),var(--pink));}
+.ecard--fallback .ecard__visualtitle{padding-top:10px}
+.ecard--photo .ecard__media{aspect-ratio:4/5}
 
-.ecard__body{display:flex;flex-direction:column;flex:1;padding:24px 22px;position:relative}
-.ecard__num{font-family:"Poppins",sans-serif;font-weight:800;font-size:1.6rem;color:var(--red);line-height:1;display:none}
-.ecard--noimg .ecard__num{display:block}
-.ecard__type{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);font-weight:700;margin:14px 0 6px}
-.ecard--noimg .ecard__type{margin-top:14px}
-.ecard:not(.ecard--noimg) .ecard__type{margin-top:0}
-.ecard__name{font-family:"Poppins",sans-serif;font-weight:700;font-size:1.18rem;color:var(--indigo);margin:0}
-.ecard__tag{color:var(--muted);font-size:.86rem;margin:6px 0 0}
-.ecard__meta{margin-top:auto;padding-top:16px;display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);font-weight:600}
-.ecard__meta b{color:var(--indigo);font-weight:700}
-.ecard__more{display:inline-block;margin-top:14px;font-family:"Poppins",sans-serif;font-weight:700;color:var(--pink);
-  font-size:.82rem;opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
-.ecard:hover .ecard__more,.ecard:focus-visible .ecard__more{opacity:1;transform:translateX(0)}
 
 /* ---------- prize band ---------- */
 .prizeband{background:var(--grad);color:#fff;margin:0;padding:54px 0}

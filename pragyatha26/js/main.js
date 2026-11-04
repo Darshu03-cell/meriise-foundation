@@ -183,25 +183,17 @@
   const filtersEl = document.getElementById("filters");
 
   function cardHTML(ev) {
-    // Starts in "no image" mode (shows number). If the poster loads, we flip to
-    // poster mode; if it 404s we remove the <img> and stay in number mode.
+    // Each event gets its own dedicated photo box, with a large image and a
+    // prominent event name label matching the reference layout.
     return (
-      '<article class="ecard ecard--noimg" data-cat="' + ev.cat + '" data-num="' + ev.num + '"' +
+      '<article class="ecard ecard--photo" data-cat="' + ev.cat + '" data-num="' + ev.num + '"' +
         ' tabindex="0" role="button" aria-label="' + ev.name + ' details">' +
         '<div class="ecard__media">' +
           '<img class="ecard__poster" src="' + posterPath(ev) + '" alt="' + ev.name + ' poster"' +
-            ' onload="this.closest(\'.ecard\').classList.remove(\'ecard--noimg\')"' +
-            ' onerror="this.remove()">' +
+            ' onload="this.closest(\'.ecard\').classList.add(\'ecard--loaded\')"' +
+            ' onerror="this.remove(); this.closest(\'.ecard\').classList.add(\'ecard--fallback\')">' +
           '<span class="ecard__badge">' + ev.num + '</span>' +
           '<div class="ecard__visualtitle">' + ev.name + '</div>' +
-        '</div>' +
-        '<div class="ecard__body">' +
-          '<div class="ecard__num">' + ev.num + '</div>' +
-          '<p class="ecard__type">' + ev.type + '</p>' +
-          '<h3 class="ecard__name">' + ev.name + '</h3>' +
-          '<p class="ecard__tag">' + ev.tag + '</p>' +
-          '<div class="ecard__meta">📍 <b>' + ev.venue + '</b> · ' + ev.date + '</div>' +
-          '<span class="ecard__more">View details →</span>' +
         '</div>' +
       '</article>'
     );
