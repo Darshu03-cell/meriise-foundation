@@ -163,17 +163,18 @@
     { key: "build", label: "Build Challenges" }
   ];
 
-  /* Per-event posters (dropped in pragyatha26/images/). Any missing entry
-     falls back to the numbered card automatically. */
+  /* Poster assets for the event cards. The subdomain-specific copies live under
+     pragyatha26/images/ so they load correctly when the site is served from the
+     subdomain. Missing entries fall back to the numbered card automatically. */
   const POSTERS = {
-    "01": "images/adspize.jpeg",
-    "02": "images/UiUx.jpeg",
-    "03": "images/codeforge.jpeg",
-    "04": "images/Hardwarex.jpeg",
-    "05": "images/entrorphosis.jpeg",
-    "06": "images/Investsmart.jpeg",
-    "07": "images/bridgex.jpeg",
-    "08": "images/catapult.jpeg"
+    "01": "images/adspize.png",
+    "02": "images/uiux.png",
+    "03": "images/codeforge26.png",
+    "04": "images/hardware.png",
+    "05": "images/entrorphosiss.png",
+    "06": "images/investsmart.png",
+    "07": "images/bridgex.png",
+    "08": "images/catapult.png"
   };
   function posterPath(ev) { return POSTERS[ev.num] || ""; }
 
