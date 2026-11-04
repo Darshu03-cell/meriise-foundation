@@ -163,10 +163,10 @@
     { key: "build", label: "Build Challenges" }
   ];
 
-  /* Per-event posters (dropped in pragyatha26/images/). A missing entry just
-     falls back to the numbered card automatically. ADSPIZE (01) pending. */
+  /* Per-event posters (dropped in pragyatha26/images/). Any missing entry
+     falls back to the numbered card automatically. */
   const POSTERS = {
-    "01": "images/adspize.jpeg",       // pending — 404s gracefully until added
+    "01": "images/adspize.jpeg",
     "02": "images/UiUx.jpeg",
     "03": "images/codeforge.jpeg",
     "04": "images/Hardwarex.jpeg",
@@ -192,6 +192,7 @@
             ' onload="this.closest(\'.ecard\').classList.remove(\'ecard--noimg\')"' +
             ' onerror="this.remove()">' +
           '<span class="ecard__badge">' + ev.num + '</span>' +
+          '<div class="ecard__visualtitle">' + ev.name + '</div>' +
         '</div>' +
         '<div class="ecard__body">' +
           '<div class="ecard__num">' + ev.num + '</div>' +

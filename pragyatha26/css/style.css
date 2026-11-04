@@ -169,10 +169,13 @@ h1,h2,h3{font-family:"Poppins",system-ui,sans-serif;line-height:1.1;margin:0;col
 .ecard__media{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--grad)}
 .ecard__poster{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .ecard:hover .ecard__poster{transform:scale(1.07)}
-.ecard__media:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(27,26,58,.55),transparent 42%)}
+.ecard__media:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(27,26,58,.52),rgba(27,26,58,.1) 42%,rgba(27,26,58,.16))}
 .ecard__badge{position:absolute;top:12px;left:12px;z-index:2;display:flex;align-items:center;justify-content:center;
   width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.92);color:var(--red);
   font-family:"Poppins",sans-serif;font-weight:800;font-size:1.1rem;box-shadow:var(--shadow-sm)}
+.ecard__visualtitle{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;
+  font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(1.35rem,2vw,2rem);letter-spacing:-.03em;
+  line-height:1.1;color:#fff;text-transform:uppercase;text-shadow:0 12px 28px rgba(0,0,0,.25);text-align:left}
 .ecard--noimg .ecard__media{display:none}
 
 .ecard__body{display:flex;flex-direction:column;flex:1;padding:24px 22px;position:relative}
